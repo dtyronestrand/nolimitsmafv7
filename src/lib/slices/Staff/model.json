@@ -16,7 +16,11 @@
           "type": "StructuredText",
           "config": {
             "label": "Heading",
+<<<<<<< HEAD
             "placeholder": "",
+=======
+            "placeholder": "H2 Italics for bold",
+>>>>>>> 0f71a22 (catch up)
             "allowTargetBlank": true,
             "single": "heading2,strong,em"
           }
@@ -30,7 +34,11 @@
               "avatar": {
                 "type": "Image",
                 "config": {
+<<<<<<< HEAD
                   "label": "Avatar",
+=======
+                  "label": "avatar",
+>>>>>>> 0f71a22 (catch up)
                   "constraint": {},
                   "thumbnails": []
                 }
@@ -41,7 +49,11 @@
                   "label": "Name",
                   "placeholder": "",
                   "allowTargetBlank": true,
+<<<<<<< HEAD
                   "multi": "heading3,em,strong"
+=======
+                  "single": "heading3"
+>>>>>>> 0f71a22 (catch up)
                 }
               },
               "title": {
@@ -58,4 +70,8 @@
       "items": {}
     }
   ]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0f71a22 (catch up)

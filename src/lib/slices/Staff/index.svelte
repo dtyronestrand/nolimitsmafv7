@@ -1,4 +1,5 @@
 <script lang="ts">
+<<<<<<< HEAD
   import type { Content } from '@prismicio/client'
   import Bounded from '$lib/components/Bounded.svelte'
   import Heading2 from '$lib/components/Heading2.svelte'
@@ -110,3 +111,30 @@
     letter-spacing: 1px;
   }
 </style>
+=======
+	import type { Content } from '@prismicio/client';
+	import Bounded from "$lib/components/Bounded.svelte"
+	import GoldText from "$lib/components/GoldText.svelte"
+	import {PrismicRichText, PrismicText, PrismicImage} from "@prismicio/svelte"
+	
+	export let slice: Content.StaffSlice;
+</script>
+
+<Bounded data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+	
+	<PrismicRichText field={slice.primary.heading} components={{em:GoldText}}/>{#each slice.primary.staff_info as {avatar, name, title}}
+	<div class="card">
+		<div class="card-header">
+			<PrismicImage field={avatar}/>
+		</div>
+		<section>
+			<PrismicRichText field={name}/>
+		</section>
+		<div class="card-footer">
+	{title}
+		</div>
+
+	</div>
+	{/each}
+</Bounded>
+>>>>>>> 0f71a22 (catch up)
