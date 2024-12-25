@@ -6,7 +6,8 @@ import ButtonLink from '$lib/components/ButtonLink.svelte';
 	import { PrismicRichText, PrismicLink, PrismicImage, PrismicText } from '@prismicio/svelte';
 	import Bounded from '$lib/components/Bounded.svelte';
 	import GoldText from '$lib/components/GoldText.svelte';
-
+	import Heading1 from '$lib/components/Heading1.svelte';
+	import {currentUser} from '$lib/pocketbase';
 	export let slice: Content.HeroSlice;
 
 onMount(() => {
@@ -58,8 +59,9 @@ onMount(() => {
 	<div class="hero__glow--two absolute left-0 top-1/3 -z-10 h-2/3 w-2/3 bg-orange-600/50 mix-blend-screen blur-[120px] filter"/>
 	<PrismicImage class="rounded-[50%]" field={slice.primary.hero_image} />
 </div>
-	
+{#if !$currentUser}
 <ButtonLink class="hero__button text-4xl opacity-0 mt-12" field={slice.primary.cta_button_link}>{slice.primary.cta_button_label}</ButtonLink>
+{/if}
 	</div>
 </Bounded>
 <style>

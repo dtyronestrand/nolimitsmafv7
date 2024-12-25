@@ -1,0 +1,1 @@
+<h1 class="text-balance text-amber-400 text-center text-7xl font-medium max-w-3xl mx-auto  md:text-7xl"><slot/></h1>

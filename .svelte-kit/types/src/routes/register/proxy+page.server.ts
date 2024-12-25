@@ -1,7 +1,8 @@
+// @ts-nocheck
 import type {Actions} from './$types';
 import { redirect } from '@sveltejs/kit';
-export  const actions: Actions = {
-    register: async ({locals, request}) => {
+export  const actions = {
+    register: async ({locals, request}: import('./$types').RequestEvent) => {
         const data = Object.fromEntries(await request.formData()) as {
             firstName: string;
             lastName: string;
@@ -21,7 +22,7 @@ export  const actions: Actions = {
             throw redirect (303, '/');
        },
 
-       login: async ({locals, request}) => {
+       login: async ({locals, request}: import('./$types').RequestEvent) => {
         const data = Object.fromEntries(await request.formData()) as {
          
             email: string;
@@ -40,4 +41,4 @@ export  const actions: Actions = {
             throw redirect (303, '/');
        }
     };
-    
+    ;null as any as Actions;
