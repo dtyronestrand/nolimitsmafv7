@@ -99,7 +99,7 @@
 				</li>
 			{/each}
             {#if $currentUser}
-               <li>{$currentUser.firstName} {$currentUser.lastName}</li>
+               <li><a href='/profile'>{$currentUser.firstName} {$currentUser.lastName}</a></li>
                <li>
                 <form method="POST" action="/logout" use:enhance={()=>{
                     return async ({result})=>{

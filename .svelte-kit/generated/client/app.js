@@ -11,16 +11,18 @@ export const nodes = [
 	() => import('./nodes/4'),
 	() => import('./nodes/5'),
 	() => import('./nodes/6'),
-	() => import('./nodes/7')
+	() => import('./nodes/7'),
+	() => import('./nodes/8')
 ];
 
 export const server_loads = [0];
 
 export const dictionary = {
-		"/logout": [~4],
-		"/profile": [5],
-		"/register": [~6],
-		"/slice-simulator": [7],
+		"/logout": [~5],
+		"/profile": [6],
+		"/[[preview=preview]]/program/[uid]": [~4],
+		"/register": [~7],
+		"/slice-simulator": [8],
 		"/[[preview=preview]]": [~2],
 		"/[[preview=preview]]/[uid]": [~3]
 	};

@@ -2,12 +2,14 @@
 
 import Hero from "./Hero/index.svelte";
 import RichText from "./RichText/index.svelte";
+import ShowCase from "./ShowCase/index.svelte";
 import Staff from "./Staff/index.svelte";
 import WordList from "./WordList/index.svelte";
 
 export const components = {
   hero: Hero,
   rich_text: RichText,
+  show_case: ShowCase,
   staff: Staff,
   word_list: WordList,
 };

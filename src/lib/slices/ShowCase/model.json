@@ -1,0 +1,92 @@
+{
+  "id": "show_case",
+  "type": "SharedSlice",
+  "name": "ShowCase",
+  "description": "ShowCase",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,list-item,o-list-item,strong,em"
+          }
+        },
+        "show_piece": {
+          "type": "Group",
+          "config": {
+            "label": "Show PIece",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "single": "heading3,heading4,heading5,heading6,strong,em,heading2"
+                }
+              },
+              "body": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "body",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,o-list-item,list-item,strong,em"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "LInk",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              },
+              "reverse": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Reverse",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

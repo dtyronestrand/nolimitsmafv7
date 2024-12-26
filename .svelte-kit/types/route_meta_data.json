@@ -12,6 +12,10 @@
 	"/profile": [
 		"src/routes/+layout.server.ts"
 	],
+	"/[[preview=preview]]/program/[uid]": [
+		"src/routes/[[preview=preview]]/program/[uid]/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
 	"/register": [
 		"src/routes/register/+page.server.ts",
 		"src/routes/+layout.server.ts"

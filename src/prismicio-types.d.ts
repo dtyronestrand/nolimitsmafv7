@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type PageDocumentDataSlicesSlice =
+  | ShowCaseSlice
   | StaffSlice
   | WordListSlice
   | HeroSlice
@@ -79,6 +80,71 @@ interface PageDocumentData {
  */
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+
+type ProgramDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Program documents
+ */
+interface ProgramDocumentData {
+  /**
+   * Slice Zone field in *Program*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ProgramDocumentDataSlicesSlice> /**
+   * Meta Title field in *Program*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: program.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Program*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: program.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Program*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Program document from Prismic
+ *
+ * - **API ID**: `program`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProgramDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProgramDocumentData>,
+    "program",
+    Lang
+  >;
 
 /**
  * Item in *Settings → Navigation*
@@ -170,7 +236,10 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = PageDocument | SettingsDocument;
+export type AllDocumentTypes =
+  | PageDocument
+  | ProgramDocument
+  | SettingsDocument;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -287,6 +356,129 @@ type RichTextSliceVariation = RichTextSliceDefault;
 export type RichTextSlice = prismic.SharedSlice<
   "rich_text",
   RichTextSliceVariation
+>;
+
+/**
+ * Item in *ShowCase → Default → Primary → Show PIece*
+ */
+export interface ShowCaseSliceDefaultPrimaryShowPieceItem {
+  /**
+   * Image field in *ShowCase → Default → Primary → Show PIece*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: show_case.default.primary.show_piece[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *ShowCase → Default → Primary → Show PIece*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: show_case.default.primary.show_piece[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * body field in *ShowCase → Default → Primary → Show PIece*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: show_case.default.primary.show_piece[].body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * LInk field in *ShowCase → Default → Primary → Show PIece*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: show_case.default.primary.show_piece[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Reverse field in *ShowCase → Default → Primary → Show PIece*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: show_case.default.primary.show_piece[].reverse
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  reverse: prismic.BooleanField;
+}
+
+/**
+ * Primary content in *ShowCase → Default → Primary*
+ */
+export interface ShowCaseSliceDefaultPrimary {
+  /**
+   * Heading field in *ShowCase → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: show_case.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Body field in *ShowCase → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: show_case.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Show PIece field in *ShowCase → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: show_case.default.primary.show_piece[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  show_piece: prismic.GroupField<
+    Simplify<ShowCaseSliceDefaultPrimaryShowPieceItem>
+  >;
+}
+
+/**
+ * Default variation for ShowCase Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ShowCaseSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ShowCaseSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ShowCase*
+ */
+type ShowCaseSliceVariation = ShowCaseSliceDefault;
+
+/**
+ * ShowCase Shared Slice
+ *
+ * - **API ID**: `show_case`
+ * - **Description**: ShowCase
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ShowCaseSlice = prismic.SharedSlice<
+  "show_case",
+  ShowCaseSliceVariation
 >;
 
 /**
@@ -462,6 +654,9 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      ProgramDocument,
+      ProgramDocumentData,
+      ProgramDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
@@ -474,6 +669,11 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      ShowCaseSlice,
+      ShowCaseSliceDefaultPrimaryShowPieceItem,
+      ShowCaseSliceDefaultPrimary,
+      ShowCaseSliceVariation,
+      ShowCaseSliceDefault,
       StaffSlice,
       StaffSliceDefaultPrimaryStaffInfoItem,
       StaffSliceDefaultPrimary,
