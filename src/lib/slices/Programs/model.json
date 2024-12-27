@@ -1,0 +1,39 @@
+{
+  "id": "programs",
+  "type": "SharedSlice",
+  "name": "Programs",
+  "description": "Programs",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "programs": {
+          "type": "Group",
+          "config": {
+            "label": "Programs",
+            "repeat": true,
+            "fields": {
+              "program": {
+                "type": "Link",
+                "config": {
+                  "label": "Program",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    "program"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

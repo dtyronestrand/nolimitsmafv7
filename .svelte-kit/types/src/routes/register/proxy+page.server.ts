@@ -7,10 +7,11 @@ export  const actions = {
             firstName: string;
             lastName: string;
             email: string;
+            role: string;
             password: string;
             passwordConfirm: string;
         };
-
+        data.role = 'User';
         try {
             await locals.pb.collection('users').create(data);
             await locals.pb. collection('users').authWithPassword(data.email, data.password);

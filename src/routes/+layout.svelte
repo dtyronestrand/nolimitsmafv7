@@ -6,6 +6,7 @@
   import { repositoryName } from '$lib/prismicio'
   import {currentUser} from '$lib/pocketbase';
  import Header from '$lib/components/Header.svelte';
+    import Footer from '$lib/components/Footer.svelte';
 console.log($currentUser);
 </script>
 
@@ -26,4 +27,5 @@ console.log($currentUser);
 <main>
   <slot />
 </main>
+<Footer settings={$page.data.settings} />
 <PrismicPreview {repositoryName} />

@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type PageDocumentDataSlicesSlice =
+  | ProgramsSlice
   | ShowCaseSlice
   | StaffSlice
   | WordListSlice
@@ -81,12 +82,45 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type ProgramDocumentDataSlicesSlice = never;
+type ProgramDocumentDataSlicesSlice = ProgramsSlice | RichTextSlice;
 
 /**
  * Content for Program documents
  */
 interface ProgramDocumentData {
+  /**
+   * Program Title field in *Program*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.program_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  program_title: prismic.RichTextField;
+
+  /**
+   * Program Tagline field in *Program*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.program_tagline
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  program_tagline: prismic.KeyTextField;
+
+  /**
+   * Program Image field in *Program*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: program.program_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  program_image: prismic.ImageField<never>;
+
   /**
    * Slice Zone field in *Program*
    *
@@ -312,6 +346,68 @@ type HeroSliceVariation = HeroSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
+
+/**
+ * Item in *Programs → Default → Primary → Programs*
+ */
+export interface ProgramsSliceDefaultPrimaryProgramsItem {
+  /**
+   * Program field in *Programs → Default → Primary → Programs*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programs.default.primary.programs[].program
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  program: prismic.ContentRelationshipField<"program">;
+}
+
+/**
+ * Primary content in *Programs → Default → Primary*
+ */
+export interface ProgramsSliceDefaultPrimary {
+  /**
+   * Programs field in *Programs → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programs.default.primary.programs[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  programs: prismic.GroupField<
+    Simplify<ProgramsSliceDefaultPrimaryProgramsItem>
+  >;
+}
+
+/**
+ * Default variation for Programs Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProgramsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProgramsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Programs*
+ */
+type ProgramsSliceVariation = ProgramsSliceDefault;
+
+/**
+ * Programs Shared Slice
+ *
+ * - **API ID**: `programs`
+ * - **Description**: Programs
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProgramsSlice = prismic.SharedSlice<
+  "programs",
+  ProgramsSliceVariation
+>;
 
 /**
  * Primary content in *RichText → Default → Primary*
@@ -665,6 +761,11 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      ProgramsSlice,
+      ProgramsSliceDefaultPrimaryProgramsItem,
+      ProgramsSliceDefaultPrimary,
+      ProgramsSliceVariation,
+      ProgramsSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,

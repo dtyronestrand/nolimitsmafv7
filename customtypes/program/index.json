@@ -1,6 +1,9 @@
 {
   "format": "page",
   "id": "program",
+  "label": "Program",
+  "repeatable": true,
+  "status": true,
   "json": {
     "Main": {
       "uid": {
@@ -9,12 +12,43 @@
           "label": "UID"
         }
       },
-      "slices": {
+      "program_title": {
+        "type": "StructuredText",
         "config": {
-          "choices": {}
-        },
+          "label": "Program Title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "heading1,strong,em"
+        }
+      },
+      "program_tagline": {
+        "type": "Text",
+        "config": {
+          "label": "Program Tagline",
+          "placeholder": ""
+        }
+      },
+      "program_image": {
+        "type": "Image",
+        "config": {
+          "label": "Program Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "slices": {
+        "type": "Slices",
         "fieldset": "Slice Zone",
-        "type": "Slices"
+        "config": {
+          "choices": {
+            "programs": {
+              "type": "SharedSlice"
+            },
+            "rich_text": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     },
     "SEO & Metadata": {
@@ -44,8 +78,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "Program",
-  "repeatable": true,
-  "status": true
+  }
 }

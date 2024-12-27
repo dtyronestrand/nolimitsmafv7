@@ -2,6 +2,7 @@
 	import type { Content } from '@prismicio/client';
 	import Bounded from '$lib/components/Bounded.svelte';
 	import Heading2 from '$lib/components/Heading2.svelte';
+
 	import GoldText from '$lib/components/GoldText.svelte';
 	import {PrismicRichText, PrismicText, PrismicImage} from '@prismicio/svelte';
 	export let slice: Content.StaffSlice;

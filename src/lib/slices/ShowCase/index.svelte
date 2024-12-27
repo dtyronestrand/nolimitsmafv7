@@ -3,6 +3,8 @@
   import Bounded from "$lib/components/Bounded.svelte";
     import { PrismicLink, PrismicRichText, PrismicText } from "@prismicio/svelte";
     import GoldText from '$lib/components/GoldText.svelte';
+    import Heading3 from '$lib/components/Heading3.svelte';
+    import EffectParagraph from "./EffectParagraph.svelte";
    import {onMount} from 'svelte'; 
     import gsap from 'gsap';  
     export let slice: Content.ShowCaseSlice;
@@ -55,118 +57,103 @@
   <div class="showcase__glow absolute -z-10 w-full max-w-2xl aspect-video rounded-full bg-yellow-400/40 mix-blend-screen blur-[120px] filter"/>
 	<h2 class="showcase__heading text-balance text-center text-5xl font-medium md:text-7xl">
 <h1><PrismicRichText field={slice.primary.heading} components={{em:GoldText}}/></h1>
+<div class="flex flex-col md:flex-row mt-8">
 {#each slice.primary.show_piece as {title, body,image, link}, i}
-<div class="showcase__glow absolute -z-10 w-full max-w-2xl aspect-video rounded-full bg-gradient-to-t from-red-600/50 to-yellow-400/50 via-orange-500/50 mix-blend-screen blur-[120px] filter"/>
-	<div class="relative mt-16 grid items-center gap-8 rounded-xl border border-secondary-600/80 bg-gradient-to-b from-tertiary-50/15 to-tertiary-50/5 px-8 py-8 backdropblur-sm lg:grid-cols-3 lg:gap-0 lg:py-12">
-		<div class="grid-background"/>
-<div class="paper">
-  <img src={image.url} class="poster"/>
-<PrismicRichText field={title} components={{em:GoldText}}/>
 
- <hr/>
- <div class="prose prose-lg prose-invert">
- <PrismicText  field={body} />
- </div>
-<PrismicLink field={link} class="btn a">Read More</PrismicLink>
-  <div class="space"></div>
+		
+<div class="effect container mr-6 bg-secondary-500/10">
+  <img src={image.url} alt=""/>
+  <div class="pt-8">
+
+    <PrismicRichText field={title} components={{em:GoldText, heading2:Heading3}}/>
+  </div>
+  <div class="caption">
+
+    <div class="info"><PrismicRichText field={body} components={{paragraph:EffectParagraph}}/></div>
+ 
   </div>
 </div>
+
   
 {/each}
+</div>
 </Bounded>
 <style>
-
-* {
-  user-select: none;
-  transition: .3s ease;
-  -webkit-font-smoothing: antialiased;
+.container{
+  width: 48%;
+  min-height: 450px;
+  min-width: 450px;
+  max-width: 650px;
+  box-shadow: 0 0 0px 4px rgba(18,18,18,0.47);
 }
 
+.container:hover {
+  box-shadow: 0 0 10px 4px rgba(0,0,0,0.47);
 
-
-
-
-img {
-  max-width: 100%;
-  max-height: 100%;
 }
 
-.poster {
-  border-radius: 4px 4px 0 0;
-  margin-bottom: 2vh;
+.effect {
+  overflow: hidden;
+  perspective: 40em;
+  position: relative;
 }
 
-h1 {
-  font-size: 2.6rem;
-  color: #303336;
-  letter-spacing: 1px;
-  margin: 2vh 4vw;
- 
+.effect .caption {
+    content: "";
+    display: block;
+    background-color: #262626;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+
+    outline: 2px solid;
+    @apply outline-secondary-500;
+    outline-offset: -15px;
+
+    transform: rotateX(-90deg);
+    transform-origin: 50% 50%;
+    opacity: 0;
+    transition: transform 0.8s ease-in-out, opacity .8s;
 }
 
-h2 {
-  font-size: .4rem;
-  color: #A0A6AB;
-  letter-spacing: 2px;
-  text-transform: uppercase;
- 
-  font-weight: 700;
-  margin-bottom: 10px;
+.effect:hover .caption {
+    transform: rotateX(0);
+    opacity: 0.7;
 }
 
-hr {
-  width: 20%;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
-  border: 0;
-  border-bottom: 1px solid #E6E9EC;
+/* Text */
+.effect .caption h2,
+.effect .caption p {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+ @apply bg-surface-900/50;
+    text-align: center;
+    opacity: 0;
+    z-index: 9;
+    transition: all .4s .2s, opacity .4s .2s;
 }
 
-p {
-  margin: 2vh 8vw;
-  text-align: center;
-  padding-bottom: 1vh;
-  color: #A0A6AB;
-
-  font-weight: 400;
-  font-size: .9rem;
-  line-height: 1.25rem;
+.effect .caption h2 {
+    top: 10%;
+    width: 400px;
 }
 
-.btn,
-a.btn {
-  display: inline-block;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-decoration: none;
-  line-height: 20px;
-  border-radius: 4px;
-  padding: 1vh 2vh;
-  letter-spacing: .02rem;
-background: #664EF7;
-  color:white;
- 
-  font-size:.8rem;
-  box-shadow:0 0px 0px black
-0 0px 0px rgba(0, 0, 0, 0);
+.effect .caption p {
+    top: 90%;
+    width: 300px;
 }
 
-.btn,
-a.btn:hover {
-  background: #7C66FF;
-  box-shadow:0 7px 14px black
-0 3px 6px rgba(0, 0, 0, .08);
-  transform: translateY(-1px);
+.effect:hover .caption h2 {
+    top: 28%;
+    opacity: 1;
 }
 
-.btn,
-a.btn:active {
-  box-shadow:0 4px 6px black,
-  0 1px 3px rgba(0, 0, 0, .12);
-  transform: translateY(1px);
+.effect:hover .caption p {
+    top: 58%;
+    opacity: 1;
 }
 
-.space{
-  height:4vh;
-}
 </style>

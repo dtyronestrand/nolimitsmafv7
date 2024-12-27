@@ -1,9 +1,29 @@
 <script>
-    import { SliceZone } from "@prismicio/svelte";
+	import { SliceZone } from '@prismicio/svelte';
+    import Bounded from '$lib/components/Bounded.svelte';
+	import { components } from '$lib/slices';
   
-    import { components } from "$lib/slices";
+    import {PrismicText, PrismicImage} from '@prismicio/svelte';
+
+	export let data;
   
-    export let data
-  </script>
-  
-  <SliceZone slices={data.page.data.slices} {components} />
+</script>
+
+<Bounded>
+	<div class="relative grid w-full place-items-center text-center">
+
+		<h1 class="text-5xl font-medium md:text-7xl">
+			<PrismicText field={data.page.data.program_title} />
+		</h1>
+		<p class="mb-4 mt-8 max-w-xl text-lg text-yellow-500">
+		{data.page.data.program_tagline} 
+		</p>
+		<figure class="rounded-lg">
+			<PrismicImage field={data.page.data.program_image} />
+		</figure>
+	</div>
+
+	<div class="prose prose-inverted mx-auto mt-7 md:mt-11">
+		<SliceZone slices={data.page.data.slices} {components} />
+	</div>
+</Bounded>

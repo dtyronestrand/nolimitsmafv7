@@ -85,7 +85,7 @@
 		<ul class="hidden gap-6 md:flex">
 			{#each settings.data.navigation as {navigation_link, navigation_label}}
 				<li>
-					<a
+					<a data-sveltekit-reload
 						aria-current={isActive(navigation_link) ? 'page' : undefined}
 						href={asLink(navigation_link)}
 						on:click={close}
