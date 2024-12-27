@@ -11,8 +11,10 @@ type OutputDataShape<T> = MaybeWithVoid<Omit<App.PageData, RequiredKeys<T>> & Pa
 type EnsureDefined<T> = T extends null | undefined ? {} : T;
 type OptionalUnion<U extends Record<string, any>, A extends keyof U = U extends U ? keyof U : never> = U extends unknown ? { [P in Exclude<A, keyof U>]?: never } & U : never;
 export type Snapshot<T = any> = Kit.Snapshot<T>;
-type PageParentData = EnsureDefined<import('../../$types.js').LayoutData>;
+type LayoutRouteId = RouteId | "/[[preview=preview]]/program/[uid]" | "/[[preview=preview]]/program/[uid]/currentstudents/[uid]"
+type LayoutParams = RouteParams & { preview?: MatcherParam<typeof import('../../../../../../src/params/preview').match>; uid?: string }
+type LayoutParentData = EnsureDefined<import('../../$types.js').LayoutData>;
 
 export type EntryGenerator = () => Promise<Array<RouteParams>> | Array<RouteParams>;
-export type PageServerData = null;
-export type PageData = Expand<PageParentData>;
+export type LayoutServerData = null;
+export type LayoutData = Expand<LayoutParentData>;

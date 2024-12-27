@@ -1,0 +1,28 @@
+{
+  "id": "sidebar",
+  "type": "SharedSlice",
+  "name": "Sidebar",
+  "description": "Sidebar",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "page": {
+          "type": "Link",
+          "config": {
+            "label": "Page",
+            "select": "document",
+            "repeat": false,
+            "customtypes": ["program"]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

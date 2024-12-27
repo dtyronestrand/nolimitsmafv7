@@ -1,5 +1,5 @@
 import { asText, mapSliceZone } from '@prismicio/client'
-import {mappers} from '$lib/slices/mappers'
+import { mappers } from '$lib/slices/mappers'
 import { createClient } from '$lib/prismicio'
 
 export async function load({ params, fetch, cookies }) {
@@ -17,5 +17,5 @@ export async function load({ params, fetch, cookies }) {
 }
 
 export function entries() {
-  return [{uid:'page'}];
+  return [{ uid: 'page' }]
 }

@@ -1,18 +1,12 @@
 <script lang="ts">
   import type { Content } from '@prismicio/client'
   import { PrismicRichText } from '@prismicio/svelte'
-  import Label from './Label.svelte'
 
   export let slice: Content.RichTextSlice
 </script>
 
-<section class="container">
-  <PrismicRichText
-    field={slice.primary.content}
-    components={{
-      label: Label,
-    }}
-  />
+<section class="prose prose-invert mx-auto mt-7 md:mt-11 container">
+  <PrismicRichText field={slice.primary.content} />
 </section>
 
 <style>

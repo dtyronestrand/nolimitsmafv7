@@ -1,5 +1,5 @@
-import programsMapper from './Programs/mapper';
+import programsMapper from './Programs/mapper'
 
-export const mappers ={
-    programs: programsMapper,
+export const mappers = {
+  programs: programsMapper,
 }

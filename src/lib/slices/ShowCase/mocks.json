@@ -1,114 +1,114 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"heading": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "heading1",
-						"content": {
-							"text": "Giving"
-						}
-					}
-				]
-			},
-			"body": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "Velit irure cupidatat mollit amet occaecat aute cupidatat exercitation sint. Ea mollit commodo tempor excepteur culpa duis voluptate ex. Nulla anim sit et."
-						}
-					}
-				]
-			},
-			"show_piece": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"image",
-								{
-									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1537498425277-c283d32ef9db",
-										"width": 4380,
-										"height": 2895
-									},
-									"url": "https://images.unsplash.com/photo-1537498425277-c283d32ef9db",
-									"width": 4380,
-									"height": 2895,
-									"edit": {
-										"zoom": 1,
-										"crop": {
-											"x": 0,
-											"y": 0
-										},
-										"background": "transparent"
-									},
-									"credits": null,
-									"alt": null,
-									"__TYPE__": "ImageContent",
-									"thumbnails": {}
-								}
-							],
-							[
-								"title",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "heading3",
-											"content": {
-												"text": "Shall"
-											}
-										}
-									]
-								}
-							],
-							[
-								"body",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "Do commodo culpa qui cillum non ut aliqua."
-											}
-										}
-									]
-								}
-							],
-							[
-								"link",
-								{
-									"key": "76a05ee9-7bf6-4e0b-8bc7-bbcd54cab661",
-									"__TYPE__": "LinkContent",
-									"value": {
-										"__TYPE__": "ExternalLink",
-										"url": "http://google.com",
-										"text": "notice"
-									}
-								}
-							],
-							[
-								"reverse",
-								{
-									"__TYPE__": "BooleanContent",
-									"value": true
-								}
-							]
-						]
-					}
-				]
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "heading": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading1",
+            "content": {
+              "text": "Giving"
+            }
+          }
+        ]
+      },
+      "body": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Velit irure cupidatat mollit amet occaecat aute cupidatat exercitation sint. Ea mollit commodo tempor excepteur culpa duis voluptate ex. Nulla anim sit et."
+            }
+          }
+        ]
+      },
+      "show_piece": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "image",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1537498425277-c283d32ef9db",
+                    "width": 4380,
+                    "height": 2895
+                  },
+                  "url": "https://images.unsplash.com/photo-1537498425277-c283d32ef9db",
+                  "width": 4380,
+                  "height": 2895,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "credits": null,
+                  "alt": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Shall"
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "body",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Do commodo culpa qui cillum non ut aliqua."
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "link",
+                {
+                  "key": "76a05ee9-7bf6-4e0b-8bc7-bbcd54cab661",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "http://google.com",
+                    "text": "notice"
+                  }
+                }
+              ],
+              [
+                "reverse",
+                {
+                  "__TYPE__": "BooleanContent",
+                  "value": true
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  }
 ]

@@ -1,11 +1,20 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-
-body{
-    @apply bg-surface-900 text-surface-50;
-    background-image: url(/noise-texture.svg);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-h1, h2, h3, h4, h5, h6{
-    font-family: 'Protest Riot';
+body {
+  @apply bg-surface-900 text-surface-50;
+  background-image: url(/noise-texture.svg);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Protest Riot';
 }

@@ -1,13 +1,12 @@
 <script>
   import '../app.css'
-  import '@fontsource/protest-riot';
+  import '@fontsource/protest-riot'
   import { PrismicPreview } from '@prismicio/svelte/kit'
   import { page } from '$app/stores'
   import { repositoryName } from '$lib/prismicio'
-  import {currentUser} from '$lib/pocketbase';
- import Header from '$lib/components/Header.svelte';
-    import Footer from '$lib/components/Footer.svelte';
-console.log($currentUser);
+  import { currentUser } from '$lib/pocketbase'
+  import Header from '$lib/components/Header.svelte'
+  import Footer from '$lib/components/Footer.svelte'
 </script>
 
 <svelte:head>
@@ -23,9 +22,10 @@ console.log($currentUser);
     <meta name="twitter:card" content="summary_large_image" />
   {/if}
 </svelte:head>
+
 <Header settings={$page.data.settings} />
-<main>
-  <slot />
-</main>
+
+<slot />
+
 <Footer settings={$page.data.settings} />
 <PrismicPreview {repositoryName} />

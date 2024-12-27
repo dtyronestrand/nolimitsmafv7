@@ -24,9 +24,7 @@
                   "label": "Program",
                   "select": "document",
                   "repeat": false,
-                  "customtypes": [
-                    "program"
-                  ]
+                  "customtypes": ["program"]
                 }
               }
             }

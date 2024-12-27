@@ -36,11 +36,71 @@
           "thumbnails": []
         }
       },
+      "box": {
+        "type": "Group",
+        "config": {
+          "label": "Box",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              }
+            },
+            "body": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Body",
+                "placeholder": "",
+                "allowTargetBlank": false,
+                "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "content_link": {
+              "type": "Link",
+              "config": {
+                "label": "Content Link",
+                "select": "document",
+                "repeat": false
+              }
+            },
+            "width": {
+              "type": "Select",
+              "config": {
+                "label": "Width",
+                "placeholder": "",
+                "options": ["Small", "Medium", "Large", "XL"]
+              }
+            },
+            "height": {
+              "type": "Select",
+              "config": {
+                "label": "Height",
+                "placeholder": "",
+                "options": ["Small", "Medium", "Large", "XL"]
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "sidebar": {
+              "type": "SharedSlice"
+            },
             "programs": {
               "type": "SharedSlice"
             },

@@ -8,7 +8,7 @@ const config: Config = {
   content: [
     './src/**/*.{html,js,svelte,ts}',
     // This includes all Skeleton UI components
-    join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')
+    join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}'),
   ],
   theme: {
     extend: {},
@@ -18,12 +18,10 @@ const config: Config = {
     require('@tailwindcss/forms'),
     skeleton({
       themes: {
-        custom: [
-          noLimitsTheme
-        ]
-      }
-    })
-  ]
+        custom: [noLimitsTheme],
+      },
+    }),
+  ],
 }
 
 export default config
