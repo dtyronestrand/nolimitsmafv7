@@ -1,5 +1,4 @@
 <script lang="ts">
-<<<<<<< HEAD
   import type { Content } from '@prismicio/client'
   import { page } from '$app/stores'
 
@@ -28,38 +27,7 @@
     }
     return $page.url.pathname.startsWith(path)
   }
-=======
-	import type { Content } from '@prismicio/client';
-	import { page } from '$app/stores';
-	import { PrismicLink } from '@prismicio/svelte';
-	import IconMenu from '~icons/ph/list-bold';
-	import IconClose from '~icons/ph/x-bold';
-	import { asLink } from '@prismicio/client';
-	import clsx from 'clsx';
-    import {pb} from '$lib/pocketbase';
-    import {currentUser} from '$lib/pocketbase';
-	export let settings: Content.SettingsDocument;
-    import {applyAction, enhance} from '$app/forms'
-	let isOpen = false;
-	const toggleOpen = () => {
-		isOpen = !isOpen;
-	};
-	const close = () => {
-		isOpen = false;
-	};
-	/**@param {import('@prismicio/client').LinkField} link */
-	const isActive = (link)=> {
-		const path = asLink(link);
-		console.log(path);
-		if (!path) return false;
-		if (path === '/') {
-			return $page.url.pathname === '/';
-		}
-		return $page.url.pathname.startsWith(path);
-	};
 
-	console.log($currentUser)
->>>>>>> 0f71a22 (catch up)
 </script>
 
 <header class="p-4 md:p-6">
