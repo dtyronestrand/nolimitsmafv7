@@ -4,7 +4,7 @@
   export let settings
 </script>
 
-<footer class="block w-[100%] max-h-[25vh] bg-surface-500/40">
+<footer class="block w-[100%] max-h-[25vh] ">
   <div class="md:p-[2rem] p-[1 rem] md:flex block items-center justify-center relative">
     <section
       class="mx-auto md:mx-[40px] my-0 items-left justify-left md:flex items-center md:justify-center md:w-[100%]"

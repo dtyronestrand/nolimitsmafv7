@@ -26,8 +26,26 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const LESSOPEN: string;
-	export const LANGUAGE: string;
+	export const REDIRECT_URL: string;
+	export const NVM_INC: string;
+	export const TERM_PROGRAM: string;
+	export const NODE: string;
+	export const INIT_CWD: string;
+	export const NVM_CD_FLAGS: string;
+	export const TERM: string;
+	export const SHELL: string;
+	export const HOMEBREW_REPOSITORY: string;
+	export const TMPDIR: string;
+	export const npm_config_global_prefix: string;
+	export const TERM_PROGRAM_VERSION: string;
+	export const ZDOTDIR: string;
+	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
+	export const MallocNanoZone: string;
+	export const COLOR: string;
+	export const npm_config_noproxy: string;
+	export const npm_config_local_prefix: string;
+	export const PNPM_HOME: string;
+	export const NVM_DIR: string;
 	export const USER: string;
 <<<<<<< HEAD
 	export const COMMAND_MODE: string;
@@ -203,8 +221,26 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		LESSOPEN: string;
-		LANGUAGE: string;
+		REDIRECT_URL: string;
+		NVM_INC: string;
+		TERM_PROGRAM: string;
+		NODE: string;
+		INIT_CWD: string;
+		NVM_CD_FLAGS: string;
+		TERM: string;
+		SHELL: string;
+		HOMEBREW_REPOSITORY: string;
+		TMPDIR: string;
+		npm_config_global_prefix: string;
+		TERM_PROGRAM_VERSION: string;
+		ZDOTDIR: string;
+		ORIGINAL_XDG_CURRENT_DESKTOP: string;
+		MallocNanoZone: string;
+		COLOR: string;
+		npm_config_noproxy: string;
+		npm_config_local_prefix: string;
+		PNPM_HOME: string;
+		NVM_DIR: string;
 		USER: string;
 <<<<<<< HEAD
 		COMMAND_MODE: string;

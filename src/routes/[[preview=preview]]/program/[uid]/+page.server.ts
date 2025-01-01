@@ -1,13 +1,16 @@
 import { createClient } from '$lib/prismicio'
 import { asText } from '@prismicio/client'
+import type {Actions} from './$types'
+import { redirect } from '@sveltejs/kit'
 
 export async function load({ params, fetch, cookies }) {
   const client = createClient({ fetch, cookies })
 
   const page = await client.getByUID('program', params.uid)
-
+  
   return {
     page,
+
     title: asText(page.data.program_title),
     meta_description: page.data.meta_description,
     meta_title: page.data.meta_title,
@@ -23,4 +26,22 @@ export async function entries() {
   return pages.map(page => {
     return { uid: page.uid }
   })
+}
+
+export const actions: Actions = {
+  default: async({locals, request}) => {
+    const data = Object.fromEntries(await request.formData()) as{
+      firstName: string,
+      lastName: string,
+      email: string,
+      branch: string,
+    }
+    try {
+      await locals.pb.collection('users').update(data)
+    } catch (e) {
+      console.error(e)
+      throw e
+    }
+    throw redirect(303, '/program')
+  },
 }

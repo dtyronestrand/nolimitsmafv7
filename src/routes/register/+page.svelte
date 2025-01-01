@@ -1,7 +1,15 @@
 <script>
   import { applyAction, enhance } from '$app/forms'
   import { pb } from '$lib/pocketbase'
+  import {browser} from '$app/environment'
   import Bounded from '$lib/components/Bounded.svelte'
+  export let data
+  function gotoAuthProvider() {
+    if (browser) {
+      document.cookie = `state=${data?.authProviderState}`;
+    }
+    window.location.href = data.authProviderRedirect || '';
+  }
 </script>
 
 <Bounded>
@@ -54,6 +62,10 @@
               </div>
             </div>
           </form>
+          <hr/>
+        
+            <button class="btn btn-xl variant-filled-tertiary w-full mt-2" on:click={gotoAuthProvider}>Login/Register with Google</button>
+          
         </div>
         <div class="sign-up-htm">
           <form

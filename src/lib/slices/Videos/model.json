@@ -1,0 +1,57 @@
+{
+  "id": "videos",
+  "type": "SharedSlice",
+  "name": "Videos",
+  "description": "Videos",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "video": {
+          "type": "Group",
+          "config": {
+            "label": "Video",
+            "repeat": true,
+            "fields": {
+              "video": {
+                "type": "Link",
+                "config": {
+                  "label": "Video",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    "video"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2,heading3,heading4,heading5,strong,em"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,list-item,o-list-item"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -3,11 +3,11 @@
   import Heading from './Heading.svelte'
   import Bounded from '$lib/components/Bounded.svelte'
   import { PrismicRichText, PrismicLink, PrismicText } from '@prismicio/svelte'
-  import ButtonLink from '$lib/components/ButtonLink.svelte'
+  
   import { isFilled, type Content } from '@prismicio/client'
   export let slice: Content.ProgramsSlice
   export let programs: Content.ProgramDocument[]
-  const buttonClass = 'btn btn-md variant-filled-primary'
+  
 </script>
 
 <Bounded data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
@@ -26,7 +26,7 @@
             <div class="leftSide"></div>
             <span class="rightInfo">
               <PrismicLink document={program}>
-                <button class="btn btn-md variant-filled-primary">Learn More</button>
+                <button class="btn btn-md variant-filled-secondary text-surface-900">Learn More</button>
               </PrismicLink>
             </span>
 
@@ -173,7 +173,7 @@
   }
 
   .effect1 .leftInfo {
-    @apply text-primary-200  text-2xl pl-12 rounded-full bg-primary-500/70;
+    @apply text-surface-900  text-2xl pl-12 rounded-full bg-secondary-500;
 
     transform: translate(-100%, -50%);
     left: 0;

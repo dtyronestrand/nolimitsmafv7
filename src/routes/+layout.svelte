@@ -7,6 +7,8 @@
   import { currentUser } from '$lib/pocketbase'
   import Header from '$lib/components/Header.svelte'
   import Footer from '$lib/components/Footer.svelte'
+
+    import Bounded from '$lib/components/Bounded.svelte';
 </script>
 
 <svelte:head>
@@ -23,9 +25,9 @@
   {/if}
 </svelte:head>
 
-<Header settings={$page.data.settings} />
+  <Header settings={$page.data.settings} />
 
 <slot />
+  <Footer settings={$page.data.settings} />
 
-<Footer settings={$page.data.settings} />
 <PrismicPreview {repositoryName} />

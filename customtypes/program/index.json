@@ -98,7 +98,7 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "sidebar": {
+            "hero": {
               "type": "SharedSlice"
             },
             "programs": {

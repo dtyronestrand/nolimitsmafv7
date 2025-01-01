@@ -12,19 +12,22 @@ export const nodes = [
 	() => import('./nodes/5'),
 	() => import('./nodes/6'),
 	() => import('./nodes/7'),
-	() => import('./nodes/8')
+	() => import('./nodes/8'),
+	() => import('./nodes/9'),
+	() => import('./nodes/10')
 ];
 
-export const server_loads = [0];
+export const server_loads = [0,2];
 
 export const dictionary = {
-		"/logout": [~5],
-		"/profile": [6],
-		"/[[preview=preview]]/program/[uid]": [~4],
-		"/register": [~7],
-		"/slice-simulator": [8],
-		"/[[preview=preview]]": [~2],
-		"/[[preview=preview]]/[uid]": [~3]
+		"/profile": [8],
+		"/[[preview=preview]]/program/[uid]": [~5,[2]],
+		"/[[preview=preview]]/program/[uid]/testingapp": [~6,[2]],
+		"/[[preview=preview]]/program/[uid]/video/[uid]": [~7,[2]],
+		"/register": [~9],
+		"/slice-simulator": [10],
+		"/[[preview=preview]]": [~3],
+		"/[[preview=preview]]/[uid]": [~4]
 	};
 
 export const hooks = {

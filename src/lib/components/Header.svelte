@@ -62,7 +62,7 @@
 >>>>>>> 0f71a22 (catch up)
 </script>
 
-<header class="p-4 md:p-6">
+<header class="p-4 md:p-6 ">
   <nav
     class="md: md: mx-auto flex max-w-6xl flex-col justify-between py-2 text-2xl font-medium md:flex-row md:items-center"
     aria-label="Main"
@@ -157,3 +157,5 @@
     </ul>
   </nav>
 </header>
+
+
