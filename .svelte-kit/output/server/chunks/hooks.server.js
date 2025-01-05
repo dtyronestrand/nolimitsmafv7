@@ -28,7 +28,7 @@ const handle = async ({ event, resolve }) => {
     }
     const userRole = event.locals.user.role;
     if (!protectedRoute.roles.includes(userRole)) {
-      throw redirect(303, "/register");
+      throw redirect(303, "/unauthorized");
     }
   }
   const response = await resolve(event);
