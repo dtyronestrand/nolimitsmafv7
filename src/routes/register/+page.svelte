@@ -336,7 +336,7 @@
     align-items: center;
     min-width: 100vw;
     height: 100vh;
-    background: url('/DALL·E 2024-12-12 17.02.02 - A vibrant and dynamic depiction of a martial arts and fitness studio filled with diverse individuals of various ages, races, and abilities engaging in.webp')
+    background: url('/gym.webp')
       no-repeat center;
     background-size: cover;
     background-position: top;
