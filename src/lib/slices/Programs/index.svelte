@@ -11,7 +11,7 @@
 </script>
 
 <Bounded data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-  <div class="mt-20 grid gap-16 overflow-visible">
+  <div class="grid gap-16 overflow-visible">
     <div class="row">
       {#each programs as program, index}
         <div class="effect1 container">
@@ -26,7 +26,7 @@
             <div class="leftSide"></div>
             <span class="rightInfo">
               <PrismicLink document={program}>
-                <button class="btn btn-md variant-filled-primary">Learn More</button>
+                <button class="btn btn-md bg-surface-900/70 text-primary-200">Learn More</button>
               </PrismicLink>
             </span>
 
@@ -41,12 +41,12 @@
 <style>
   .row {
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
 
   .row:last-child {
@@ -173,7 +173,7 @@
   }
 
   .effect1 .leftInfo {
-    @apply text-primary-200  text-2xl pl-12 rounded-full bg-primary-500/70;
+    @apply text-primary-200  text-2xl pl-12 rounded-full bg-surface-900/70;
 
     transform: translate(-100%, -50%);
     left: 0;

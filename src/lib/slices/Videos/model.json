@@ -1,0 +1,37 @@
+{
+  "id": "videos",
+  "type": "SharedSlice",
+  "name": "Videos",
+  "description": "Videos",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "videos": {
+          "type": "Group",
+          "config": {
+            "label": "Videos",
+            "repeat": true,
+            "fields": {
+              "video": {
+                "type": "Link",
+                "config": {
+                  "label": "Video",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": ["video"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

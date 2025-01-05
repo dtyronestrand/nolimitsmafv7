@@ -5,22 +5,45 @@
 	"/api/preview": [
 		"src/routes/api/preview/+server.ts"
 	],
-	"/logout": [
-		"src/routes/logout/+page.server.ts",
+	"/auth/callback/google": [
+		"src/routes/auth/callback/google/+server.ts"
+	],
+	"/[[preview=preview]]/(users)/location/[uid]": [
+		"src/routes/[[preview=preview]]/(users)/location/[uid]/+page.server.ts",
 		"src/routes/+layout.server.ts"
+	],
+	"/login": [
+		"src/routes/+layout.server.ts"
+	],
+	"/logout": [
+		"src/routes/+layout.server.ts",
+		"src/routes/logout/+server.ts"
 	],
 	"/profile": [
 		"src/routes/+layout.server.ts"
 	],
-	"/[[preview=preview]]/program/[uid]": [
-		"src/routes/[[preview=preview]]/program/[uid]/+page.server.ts",
+	"/[[preview=preview]]/(users)/program/[uid]": [
+		"src/routes/[[preview=preview]]/(users)/program/[uid]/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/register": [
-		"src/routes/register/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/slice-simulator": [
+		"src/routes/+layout.server.ts"
+	],
+	"/unauthorized": [
+		"src/routes/+layout.server.ts"
+	],
+	"/[[preview=preview]]/(users)/videoindex": [
+		"src/routes/[[preview=preview]]/(users)/videoindex/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/[[preview=preview]]/(users)/video/[uid]": [
+		"src/routes/[[preview=preview]]/(users)/video/[uid]/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/[[preview=preview]]/(users)": [
 		"src/routes/+layout.server.ts"
 	],
 	"/[[preview=preview]]": [

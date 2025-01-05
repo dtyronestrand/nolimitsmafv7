@@ -27,6 +27,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "locations": {
+              "type": "SharedSlice"
+            },
+            "news_item": {
+              "type": "SharedSlice"
+            },
             "programs": {
               "type": "SharedSlice"
             },

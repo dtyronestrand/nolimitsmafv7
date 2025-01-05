@@ -98,9 +98,6 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "sidebar": {
-              "type": "SharedSlice"
-            },
             "programs": {
               "type": "SharedSlice"
             },

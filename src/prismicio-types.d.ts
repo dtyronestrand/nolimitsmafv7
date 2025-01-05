@@ -4,7 +4,202 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
+/**
+ * Item in *Location → Schedule*
+ */
+export interface LocationDocumentDataScheduleItem {
+  /**
+   * Day field in *Location → Schedule*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.schedule[].day
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  day: prismic.SelectField<
+    'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday'
+  >
+
+  /**
+   * Time field in *Location → Schedule*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.schedule[].time
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  time: prismic.KeyTextField
+}
+
+/**
+ * Item in *Location → Pricing*
+ */
+export interface LocationDocumentDataPricingItem {
+  /**
+   * Membership field in *Location → Pricing*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.pricing[].membership
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  membership: prismic.KeyTextField
+
+  /**
+   * Price field in *Location → Pricing*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.pricing[].price
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  price: prismic.KeyTextField
+}
+
+type LocationDocumentDataSlicesSlice = never
+
+/**
+ * Content for Location documents
+ */
+interface LocationDocumentData {
+  /**
+   * Name field in *Location*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  name: prismic.RichTextField
+
+  /**
+   * Details field in *Location*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.details
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  details: prismic.RichTextField
+
+  /**
+   * Image field in *Location*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Content field in *Location*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField
+
+  /**
+   * Schedule field in *Location*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.schedule[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  schedule: prismic.GroupField<Simplify<LocationDocumentDataScheduleItem>>
+
+  /**
+   * Pricing field in *Location*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.pricing[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  pricing: prismic.GroupField<Simplify<LocationDocumentDataPricingItem>>
+
+  /**
+   * Testing Info field in *Location*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.testing_info
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  testing_info: prismic.RichTextField
+
+  /**
+   * Slice Zone field in *Location*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<LocationDocumentDataSlicesSlice> /**
+   * Meta Title field in *Location*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: location.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField
+
+  /**
+   * Meta Description field in *Location*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: location.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField
+
+  /**
+   * Meta Image field in *Location*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: location.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>
+}
+
+/**
+ * Location document from Prismic
+ *
+ * - **API ID**: `location`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LocationDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<LocationDocumentData>,
+  'location',
+  Lang
+>
+
 type PageDocumentDataSlicesSlice =
+  | LocationsSlice
+  | NewsItemSlice
   | ProgramsSlice
   | ShowCaseSlice
   | StaffSlice
@@ -150,7 +345,7 @@ export interface ProgramDocumentDataBoxItem {
   height: prismic.SelectField<'Small' | 'Medium' | 'Large' | 'XL'>
 }
 
-type ProgramDocumentDataSlicesSlice = SidebarSlice | ProgramsSlice | RichTextSlice
+type ProgramDocumentDataSlicesSlice = ProgramsSlice | RichTextSlice
 
 /**
  * Content for Program documents
@@ -347,74 +542,207 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
   Lang
 >
 
+type VideoDocumentDataSlicesSlice = never
+
 /**
- * Item in *TKDCSNAV → Nav*
+ * Content for Video documents
  */
-export interface TkdcsnavDocumentDataNavItem {
+interface VideoDocumentData {
   /**
-   * Link field in *TKDCSNAV → Nav*
+   * Title field in *Video*
    *
-   * - **Field Type**: Link
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: tkdcsnav.nav[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **API ID Path**: video.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  link: prismic.LinkField
+  title: prismic.RichTextField
 
   /**
-   * label field in *TKDCSNAV → Nav*
+   * Description field in *Video*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * video field in *Video*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: tkdcsnav.nav[].label
+   * - **API ID Path**: video.video
+   * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  label: prismic.KeyTextField
-}
+  video: prismic.KeyTextField
 
-/**
- * Content for TKDCSNAV documents
- */
-interface TkdcsnavDocumentData {
   /**
-   * Section Name field in *TKDCSNAV*
+   * thumbnail field in *Video*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: tkdcsnav.section_name
+   * - **API ID Path**: video.thumbnail
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  section_name: prismic.KeyTextField
+  thumbnail: prismic.KeyTextField
 
   /**
-   * Nav field in *TKDCSNAV*
+   * Slice Zone field in *Video*
    *
-   * - **Field Type**: Group
+   * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: tkdcsnav.nav[]
+   * - **API ID Path**: video.slices[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  nav: prismic.GroupField<Simplify<TkdcsnavDocumentDataNavItem>>
+  slices: prismic.SliceZone<VideoDocumentDataSlicesSlice> /**
+   * Meta Title field in *Video*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: video.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField
+
+  /**
+   * Meta Description field in *Video*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: video.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField
+
+  /**
+   * Meta Image field in *Video*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>
 }
 
 /**
- * TKDCSNAV document from Prismic
+ * Video document from Prismic
  *
- * - **API ID**: `tkdcsnav`
+ * - **API ID**: `video`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type VideoDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<VideoDocumentData>,
+  'video',
+  Lang
+>
+
+type VideoindexDocumentDataSlicesSlice = VideosSlice
+
+/**
+ * Content for VideoIndex documents
+ */
+interface VideoindexDocumentData {
+  /**
+   * Title field in *VideoIndex*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videoindex.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Body field in *VideoIndex*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videoindex.body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField
+
+  /**
+   * Slice Zone field in *VideoIndex*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videoindex.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<VideoindexDocumentDataSlicesSlice> /**
+   * Meta Title field in *VideoIndex*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: videoindex.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField
+
+  /**
+   * Meta Description field in *VideoIndex*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: videoindex.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField
+
+  /**
+   * Meta Image field in *VideoIndex*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videoindex.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>
+}
+
+/**
+ * VideoIndex document from Prismic
+ *
+ * - **API ID**: `videoindex`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type TkdcsnavDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
-  Simplify<TkdcsnavDocumentData>,
-  'tkdcsnav',
+export type VideoindexDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<VideoindexDocumentData>,
+  'videoindex',
   Lang
 >
 
-export type AllDocumentTypes = PageDocument | ProgramDocument | SettingsDocument | TkdcsnavDocument
+export type AllDocumentTypes =
+  | LocationDocument
+  | PageDocument
+  | ProgramDocument
+  | SettingsDocument
+  | VideoDocument
+  | VideoindexDocument
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -487,6 +815,180 @@ type HeroSliceVariation = HeroSliceDefault
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>
+
+/**
+ * Item in *Locations → Default → Primary → Locations*
+ */
+export interface LocationsSliceDefaultPrimaryLocationsItem {
+  /**
+   * Location field in *Locations → Default → Primary → Locations*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: locations.default.primary.locations[].location
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  location: prismic.ContentRelationshipField<'location'>
+}
+
+/**
+ * Primary content in *Locations → Default → Primary*
+ */
+export interface LocationsSliceDefaultPrimary {
+  /**
+   * Title field in *Locations → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: locations.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Description field in *Locations → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: locations.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * Locations field in *Locations → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: locations.default.primary.locations[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  locations: prismic.GroupField<Simplify<LocationsSliceDefaultPrimaryLocationsItem>>
+}
+
+/**
+ * Default variation for Locations Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LocationsSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<LocationsSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *Locations*
+ */
+type LocationsSliceVariation = LocationsSliceDefault
+
+/**
+ * Locations Shared Slice
+ *
+ * - **API ID**: `locations`
+ * - **Description**: Locations
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LocationsSlice = prismic.SharedSlice<'locations', LocationsSliceVariation>
+
+/**
+ * Item in *NewsItem → Default → Primary → News Items*
+ */
+export interface NewsItemSliceDefaultPrimaryNewsItemsItem {
+  /**
+   * Title field in *NewsItem → Default → Primary → News Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_item.default.primary.news_items[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField
+
+  /**
+   * Details field in *NewsItem → Default → Primary → News Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_item.default.primary.news_items[].details
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  details: prismic.RichTextField
+
+  /**
+   * image field in *NewsItem → Default → Primary → News Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_item.default.primary.news_items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Start Date field in *NewsItem → Default → Primary → News Items*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_item.default.primary.news_items[].start_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  start_date: prismic.DateField
+
+  /**
+   * End Date field in *NewsItem → Default → Primary → News Items*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_item.default.primary.news_items[].end_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  end_date: prismic.DateField
+}
+
+/**
+ * Primary content in *NewsItem → Default → Primary*
+ */
+export interface NewsItemSliceDefaultPrimary {
+  /**
+   * News Items field in *NewsItem → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_item.default.primary.news_items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  news_items: prismic.GroupField<Simplify<NewsItemSliceDefaultPrimaryNewsItemsItem>>
+}
+
+/**
+ * Default variation for NewsItem Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsItemSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<NewsItemSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *NewsItem*
+ */
+type NewsItemSliceVariation = NewsItemSliceDefault
+
+/**
+ * NewsItem Shared Slice
+ *
+ * - **API ID**: `news_item`
+ * - **Description**: NewsItem
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsItemSlice = prismic.SharedSlice<'news_item', NewsItemSliceVariation>
 
 /**
  * Item in *Programs → Default → Primary → Programs*
@@ -706,48 +1208,6 @@ type ShowCaseSliceVariation = ShowCaseSliceDefault
 export type ShowCaseSlice = prismic.SharedSlice<'show_case', ShowCaseSliceVariation>
 
 /**
- * Primary content in *Sidebar → Default → Primary*
- */
-export interface SidebarSliceDefaultPrimary {
-  /**
-   * Page field in *Sidebar → Default → Primary*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: sidebar.default.primary.page
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  page: prismic.ContentRelationshipField<'program'>
-}
-
-/**
- * Default variation for Sidebar Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type SidebarSliceDefault = prismic.SharedSliceVariation<
-  'default',
-  Simplify<SidebarSliceDefaultPrimary>,
-  never
->
-
-/**
- * Slice variation for *Sidebar*
- */
-type SidebarSliceVariation = SidebarSliceDefault
-
-/**
- * Sidebar Shared Slice
- *
- * - **API ID**: `sidebar`
- * - **Description**: Sidebar
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type SidebarSlice = prismic.SharedSlice<'sidebar', SidebarSliceVariation>
-
-/**
  * Item in *Staff → Default → Primary → Staff Info*
  */
 export interface StaffSliceDefaultPrimaryStaffInfoItem {
@@ -835,6 +1295,63 @@ type StaffSliceVariation = StaffSliceDefault
 export type StaffSlice = prismic.SharedSlice<'staff', StaffSliceVariation>
 
 /**
+ * Item in *Videos → Default → Primary → Videos*
+ */
+export interface VideosSliceDefaultPrimaryVideosItem {
+  /**
+   * Video field in *Videos → Default → Primary → Videos*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos.default.primary.videos[].video
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  video: prismic.ContentRelationshipField<'video'>
+}
+
+/**
+ * Primary content in *Videos → Default → Primary*
+ */
+export interface VideosSliceDefaultPrimary {
+  /**
+   * Videos field in *Videos → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos.default.primary.videos[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  videos: prismic.GroupField<Simplify<VideosSliceDefaultPrimaryVideosItem>>
+}
+
+/**
+ * Default variation for Videos Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideosSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<VideosSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *Videos*
+ */
+type VideosSliceVariation = VideosSliceDefault
+
+/**
+ * Videos Shared Slice
+ *
+ * - **API ID**: `videos`
+ * - **Description**: Videos
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideosSlice = prismic.SharedSlice<'videos', VideosSliceVariation>
+
+/**
  * Item in *WordList → Default → Primary → Words*
  */
 export interface WordListSliceDefaultPrimaryWordsItem {
@@ -912,6 +1429,11 @@ declare module '@prismicio/client' {
 
   namespace Content {
     export type {
+      LocationDocument,
+      LocationDocumentData,
+      LocationDocumentDataScheduleItem,
+      LocationDocumentDataPricingItem,
+      LocationDocumentDataSlicesSlice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
@@ -922,14 +1444,27 @@ declare module '@prismicio/client' {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
-      TkdcsnavDocument,
-      TkdcsnavDocumentData,
-      TkdcsnavDocumentDataNavItem,
+      VideoDocument,
+      VideoDocumentData,
+      VideoDocumentDataSlicesSlice,
+      VideoindexDocument,
+      VideoindexDocumentData,
+      VideoindexDocumentDataSlicesSlice,
       AllDocumentTypes,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      LocationsSlice,
+      LocationsSliceDefaultPrimaryLocationsItem,
+      LocationsSliceDefaultPrimary,
+      LocationsSliceVariation,
+      LocationsSliceDefault,
+      NewsItemSlice,
+      NewsItemSliceDefaultPrimaryNewsItemsItem,
+      NewsItemSliceDefaultPrimary,
+      NewsItemSliceVariation,
+      NewsItemSliceDefault,
       ProgramsSlice,
       ProgramsSliceDefaultPrimaryProgramsItem,
       ProgramsSliceDefaultPrimary,
@@ -944,15 +1479,16 @@ declare module '@prismicio/client' {
       ShowCaseSliceDefaultPrimary,
       ShowCaseSliceVariation,
       ShowCaseSliceDefault,
-      SidebarSlice,
-      SidebarSliceDefaultPrimary,
-      SidebarSliceVariation,
-      SidebarSliceDefault,
       StaffSlice,
       StaffSliceDefaultPrimaryStaffInfoItem,
       StaffSliceDefaultPrimary,
       StaffSliceVariation,
       StaffSliceDefault,
+      VideosSlice,
+      VideosSliceDefaultPrimaryVideosItem,
+      VideosSliceDefaultPrimary,
+      VideosSliceVariation,
+      VideosSliceDefault,
       WordListSlice,
       WordListSliceDefaultPrimaryWordsItem,
       WordListSliceDefaultPrimary,

@@ -17,6 +17,9 @@ const routes: prismic.ClientConfig['routes'] = [
   { type: 'page', path: '/', uid: 'home' },
   { type: 'page', path: '/:uid' },
   { type: 'program', path: '/program/:uid' },
+  { type: 'video', path: '/video/:uid' },
+  { type: 'videoindex', path: '/videoindex' },
+  { type: 'location', path: '/location/:uid' },
 ]
 
 /**

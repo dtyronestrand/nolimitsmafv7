@@ -18,3 +18,7 @@ h5,
 h6 {
   font-family: 'Protest Riot';
 }
+header{
+z-index: 500;
+
+}

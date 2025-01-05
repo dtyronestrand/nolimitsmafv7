@@ -1,257 +1,592 @@
-<script>
-  import { applyAction, enhance } from '$app/forms'
+<script lang="ts">
   import { pb } from '$lib/pocketbase'
-  import Bounded from '$lib/components/Bounded.svelte'
+  import { goto } from '$app/navigation'
+  import clsx from 'clsx'
+  let email = ''
+  let password = ''
+  let firstName = ''
+  let lastName = ''
+  let name = ''
+  let role = 'User'
+  let passwordConfirm = ''
+  let loading = false
+  let error = ''
+
+  async function register() {
+    loading = true
+    error = ''
+
+    if (password !== passwordConfirm) {
+      error = 'Passwords do not match'
+      loading = false
+      return
+    }
+
+    try {
+      name = firstName + ' ' + lastName
+      const data = {
+        name,
+        firstName,
+        lastName,
+        role,
+        email,
+        password,
+        passwordConfirm,
+      }
+
+      await pb.collection('users').create(data)
+      // After registration, let's log them in automatically
+      await pb.collection('users').authWithPassword(email, password)
+      goto('/') // Redirect to home page after successful registration
+    } catch (err) {
+      error = err instanceof Error ? err.message : 'Registration failed'
+    } finally {
+      loading = false
+    }
+  }
+
+  async function login() {
+    loading = true
+    error = ''
+
+    try {
+      await pb.collection('users').authWithPassword(email, password)
+      goto('/') // Redirect to home page after login
+    } catch (err) {
+      error = err instanceof Error ? err.message : 'Login failed'
+    } finally {
+      loading = false
+    }
+  }
+
+  let status = 'right'
+  function toggleActive() {
+    if (status === 'right') {
+      status = 'left'
+    } else {
+      status = 'right'
+    }
+    return status
+  }
 </script>
 
-<Bounded>
-  <div class="login-wrap">
-    <div class="login-html">
-      <input id="tab-1" type="radio" name="tab" class="sign-in" checked />
-      <label for="tab-1" class="tab">Sign In</label>
-      <input id="tab-2" type="radio" name="tab" class="sign-up" />
-      <label for="tab-2" class="tab">Sign Up</label>
-      <div class="login-form">
-        <div class="sign-in-htm">
-          <form
-            method="POST"
-            action="?/login"
-            use:enhance={() => {
-              return async ({ result }) => {
-                pb.authStore.loadFromCookie(document.cookie)
-                await applyAction(result)
-              }
-            }}
-          >
-            <div class="form-control">
-              <div class="group">
-                <label for="email" class="label">Email</label>
-                <input id="email" name="email" type="email" class="input" />
-              </div>
-              <div class="group">
-                <label for="pass" class="label">Password</label>
-                <input
-                  id="pass"
-                  name="password"
-                  type="password"
-                  class="input"
-                  data-type="password"
-                />
-              </div>
-              <div class="group">
-                <input id="check" type="checkbox" class="check" checked />
-                <label for="check">
-                  <span class="icon"></span>
-                  Keep me Signed in
-                </label>
-              </div>
-              <div class="group">
-                <input type="submit" class="button" value="Sign In" />
-              </div>
-              <div class="hr"></div>
-              <div class="foot-lnk">
-                <a href="#forgot">Forgot Password?</a>
-              </div>
+<section class="user">
+  <div class="user_options-container">
+    <div class="user_options-text">
+      <div class="user_options-unregistered">
+        <h2 class="user_unregistered-title">Don't have an account?</h2>
+        <p class="user_unregistered-text">
+          Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art
+          fap.
+        </p>
+        <button on:click={toggleActive} class="user_unregistered-signup" id="signup-button">
+          Sign up
+        </button>
+      </div>
+      <div class="user_options-registered">
+        <h2 class="user_registered-title">Have an account?</h2>
+        <p class="user_registered-text">
+          Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art
+          fap.
+        </p>
+        <button on:click={toggleActive} class="user_registered-login" id="login-button">
+          Login
+        </button>
+      </div>
+    </div>
+    <div
+      class={clsx('user_options-forms', status === 'right' ? 'bounceRight' : 'bounceLeft')}
+      id="user_options-forms"
+    >
+      <div class="user_forms-login">
+        <h2 class="forms_title">Login</h2>
+        <form class="forms_form" on:click|preventDefault={login}>
+          <fieldset class="forms_fieldset">
+            <div class="forms_field">
+              <input
+                type="email"
+                placeholder="Email"
+                name="email"
+                class="forms_field-input"
+                bind:value={email}
+                required
+                autofocus
+              />
             </div>
-          </form>
-        </div>
-        <div class="sign-up-htm">
-          <form
-            method="POST"
-            action="?/register"
-            use:enhance={() => {
-              return async ({ result }) => {
-                pb.authStore.loadFromCookie(document.cookie)
-                await applyAction(result)
-              }
-            }}
-          >
-            <div class="form-control">
-              <div class="group">
-                <label for="firstName" class="label">First Name</label>
-                <input id="firstName" name="firstName" type="text" class="input" />
-              </div>
-              <div class="group">
-                <label for="lastName" class="label">Last Name</label>
-                <input id="lastName" name="lastName" type="text" class="input" />
-              </div>
-              <div class="group">
-                <label for="pass" class="label">Password</label>
-                <input
-                  id="pass"
-                  name="password"
-                  type="password"
-                  class="input"
-                  data-type="password"
-                />
-              </div>
-              <div class="group">
-                <label for="pass" class="label">Confirm Password</label>
-                <input
-                  id="pass"
-                  name="passwordConfirm"
-                  type="password"
-                  class="input"
-                  data-type="password"
-                />
-              </div>
-              <div class="group">
-                <label for="email" class="label">Email Address</label>
-                <input id="email" type="email" name="email" class="input" />
-              </div>
-              <div class="group">
-                <button class="btn btn-xl variant-filled-primary">Sign Up</button>
-              </div>
+            <div class="forms_field">
+              <input
+                type="password"
+                bind:value={password}
+                name="password"
+                placeholder="Password"
+                class="forms_field-input"
+                required
+              />
             </div>
-            <div class="hr"></div>
-            <div class="foot-lnk">
-              <label for="tab-1">Already Member?</label>
+          </fieldset>
+          <div class="forms_buttons">
+            <button type="button" class="forms_buttons-forgot">Forgot password?</button>
+            <button type="submit" class="forms_buttons-action">zlogin</button>
+          </div>
+        </form>
+      </div>
+      <div class="user_forms-signup">
+        <h2 class="forms_title">Sign Up</h2>
+        <form class="forms_form" on:click|preventDefault={register}>
+          <fieldset class="forms_fieldset">
+            <div class="forms_field">
+              <input
+                type="text"
+                placeholder="Firs Name"
+                bind:value={firstName}
+                class="forms_field-input"
+                required
+              />
             </div>
-          </form>
-        </div>
+            <div class="forms_field">
+              <input
+                type="text"
+                placeholder="Last Name"
+                bind:value={lastName}
+                class="forms_field-input"
+                required
+              />
+            </div>
+            <div class="forms_field">
+              <input
+                bind:value={email}
+                type="email"
+                placeholder="Email"
+                class="forms_field-input"
+                required
+              />
+            </div>
+            <div class="forms_field">
+              <input
+                bind:value={password}
+                type="password"
+                placeholder="Password"
+                class="forms_field-input"
+                required
+              />
+            </div>
+            <div class="forms_field">
+              <input
+                bind:value={passwordConfirm}
+                type="password"
+                placeholder="Confirm Password"
+                class="forms_field-input"
+                required
+              />
+            </div>
+          </fieldset>
+          <div class="forms_buttons">
+            <input type="submit" value="Sign up" class="forms_buttons-action" />
+          </div>
+        </form>
       </div>
     </div>
   </div>
-</Bounded>
+</section>
 
 <style>
-  .login-wrap {
-    width: 100%;
-    margin: auto;
-    max-width: 625px;
-    min-height: 870px;
-    position: relative;
-    background: url(/formbg.webp) no-repeat center;
-    box-shadow:
-      0 12px 15px 0 rgba(0, 0, 0, 0.24),
-      0 17px 50px 0 rgba(0, 0, 0, 0.19);
-  }
-  .login-html {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    padding: 150px 70px 50px 70px;
-    @apply bg-surface-600/40;
-  }
-  .login-html .sign-in-htm,
-  .login-html .sign-up-htm {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-    transition: all 0.4s linear;
-  }
-  .login-html .sign-in,
-  .login-html .sign-up,
-  .login-form .group .check {
-    display: none;
-  }
-  .login-html .tab,
-  .login-form .group .label,
-  .login-form .group .button {
-    text-transform: uppercase;
-  }
-  .login-html .tab {
-    font-size: 22px;
-    margin-right: 15px;
-    padding-bottom: 5px;
-    margin: 0 15px 10px 0;
-    display: inline-block;
-    border-bottom: 2px solid transparent;
-  }
-  .login-html .sign-in:checked + .tab,
-  .login-html .sign-up:checked + .tab {
-    @apply text-surface-50 border-b-4 border-primary-500;
-  }
-  .login-form {
-    min-height: 345px;
-    position: relative;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-  }
-  .login-form .group {
-    margin-bottom: 15px;
-  }
-  .login-form .group .label,
-  .login-form .group .input,
-  .login-form .group .button {
-    width: 100%;
-    @apply text-surface-500;
-    display: block;
-  }
-  .login-form .group .input,
-  .login-form .group .button {
-    border: none;
-    padding: 15px 20px;
-    border-radius: 25px;
-    @apply bg-primary-200;
-  }
-  .login-form .group input[data-type='password'] {
-    text-security: circle;
-    -webkit-text-security: circle;
-  }
-  .login-form .group .label {
-    @apply text-primary-200 text-2xl  tracking-wider;
-  }
-  .login-form .group .button {
-    @apply bg-primary-500;
-  }
-  .login-form .group label .icon {
-    width: 15px;
-    height: 15px;
-    border-radius: 2px;
-    position: relative;
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.1);
-  }
-  .login-form .group label .icon:before,
-  .login-form .group label .icon:after {
-    content: '';
-    width: 10px;
-    height: 2px;
-    @apply bg-surface-300;
-    position: absolute;
-    transition: all 0.2s ease-in-out 0s;
-  }
-  .login-form .group label .icon:before {
-    left: 3px;
-    width: 5px;
-    bottom: 6px;
-    transform: scale(0) rotate(0);
-  }
-  .login-form .group label .icon:after {
-    top: 6px;
-    right: 0;
-    transform: scale(0) rotate(0);
-  }
-  .login-form .group .check:checked + label {
-    @apply text-surface-900;
-  }
-  .login-form .group .check:checked + label .icon {
-    @apply bg-primary-500;
-  }
-  .login-form .group .check:checked + label .icon:before {
-    transform: scale(1) rotate(45deg);
-  }
-  .login-form .group .check:checked + label .icon:after {
-    transform: scale(1) rotate(-45deg);
-  }
-  .login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm {
-    transform: rotate(0);
-  }
-  .login-html .sign-up:checked + .tab + .login-form .sign-up-htm {
-    transform: rotate(0);
+  button {
+    background-color: transparent;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
   }
 
-  .hr {
-    height: 2px;
-    margin: 60px 0 50px 0;
-    background: rgba(255, 255, 255, 0.2);
+  input {
+    background-color: transparent;
+    padding: 0;
+    border: 0;
+    outline: 0;
   }
-  .foot-lnk {
-    text-align: center;
+  input[type='submit'] {
+    cursor: pointer;
+  }
+  input::-webkit-input-placeholder {
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    color: #ccc;
+  }
+  input::-moz-placeholder {
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    color: #ccc;
+  }
+  input:-ms-input-placeholder {
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    color: #ccc;
+  }
+  input::-ms-input-placeholder {
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    color: #ccc;
+  }
+  input::placeholder {
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    color: #ccc;
+  }
+
+  /**
+ * Bounce to the left side
+ */
+  @-webkit-keyframes bounceLeft {
+    0% {
+      -webkit-transform: translate3d(100%, -50%, 0);
+      transform: translate3d(100%, -50%, 0);
+    }
+    50% {
+      -webkit-transform: translate3d(-30px, -50%, 0);
+      transform: translate3d(-30px, -50%, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(0, -50%, 0);
+      transform: translate3d(0, -50%, 0);
+    }
+  }
+  @keyframes bounceLeft {
+    0% {
+      -webkit-transform: translate3d(100%, -50%, 0);
+      transform: translate3d(100%, -50%, 0);
+    }
+    50% {
+      -webkit-transform: translate3d(-30px, -50%, 0);
+      transform: translate3d(-30px, -50%, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(0, -50%, 0);
+      transform: translate3d(0, -50%, 0);
+    }
+  }
+  /**
+ * Bounce to the left side
+ */
+  @-webkit-keyframes bounceRight {
+    0% {
+      -webkit-transform: translate3d(0, -50%, 0);
+      transform: translate3d(0, -50%, 0);
+    }
+    50% {
+      -webkit-transform: translate3d(calc(100% + 30px), -50%, 0);
+      transform: translate3d(calc(100% + 30px), -50%, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(100%, -50%, 0);
+      transform: translate3d(100%, -50%, 0);
+    }
+  }
+  @keyframes bounceRight {
+    0% {
+      -webkit-transform: translate3d(0, -50%, 0);
+      transform: translate3d(0, -50%, 0);
+    }
+    50% {
+      -webkit-transform: translate3d(calc(100% + 30px), -50%, 0);
+      transform: translate3d(calc(100% + 30px), -50%, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(100%, -50%, 0);
+      transform: translate3d(100%, -50%, 0);
+    }
+  }
+  /**
+ * Show Sign Up form
+ */
+  @-webkit-keyframes showSignUp {
+    100% {
+      opacity: 1;
+      visibility: visible;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes showSignUp {
+    100% {
+      opacity: 1;
+      visibility: visible;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  /**
+ * Page background
+ */
+  .user {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    min-width: 100vw;
+    height: 100vh;
+    background: url('/DALL·E 2024-12-12 17.02.02 - A vibrant and dynamic depiction of a martial arts and fitness studio filled with diverse individuals of various ages, races, and abilities engaging in.webp')
+      no-repeat center;
+    background-size: cover;
+    background-position: top;
+  }
+  .user_options-container {
+    position: relative;
+    width: 80%;
+    @apply mt-12;
+  }
+  .user_options-text {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    @apply bg-primary-500/50;
+    backdrop-filter: blur(10px);
+    border-radius: 3px;
+    box-shadow: 6px 6px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  /**
+ * Registered and Unregistered user box and text
+ */
+  .user_options-registered,
+  .user_options-unregistered {
+    width: 50%;
+    padding: 75px 45px;
+    @apply text-surface-900;
+    font-weight: 300;
+  }
+
+  .user_registered-title,
+  .user_unregistered-title {
+    margin-bottom: 15px;
+    font-size: 1.66rem;
+    line-height: 1em;
+  }
+
+  .user_unregistered-text,
+  .user_registered-text {
+    font-size: 1rem;
+    line-height: 1.4em;
+  }
+
+  .user_registered-login,
+  .user_unregistered-signup {
+    margin-top: 30px;
+    border: 2px solid;
+    @apply border-surface-900 text-surface-900;
+    border-radius: 3px;
+    padding: 10px 30px;
+
+    text-transform: uppercase;
+    line-height: 1em;
+    letter-spacing: 0.2rem;
+    -webkit-transition:
+      background-color 0.2s ease-in-out,
+      color 0.2s ease-in-out;
+    transition:
+      background-color 0.2s ease-in-out,
+      color 0.2s ease-in-out;
+  }
+  .user_registered-login:hover,
+  .user_unregistered-signup:hover {
+    @apply bg-surface-900/40 text-primary-100;
+  }
+
+  /**
+ * Login and signup forms
+ */
+  .user_options-forms {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    width: calc(50% - 30px);
+    min-height: 420px;
+    @apply bg-gradient-to-t from-surface-500 via-secondary-500 to-primary-500;
+    backdrop-filter: blur(10px);
+    border-radius: 3px;
+    box-shadow: 2px 0 15px rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    overflow-y: scroll;
+    -webkit-transform: translate3d(100%, -50%, 0);
+    transform: translate3d(100%, -50%, 0);
+    -webkit-transition: -webkit-transform 0.4s ease-in-out;
+    transition: -webkit-transform 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
+    transition:
+      transform 0.4s ease-in-out,
+      -webkit-transform 0.4s ease-in-out;
+  }
+  .user_options-forms .user_forms-login {
+    -webkit-transition:
+      opacity 0.4s ease-in-out,
+      visibility 0.4s ease-in-out;
+    transition:
+      opacity 0.4s ease-in-out,
+      visibility 0.4s ease-in-out;
+  }
+  .user_options-forms .forms_title {
+    margin-bottom: 45px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1em;
+    text-transform: uppercase;
+    @apply text-surface-900;
+    letter-spacing: 0.1rem;
+  }
+  .user_options-forms .forms_field:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+  .user_options-forms .forms_field-input {
+    width: 100%;
+    border-bottom: 1px solid;
+    @apply border-surface-900 text-surface-900;
+    padding: 6px 20px 6px 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+
+    letter-spacing: 0.1rem;
+    -webkit-transition: border-color 0.2s ease-in-out;
+    transition: border-color 0.2s ease-in-out;
+  }
+  .user_options-forms .forms_field-input:focus {
+    @apply border-surface-900;
+  }
+  .user_options-forms .forms_buttons {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 35px;
+  }
+  .user_options-forms .forms_buttons-forgot {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.1rem;
+    @apply text-surface-900 text-2xl;
+    text-decoration: underline;
+    -webkit-transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
+  }
+  .user_options-forms .forms_buttons-forgot:hover {
+    @apply text-secondary-300;
+  }
+  .user_options-forms .forms_buttons-action {
+    @apply bg-transparent border-2 border-surface-900 text-surface-900;
+    border-radius: 3px;
+    padding: 10px 35px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    -webkit-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .user_options-forms .forms_buttons-action:hover {
+    background-color: #e14641;
+  }
+  .user_options-forms .user_forms-signup,
+  .user_options-forms .user_forms-login {
+    position: absolute;
+    top: 70px;
+    left: 40px;
+    width: calc(100% - 80px);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition:
+      opacity 0.4s ease-in-out,
+      visibility 0.4s ease-in-out,
+      -webkit-transform 0.5s ease-in-out;
+    transition:
+      opacity 0.4s ease-in-out,
+      visibility 0.4s ease-in-out,
+      -webkit-transform 0.5s ease-in-out;
+    transition:
+      opacity 0.4s ease-in-out,
+      visibility 0.4s ease-in-out,
+      transform 0.5s ease-in-out;
+    transition:
+      opacity 0.4s ease-in-out,
+      visibility 0.4s ease-in-out,
+      transform 0.5s ease-in-out,
+      -webkit-transform 0.5s ease-in-out;
+  }
+  .user_options-forms .user_forms-signup {
+    -webkit-transform: translate3d(120px, 0, 0);
+    transform: translate3d(120px, 0, 0);
+  }
+  .user_options-forms .user_forms-signup .forms_buttons {
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+  }
+  .user_options-forms .user_forms-login {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /**
+ * Triggers
+ */
+  .user_options-forms.bounceLeft {
+    -webkit-animation: bounceLeft 1s forwards;
+    animation: bounceLeft 1s forwards;
+  }
+  .user_options-forms.bounceLeft .user_forms-signup {
+    -webkit-animation: showSignUp 1s forwards;
+    animation: showSignUp 1s forwards;
+  }
+  .user_options-forms.bounceLeft .user_forms-login {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translate3d(-120px, 0, 0);
+    transform: translate3d(-120px, 0, 0);
+  }
+  .user_options-forms.bounceRight {
+    -webkit-animation: bounceRight 1s forwards;
+    animation: bounceRight 1s forwards;
+  }
+
+  /**
+ * Responsive 990px
+ */
+  @media screen and (max-width: 990px) {
+    .user_options-forms {
+      min-height: 350px;
+    }
+    .user_options-forms .forms_buttons {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      flex-direction: column;
+    }
+    .user_options-forms .user_forms-login .forms_buttons-action {
+      margin-top: 30px;
+    }
+    .user_options-forms .user_forms-signup,
+    .user_options-forms .user_forms-login {
+      top: 40px;
+    }
+
+    .user_options-registered,
+    .user_options-unregistered {
+      padding: 50px 45px;
+    }
   }
 </style>

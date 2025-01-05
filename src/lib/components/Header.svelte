@@ -1,24 +1,26 @@
 <script lang="ts">
-  import type { Content } from '@prismicio/client'
+    import type { Content } from '@prismicio/client'
   import { page } from '$app/stores'
-
+  import { goto } from '$app/navigation'
   import IconMenu from '~icons/ph/list-bold'
   import IconClose from '~icons/ph/x-bold'
   import { asLink } from '@prismicio/client'
   import clsx from 'clsx'
   import { pb } from '$lib/pocketbase'
-  import { currentUser } from '$lib/pocketbase'
+  import { currentUser } from '$lib/auth'
   export let settings: Content.SettingsDocument
-  import { applyAction, enhance } from '$app/forms'
+
   let isOpen = false
+  
   const toggleOpen = () => {
     isOpen = !isOpen
   }
+  
   const close = () => {
     isOpen = false
   }
-  /**@param {import('@prismicio/client').LinkField} link */
-  const isActive = link => {
+
+  const isActive = (link: any) => {
     const path = asLink(link)
 
     if (!path) return false
@@ -26,6 +28,12 @@
       return $page.url.pathname === '/'
     }
     return $page.url.pathname.startsWith(path)
+  }
+
+  const handleLogout = async () => {
+    console.log("Logging out...")
+    pb.authStore.clear()
+    await goto('/login')
   }
 </script>
 
@@ -99,28 +107,20 @@
         </li>
       {/each}
       {#if $currentUser}
-        <li><a href="/profile">{$currentUser.firstName} {$currentUser.lastName}</a></li>
-        <li>
-          <form
-            method="POST"
-            action="/logout"
-            use:enhance={() => {
-              return async ({ result }) => {
-                applyAction(result)
-                pb.authStore.clear()
-              }
-            }}
-          >
-            <button class="btn btn-sm variant-ghost-primary">Logout</button>
-          </form>
-        </li>
-      {:else}
-        <li>
-          <a href="/register">
-            <button class="btn btn-sm variant-ghost-primary">Login</button>
-          </a>
-        </li>
-      {/if}
+      <li><a href="/profile">{$currentUser.name}</a></li>
+      <li>
+        <!-- Removed the button styling temporarily to test basic functionality -->
+        <a href="/logout" on:click={handleLogout}>
+          Logout
+        </a>
+      </li>
+    {:else}
+      <li>
+        <a href="/register">
+          <button class="btn btn-sm variant-ghost-primary">Login</button>
+        </a>
+      </li>
+    {/if}
     </ul>
   </nav>
 </header>

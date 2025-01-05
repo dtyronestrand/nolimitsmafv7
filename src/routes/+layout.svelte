@@ -7,6 +7,17 @@
   import { currentUser } from '$lib/pocketbase'
   import Header from '$lib/components/Header.svelte'
   import Footer from '$lib/components/Footer.svelte'
+  import { onMount } from 'svelte'
+  import { goto } from '$app/navigation'
+  import { pb } from '$lib/pocketbase'
+  onMount(() => {
+    // Update the store with the initial auth state
+    currentUser.set(pb.authStore.model)
+  })
+  async function logout() {
+    await pb.authStore.clear()
+    goto('/')
+  }
 </script>
 
 <svelte:head>
@@ -24,8 +35,10 @@
 </svelte:head>
 
 <Header settings={$page.data.settings} />
+<main>
 
-<slot />
+  <slot />
+</main>
 
 <Footer settings={$page.data.settings} />
 <PrismicPreview {repositoryName} />
