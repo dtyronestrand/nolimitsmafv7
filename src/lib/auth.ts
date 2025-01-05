@@ -1,14 +1,25 @@
-import PocketBase from 'pocketbase'
-import { writable } from 'svelte/store'
-import { pb } from './pocketbase' // Add this import
+import { writable, type Writable } from 'svelte/store';
+import { pb } from './pocketbase';
+import type { BaseModel } from 'pocketbase';
+import { browser } from '$app/environment';
 
-// Use the built-in types from PocketBase instance
-type AuthModel = import('pocketbase').BaseModel
+// Create a more persistent store
+function createPersistentStore() {
+    const store: Writable<BaseModel | null> = writable(pb.authStore.model);
 
-export const currentUser = writable<AuthModel | null>(pb.authStore.model)
+    if (browser) {
+        // Initialize from PocketBase auth store
+        pb.authStore.onChange((token, model) => {
+            console.log("Auth state changed:", { token: !!token, model: !!model }); // Debug log
+            store.set(model);
+        });
+    }
 
-// Subscribe to auth state changes
-pb.authStore.onChange((auth) => {
-  console.log("Auth state changed:", auth);
-  currentUser.set(pb.authStore.model);
-});
+    return {
+        subscribe: store.subscribe,
+        set: store.set,
+        update: store.update
+    };
+}
+
+export const currentUser = createPersistentStore();

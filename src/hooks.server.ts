@@ -2,17 +2,19 @@ import { pb } from '$lib/pocketbase';
 import type { Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
-    // Get the cookie from the request headers
-    const cookie = event.request.headers.get('cookie') || '';
-    pb.authStore.loadFromCookie(cookie);
+    const cookieString = event.request.headers.get('cookie') || '';
+    console.log("Incoming cookie:", cookieString); // Debug log
+
+    pb.authStore.loadFromCookie(cookieString);
+    console.log("Auth valid after load:", pb.authStore.isValid); // Debug log
 
     try {
-        // If we have a valid auth, try to refresh it
         if (pb.authStore.isValid) {
             await pb.collection('users').authRefresh();
+            console.log("Auth refreshed successfully"); // Debug log
         }
-    } catch {
-        // If refresh fails, clear the auth
+    } catch (err) {
+        console.error("Auth refresh failed:", err); // Debug log
         pb.authStore.clear();
     }
 
@@ -21,17 +23,18 @@ export const handle: Handle = async ({ event, resolve }) => {
 
     const response = await resolve(event);
 
-    // Set the cookie with appropriate options for both dev and prod
-    response.headers.set(
-        'set-cookie',
-        pb.authStore.exportToCookie({
-            secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-            sameSite: 'Lax',  // Protects against CSRF
-            httpOnly: false,  // Allow client-side access
-            path: '/',       // Cookie available for all paths
-            maxAge: 7 * 24 * 60 * 60  // 7 days
-        })
-    );
+    // Make sure we're setting the cookie with the current auth state
+    const cookie = pb.authStore.exportToCookie({
+        httpOnly: false,
+        secure: true,
+        sameSite: 'Lax',
+        path: '/',
+        maxAge: 7 * 24 * 60 * 60
+    });
+
+    console.log("Setting cookie:", cookie); // Debug log
+
+    response.headers.set('set-cookie', cookie);
 
     return response;
 };
