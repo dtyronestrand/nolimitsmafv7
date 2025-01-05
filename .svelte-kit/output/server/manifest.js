@@ -10,7 +10,7 @@ return {
 	assets: new Set(["DALL·E 2024-12-12 17.02.02 - A vibrant and dynamic depiction of a martial arts and fitness studio filled with diverse individuals of various ages, races, and abilities engaging in.webp","favicon.png","formbg.webp","generic-avatar.png","grid-pattern.png","noise-texture.svg"]),
 	mimeTypes: {".webp":"image/webp",".png":"image/png",".svg":"image/svg+xml"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.DWKzNNJI.js","app":"_app/immutable/entry/app.2PBgUMOV.js","imports":["_app/immutable/entry/start.DWKzNNJI.js","_app/immutable/chunks/entry.HQ67FsKZ.js","_app/immutable/chunks/index.BvGuoOrU.js","_app/immutable/entry/app.2PBgUMOV.js","_app/immutable/chunks/10.2rzWKDI8.js","_app/immutable/chunks/index.BvGuoOrU.js","_app/immutable/chunks/index.Cwb8RUpT.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.CaqVBiLW.js","app":"_app/immutable/entry/app.DW9nHW7w.js","imports":["_app/immutable/entry/start.CaqVBiLW.js","_app/immutable/chunks/entry.B79BDEyk.js","_app/immutable/chunks/scheduler.IDmOjlTZ.js","_app/immutable/chunks/index.BjOTI3Gq.js","_app/immutable/entry/app.DW9nHW7w.js","_app/immutable/chunks/pocketbase.GTJ7-wcp.js","_app/immutable/chunks/index.BjOTI3Gq.js","_app/immutable/chunks/scheduler.IDmOjlTZ.js","_app/immutable/chunks/index.5QbAzJfi.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -25,7 +25,8 @@ return {
 			__memo(() => import('./nodes/10.js')),
 			__memo(() => import('./nodes/11.js')),
 			__memo(() => import('./nodes/12.js')),
-			__memo(() => import('./nodes/13.js'))
+			__memo(() => import('./nodes/13.js')),
+			__memo(() => import('./nodes/14.js'))
 		],
 		routes: [
 			{
@@ -89,6 +90,13 @@ return {
 				pattern: /^\/slice-simulator\/?$/,
 				params: [],
 				page: { layouts: [0,], errors: [1,], leaf: 13 },
+				endpoint: null
+			},
+			{
+				id: "/unauthorized",
+				pattern: /^\/unauthorized\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 14 },
 				endpoint: null
 			},
 			{

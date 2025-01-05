@@ -16,8 +16,8 @@
 		"src/routes/+layout.server.ts"
 	],
 	"/logout": [
-		"src/routes/+layout.server.ts",
-		"src/routes/logout/+server.ts"
+		"src/routes/logout/+page.server.ts",
+		"src/routes/+layout.server.ts"
 	],
 	"/profile": [
 		"src/routes/+layout.server.ts"

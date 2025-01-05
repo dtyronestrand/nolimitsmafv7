@@ -3,8 +3,9 @@ import { getToolbarSrc, asLink } from "@prismicio/client";
 import "../../chunks/client.js";
 import { p as page } from "../../chunks/stores.js";
 import { r as repositoryName } from "../../chunks/prismicio.js";
-import { c as currentUser } from "../../chunks/pocketbase.js";
+import "../../chunks/pocketbase.js";
 import clsx from "clsx";
+import { c as currentUser } from "../../chunks/auth.js";
 import { P as PrismicLink } from "../../chunks/PrismicLink.js";
 const PrismicPreview = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let toolbarSrc;
@@ -69,7 +70,7 @@ const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       `absolute inset-0 z-0 h-full rounded bg-secondary-600 transition-transform duration-300 ease-in-out group-hover:translate-y-0 ${isActive(navigation_link) ? "translate-y-[calc(100%-4px)]" : "translate-y-[100%]"}`,
       0
     )}></span> <span class="relative">${escape(navigation_label)}</span></a> </li>`;
-  })} ${$currentUser ? `<li><a href="/profile">${escape($currentUser.name)}</a></li> <li data-svelte-h="svelte-1xdewk6"><form><button class="btn btn-sm variant-ghost-primary">Logout</button></form></li>` : `<li data-svelte-h="svelte-1bwriz1"><a href="/register"><button class="btn btn-sm variant-ghost-primary">Login</button></a></li>`}</ul></nav></header>`;
+  })} ${$currentUser ? `<li><a href="/profile">${escape($currentUser.name)}</a></li> <li> <a href="/logout" data-svelte-h="svelte-1jvwm91">Logout</a></li>` : `<li data-svelte-h="svelte-xc76fh"><a href="/register"><button class="btn btn-sm variant-ghost-primary">Login</button></a></li>`}</ul></nav></header>`;
 });
 const Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { settings } = $$props;
@@ -96,7 +97,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $page, $$unsubscribe_page;
   $$unsubscribe_page = subscribe(page, (value) => $page = value);
   $$unsubscribe_page();
-  return `${$$result.head += `<!-- HEAD_svelte-17altae_START -->${$$result.title = `<title>${escape($page.data.title)}</title>`, ""}${$page.data.meta_description ? `<meta name="description"${add_attribute("content", $page.data.meta_description, 0)}>` : ``}${$page.data.meta_title ? `<meta name="og:title"${add_attribute("content", $page.data.meta_title, 0)}>` : ``}${$page.data.meta_image ? `<meta name="og:image"${add_attribute("content", $page.data.meta_image, 0)}> <meta name="twitter:card" content="summary_large_image">` : ``}<!-- HEAD_svelte-17altae_END -->`, ""} ${validate_component(Header, "Header").$$render($$result, { settings: $page.data.settings }, {}, {})} ${slots.default ? slots.default({}) : ``} ${validate_component(Footer, "Footer").$$render($$result, { settings: $page.data.settings }, {}, {})} ${validate_component(PrismicPreview, "PrismicPreview").$$render($$result, { repositoryName }, {}, {})}`;
+  return `${$$result.head += `<!-- HEAD_svelte-17altae_START -->${$$result.title = `<title>${escape($page.data.title)}</title>`, ""}${$page.data.meta_description ? `<meta name="description"${add_attribute("content", $page.data.meta_description, 0)}>` : ``}${$page.data.meta_title ? `<meta name="og:title"${add_attribute("content", $page.data.meta_title, 0)}>` : ``}${$page.data.meta_image ? `<meta name="og:image"${add_attribute("content", $page.data.meta_image, 0)}> <meta name="twitter:card" content="summary_large_image">` : ``}<!-- HEAD_svelte-17altae_END -->`, ""} ${validate_component(Header, "Header").$$render($$result, { settings: $page.data.settings }, {}, {})} <main>${slots.default ? slots.default({}) : ``}</main> ${validate_component(Footer, "Footer").$$render($$result, { settings: $page.data.settings }, {}, {})} ${validate_component(PrismicPreview, "PrismicPreview").$$render($$result, { repositoryName }, {}, {})}`;
 });
 export {
   Layout as default

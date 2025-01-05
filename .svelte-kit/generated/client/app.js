@@ -26,7 +26,7 @@ export const server_loads = [0];
 export const dictionary = {
 		"/[[preview=preview]]/(users)/location/[uid]": [~4,[2]],
 		"/login": [9],
-		"/logout": [10],
+		"/logout": [~10],
 		"/profile": [11],
 		"/[[preview=preview]]/(users)/program/[uid]": [~5,[2]],
 		"/register": [12],

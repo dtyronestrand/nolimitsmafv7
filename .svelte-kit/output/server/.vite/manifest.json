@@ -16,6 +16,14 @@
       "_ssr.js"
     ]
   },
+  "_auth.js": {
+    "file": "chunks/auth.js",
+    "name": "auth",
+    "imports": [
+      "_index2.js",
+      "_pocketbase.js"
+    ]
+  },
   "_client.js": {
     "file": "chunks/client.js",
     "name": "client",
@@ -219,10 +227,11 @@
       "_stores.js",
       "_prismicio.js",
       "_pocketbase.js",
+      "_auth.js",
       "_PrismicLink.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.B2OGRWT0.css"
+      "_app/immutable/assets/_layout.xgWHcT65.css"
     ],
     "assets": [
       "_app/immutable/assets/protest-riot-math-400-normal.CD0Gh0vv.woff2",
@@ -412,6 +421,15 @@
       "_index.js"
     ]
   },
+  "src/routes/logout/+page.svelte": {
+    "file": "entries/pages/logout/_page.svelte.js",
+    "name": "entries/pages/logout/_page.svelte",
+    "src": "src/routes/logout/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ]
+  },
   "src/routes/profile/+page.svelte": {
     "file": "entries/pages/profile/_page.svelte.js",
     "name": "entries/pages/profile/_page.svelte",
@@ -420,7 +438,7 @@
     "imports": [
       "_ssr.js",
       "_pocketbase.js",
-      "_index2.js"
+      "_auth.js"
     ],
     "css": [
       "_app/immutable/assets/_page.DDrdaabM.css"
@@ -448,6 +466,18 @@
     "imports": [
       "_ssr.js",
       "_index3.js"
+    ]
+  },
+  "src/routes/unauthorized/+page.svelte": {
+    "file": "entries/pages/unauthorized/_page.svelte.js",
+    "name": "entries/pages/unauthorized/_page.svelte",
+    "src": "src/routes/unauthorized/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.Dn-QOPzQ.css"
     ]
   }
 }

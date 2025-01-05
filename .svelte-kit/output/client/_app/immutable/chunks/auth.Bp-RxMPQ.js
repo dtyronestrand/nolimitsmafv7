@@ -1,0 +1,1 @@
+import{p as t}from"./pocketbase.GTJ7-wcp.js";import{w as e}from"./index.BjOTI3Gq.js";const r=e(t.authStore.model);t.authStore.onChange(o=>{console.log("Auth state changed:",o),r.set(t.authStore.model)});export{r as c};
