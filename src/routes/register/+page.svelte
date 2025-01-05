@@ -51,6 +51,7 @@
 
     try {
       await pb.collection('users').authWithPassword(email, password)
+      
       goto('/') // Redirect to home page after login
     } catch (err) {
       error = err instanceof Error ? err.message : 'Login failed'
