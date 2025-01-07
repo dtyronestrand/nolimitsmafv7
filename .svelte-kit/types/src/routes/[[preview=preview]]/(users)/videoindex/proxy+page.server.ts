@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createClient } from '$lib/prismicio'
 import { asText } from '@prismicio/client'
 import type {Actions} from './$types'
@@ -28,8 +29,8 @@ export async function entries() {
   })
 }
 
-export const actions: Actions = {
-  default: async({locals, request}) => {
+export const actions = {
+  default: async({locals, request}: import('./$types').RequestEvent) => {
     const data = Object.fromEntries(await request.formData()) as{
       firstName: string,
       lastName: string,
@@ -44,4 +45,4 @@ export const actions: Actions = {
     }
     throw redirect(303, '/program')
   },
-}
+};null as any as Actions;

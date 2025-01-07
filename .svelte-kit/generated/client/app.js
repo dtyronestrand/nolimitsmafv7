@@ -14,28 +14,20 @@ export const nodes = [
 	() => import('./nodes/7'),
 	() => import('./nodes/8'),
 	() => import('./nodes/9'),
-	() => import('./nodes/10'),
-	() => import('./nodes/11'),
-	() => import('./nodes/12'),
-	() => import('./nodes/13'),
-	() => import('./nodes/14')
+	() => import('./nodes/10')
 ];
 
-export const server_loads = [0];
+export const server_loads = [0,2];
 
 export const dictionary = {
-		"/[[preview=preview]]/(users)/location/[uid]": [~4,[2]],
-		"/login": [9],
-		"/logout": [~10],
-		"/profile": [11],
-		"/[[preview=preview]]/(users)/program/[uid]": [~5,[2]],
-		"/register": [12],
-		"/slice-simulator": [13],
-		"/unauthorized": [14],
-		"/[[preview=preview]]/(users)/videoindex": [~7,[2]],
-		"/[[preview=preview]]/(users)/video/[uid]": [~6,[2]],
+		"/profile": [8],
+		"/[[preview=preview]]/program/[uid]": [~5,[2]],
+		"/[[preview=preview]]/program/[uid]/testingapp": [~6,[2]],
+		"/[[preview=preview]]/program/[uid]/video/[uid]": [~7,[2]],
+		"/register": [~9],
+		"/slice-simulator": [10],
 		"/[[preview=preview]]": [~3],
-		"/[[preview=preview]]/[uid]": [~8]
+		"/[[preview=preview]]/[uid]": [~4]
 	};
 
 export const hooks = {

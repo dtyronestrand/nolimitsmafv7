@@ -5,25 +5,30 @@
 	"/api/preview": [
 		"src/routes/api/preview/+server.ts"
 	],
-	"/auth/callback/google": [
-		"src/routes/auth/callback/google/+server.ts"
-	],
-	"/[[preview=preview]]/(users)/location/[uid]": [
-		"src/routes/[[preview=preview]]/(users)/location/[uid]/+page.server.ts",
-		"src/routes/+layout.server.ts"
-	],
-	"/login": [
-		"src/routes/+layout.server.ts"
+	"/auth/callback": [
+		"src/routes/auth/callback/+server.ts"
 	],
 	"/logout": [
-		"src/routes/logout/+page.server.ts",
-		"src/routes/+layout.server.ts"
+		"src/routes/logout/+server.ts"
 	],
 	"/profile": [
 		"src/routes/+layout.server.ts"
 	],
-	"/[[preview=preview]]/(users)/program/[uid]": [
-		"src/routes/[[preview=preview]]/(users)/program/[uid]/+page.server.ts",
+	"/[[preview=preview]]/program/[uid]": [
+		"src/routes/[[preview=preview]]/program/[uid]/+page.server.ts",
+		"src/routes/[[preview=preview]]/program/[uid]/+layout.server.ts",
+		"src/routes/+layout.server.ts",
+		"src/routes/[[preview=preview]]/program/[uid]/+layout.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/[[preview=preview]]/program/[uid]/testingapp": [
+		"src/routes/[[preview=preview]]/program/[uid]/testingapp/+page.server.ts",
+		"src/routes/[[preview=preview]]/program/[uid]/+layout.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/[[preview=preview]]/program/[uid]/video/[uid]": [
+		"src/routes/[[preview=preview]]/program/[uid]/video/[uid]/+page.server.ts",
+		"src/routes/[[preview=preview]]/program/[uid]/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/register": [
