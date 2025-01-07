@@ -1,6 +1,7 @@
 <script lang="ts">
   import { pb } from '$lib/pocketbase'
   import { goto } from '$app/navigation'
+  import {currentUser} from '$lib/auth'
   import clsx from 'clsx'
   let email = ''
   let password = ''
@@ -46,19 +47,38 @@
   }
 
   async function login() {
-    loading = true
-    error = ''
+    loading = true;
+    error = '';
 
     try {
-      await pb.collection('users').authWithPassword(email, password)
-      
-      goto('/') // Redirect to home page after login
+        const authData = await pb.collection('users').authWithPassword(
+            email, 
+            password,
+            // Add afterSubmit hook
+            {
+                $autoCancel: false,
+                expand: 'relatedCollections',
+            }
+        );
+        
+        // Force a store update
+        currentUser.set(pb.authStore.model);
+        
+        // Add a small delay to ensure state is updated
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        goto('/');
     } catch (err) {
-      error = err instanceof Error ? err.message : 'Login failed'
+        error = err instanceof Error ? err.message : 'Login failed';
     } finally {
-      loading = false
+        loading = false;
     }
-  }
+}
+console.log('Auth state after login:', {
+    token: pb.authStore.token,
+    model: pb.authStore.model,
+    isValid: pb.authStore.isValid
+});
 
   let status = 'right'
   function toggleActive() {
