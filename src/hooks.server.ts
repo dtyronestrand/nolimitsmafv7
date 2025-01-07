@@ -2,29 +2,38 @@ import { pb } from '$lib/pocketbase';
 import type { Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
-    pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
-    
+    const cookieString = event.request.headers.get('cookie') || '';
+    console.log("Incoming cookie:", cookieString); // Debug log
+
+    pb.authStore.loadFromCookie(cookieString);
+    console.log("Auth valid after load:", pb.authStore.isValid); // Debug log
+
     try {
         if (pb.authStore.isValid) {
             await pb.collection('users').authRefresh();
+            console.log("Auth refreshed successfully"); // Debug log
         }
-    } catch (_) {
+    } catch (err) {
+        console.error("Auth refresh failed:", err); // Debug log
         pb.authStore.clear();
     }
 
     event.locals.pb = pb;
-    event.locals.user = structuredClone(pb.authStore.model);
+    event.locals.user = pb.authStore.model;
 
     const response = await resolve(event);
 
-    // Set cookie with specific options for Safari compatibility
+    // Make sure we're setting the cookie with the current auth state
     const cookie = pb.authStore.exportToCookie({
-        secure: true,
-        sameSite: "Lax",
         httpOnly: false,
-        path: '/'
+        secure: true,
+        sameSite: 'Lax',
+        path: '/',
+        maxAge: 7 * 24 * 60 * 60
     });
-    
+
+    console.log("Setting cookie:", cookie); // Debug log
+
     response.headers.set('set-cookie', cookie);
 
     return response;
