@@ -2,7 +2,7 @@
 
 export const index = 11;
 let component_cache;
-export const component = async () => component_cache ??= (await import('../entries/pages/profile/_page.svelte.js')).default;
-export const imports = ["_app/immutable/nodes/11.DhNeDhDi.js","_app/immutable/chunks/scheduler.IDmOjlTZ.js","_app/immutable/chunks/index.5QbAzJfi.js","_app/immutable/chunks/pocketbase.GTJ7-wcp.js","_app/immutable/chunks/index.BjOTI3Gq.js","_app/immutable/chunks/auth.Bp-RxMPQ.js"];
-export const stylesheets = ["_app/immutable/assets/11.DDrdaabM.css"];
+export const component = async () => component_cache ??= (await import('../entries/pages/register/_page.svelte.js')).default;
+export const imports = ["_app/immutable/nodes/11.BwaenTF0.js","_app/immutable/chunks/scheduler.DRXOiffo.js","_app/immutable/chunks/index.1dBllwLl.js","_app/immutable/chunks/pocketbase.DTuYus1y.js","_app/immutable/chunks/index.BSOuyD6n.js","_app/immutable/chunks/entry.P58bDJ4H.js","_app/immutable/chunks/auth.C00_U8rO.js","_app/immutable/chunks/clsx.B-dksMZM.js"];
+export const stylesheets = ["_app/immutable/assets/11.t5niJ-Vp.css"];
 export const fonts = [];

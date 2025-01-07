@@ -1,6 +1,5 @@
 import { c as create_ssr_component, s as setContext, v as validate_component, m as missing_component } from "./ssr.js";
 import { a as afterUpdate } from "./ssr2.js";
-import "./shared-server.js";
 let base = "";
 let assets = base;
 const initial = { base, assets };
@@ -14,6 +13,16 @@ function reset() {
 }
 function set_assets(path) {
   assets = initial.assets = path;
+}
+let public_env = {};
+let safe_public_env = {};
+function set_private_env(environment) {
+}
+function set_public_env(environment) {
+  public_env = environment;
+}
+function set_safe_public_env(environment) {
+  safe_public_env = environment;
 }
 let read_implementation = null;
 function set_read_implementation(fn) {
@@ -206,7 +215,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1pue9kl"
+  version_hash: "1tk3mz5"
 };
 async function get_hooks() {
   let handle;
@@ -230,13 +239,18 @@ export {
   base as b,
   read_implementation as c,
   options as d,
-  set_assets as e,
-  set_building as f,
-  get_hooks as g,
-  set_manifest as h,
-  set_prerendering as i,
+  set_private_env as e,
+  prerendering as f,
+  set_public_env as g,
+  get_hooks as h,
+  set_safe_public_env as i,
+  set_read_implementation as j,
+  set_assets as k,
+  set_building as l,
+  set_manifest as m,
+  set_prerendering as n,
   override as o,
-  prerendering as p,
+  public_env as p,
   reset as r,
-  set_read_implementation as s
+  safe_public_env as s
 };

@@ -5,8 +5,7 @@
     "src": ".svelte-kit/generated/server/internal.js",
     "isEntry": true,
     "imports": [
-      "_internal.js",
-      "_shared-server.js"
+      "_internal.js"
     ]
   },
   "_PrismicLink.js": {
@@ -79,8 +78,7 @@
     "name": "internal",
     "imports": [
       "_ssr.js",
-      "_ssr2.js",
-      "_shared-server.js"
+      "_ssr2.js"
     ],
     "dynamicImports": [
       "src/hooks.server.ts"
@@ -106,10 +104,6 @@
     "imports": [
       "_client.js"
     ]
-  },
-  "_shared-server.js": {
-    "file": "chunks/shared-server.js",
-    "name": "shared-server"
   },
   "_ssr.js": {
     "file": "chunks/ssr.js",
@@ -186,8 +180,7 @@
       "_internal.js",
       "_index.js",
       "_exports.js",
-      "_index2.js",
-      "_shared-server.js"
+      "_index2.js"
     ]
   },
   "src/hooks.server.ts": {
@@ -196,8 +189,7 @@
     "src": "src/hooks.server.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_pocketbase.js",
-      "_index.js"
+      "_pocketbase.js"
     ]
   },
   "src/params/preview.ts": {
@@ -391,27 +383,6 @@
       "_prismicio.js"
     ]
   },
-  "src/routes/auth/callback/google/+server.ts": {
-    "file": "entries/endpoints/auth/callback/google/_server.ts.js",
-    "name": "entries/endpoints/auth/callback/google/_server.ts",
-    "src": "src/routes/auth/callback/google/+server.ts",
-    "isEntry": true,
-    "imports": [
-      "_index.js",
-      "_shared-server.js"
-    ]
-  },
-  "src/routes/login/+page.svelte": {
-    "file": "entries/pages/login/_page.svelte.js",
-    "name": "entries/pages/login/_page.svelte",
-    "src": "src/routes/login/+page.svelte",
-    "isEntry": true,
-    "imports": [
-      "_ssr.js",
-      "_pocketbase.js",
-      "_client.js"
-    ]
-  },
   "src/routes/logout/+page.server.ts": {
     "file": "entries/pages/logout/_page.server.ts.js",
     "name": "entries/pages/logout/_page.server.ts",
@@ -452,10 +423,11 @@
     "imports": [
       "_ssr.js",
       "_pocketbase.js",
-      "_client.js"
+      "_client.js",
+      "_auth.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.CZM6XTUM.css"
+      "_app/immutable/assets/_page.D-L3CUzT.css"
     ]
   },
   "src/routes/slice-simulator/+page.svelte": {

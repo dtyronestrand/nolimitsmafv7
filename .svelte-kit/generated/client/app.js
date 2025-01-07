@@ -1,6 +1,3 @@
-import * as client_hooks from '../../../src/hooks.client.ts';
-
-
 export { matchers } from './matchers.js';
 
 export const nodes = [
@@ -17,21 +14,19 @@ export const nodes = [
 	() => import('./nodes/10'),
 	() => import('./nodes/11'),
 	() => import('./nodes/12'),
-	() => import('./nodes/13'),
-	() => import('./nodes/14')
+	() => import('./nodes/13')
 ];
 
 export const server_loads = [0];
 
 export const dictionary = {
 		"/[[preview=preview]]/(users)/location/[uid]": [~4,[2]],
-		"/login": [9],
-		"/logout": [~10],
-		"/profile": [11],
+		"/logout": [~9],
+		"/profile": [10],
 		"/[[preview=preview]]/(users)/program/[uid]": [~5,[2]],
-		"/register": [12],
-		"/slice-simulator": [13],
-		"/unauthorized": [14],
+		"/register": [11],
+		"/slice-simulator": [12],
+		"/unauthorized": [13],
 		"/[[preview=preview]]/(users)/videoindex": [~7,[2]],
 		"/[[preview=preview]]/(users)/video/[uid]": [~6,[2]],
 		"/[[preview=preview]]": [~3],
@@ -39,8 +34,8 @@ export const dictionary = {
 	};
 
 export const hooks = {
-	handleError: client_hooks.handleError || (({ error }) => { console.error(error) }),
-	init: client_hooks.init,
+	handleError: (({ error }) => { console.error(error) }),
+	
 	reroute: (() => {}),
 	transport: {}
 };

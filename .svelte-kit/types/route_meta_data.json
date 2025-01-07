@@ -5,14 +5,8 @@
 	"/api/preview": [
 		"src/routes/api/preview/+server.ts"
 	],
-	"/auth/callback/google": [
-		"src/routes/auth/callback/google/+server.ts"
-	],
 	"/[[preview=preview]]/(users)/location/[uid]": [
 		"src/routes/[[preview=preview]]/(users)/location/[uid]/+page.server.ts",
-		"src/routes/+layout.server.ts"
-	],
-	"/login": [
 		"src/routes/+layout.server.ts"
 	],
 	"/logout": [

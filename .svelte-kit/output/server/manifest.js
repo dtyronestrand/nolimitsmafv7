@@ -7,10 +7,10 @@ function __memo(fn) {
 return {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set(["DALL·E 2024-12-12 17.02.02 - A vibrant and dynamic depiction of a martial arts and fitness studio filled with diverse individuals of various ages, races, and abilities engaging in.webp","favicon.png","formbg.webp","generic-avatar.png","grid-pattern.png","noise-texture.svg"]),
-	mimeTypes: {".webp":"image/webp",".png":"image/png",".svg":"image/svg+xml"},
+	assets: new Set(["favicon.png","formbg.webp","generic-avatar.png","grid-pattern.png","gym.webp","noise-texture.svg"]),
+	mimeTypes: {".png":"image/png",".webp":"image/webp",".svg":"image/svg+xml"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.CaqVBiLW.js","app":"_app/immutable/entry/app.DW9nHW7w.js","imports":["_app/immutable/entry/start.CaqVBiLW.js","_app/immutable/chunks/entry.B79BDEyk.js","_app/immutable/chunks/scheduler.IDmOjlTZ.js","_app/immutable/chunks/index.BjOTI3Gq.js","_app/immutable/entry/app.DW9nHW7w.js","_app/immutable/chunks/pocketbase.GTJ7-wcp.js","_app/immutable/chunks/index.BjOTI3Gq.js","_app/immutable/chunks/scheduler.IDmOjlTZ.js","_app/immutable/chunks/index.5QbAzJfi.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"_app/immutable/entry/start.CZXfxyKN.js","app":"_app/immutable/entry/app.DyVnw2GW.js","imports":["_app/immutable/entry/start.CZXfxyKN.js","_app/immutable/chunks/entry.P58bDJ4H.js","_app/immutable/chunks/scheduler.DRXOiffo.js","_app/immutable/chunks/index.BSOuyD6n.js","_app/immutable/entry/app.DyVnw2GW.js","_app/immutable/chunks/scheduler.DRXOiffo.js","_app/immutable/chunks/index.1dBllwLl.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
@@ -25,8 +25,7 @@ return {
 			__memo(() => import('./nodes/10.js')),
 			__memo(() => import('./nodes/11.js')),
 			__memo(() => import('./nodes/12.js')),
-			__memo(() => import('./nodes/13.js')),
-			__memo(() => import('./nodes/14.js'))
+			__memo(() => import('./nodes/13.js'))
 		],
 		routes: [
 			{
@@ -37,13 +36,6 @@ return {
 				endpoint: __memo(() => import('./entries/endpoints/api/preview/_server.ts.js'))
 			},
 			{
-				id: "/auth/callback/google",
-				pattern: /^\/auth\/callback\/google\/?$/,
-				params: [],
-				page: null,
-				endpoint: __memo(() => import('./entries/endpoints/auth/callback/google/_server.ts.js'))
-			},
-			{
 				id: "/[[preview=preview]]/(users)/location/[uid]",
 				pattern: /^(?:\/([^/]+))?\/location\/([^/]+?)\/?$/,
 				params: [{"name":"preview","matcher":"preview","optional":true,"rest":false,"chained":true},{"name":"uid","optional":false,"rest":false,"chained":false}],
@@ -51,24 +43,17 @@ return {
 				endpoint: null
 			},
 			{
-				id: "/login",
-				pattern: /^\/login\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 9 },
-				endpoint: null
-			},
-			{
 				id: "/logout",
 				pattern: /^\/logout\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 10 },
+				page: { layouts: [0,], errors: [1,], leaf: 9 },
 				endpoint: null
 			},
 			{
 				id: "/profile",
 				pattern: /^\/profile\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 11 },
+				page: { layouts: [0,], errors: [1,], leaf: 10 },
 				endpoint: null
 			},
 			{
@@ -82,21 +67,21 @@ return {
 				id: "/register",
 				pattern: /^\/register\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 12 },
+				page: { layouts: [0,], errors: [1,], leaf: 11 },
 				endpoint: null
 			},
 			{
 				id: "/slice-simulator",
 				pattern: /^\/slice-simulator\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 13 },
+				page: { layouts: [0,], errors: [1,], leaf: 12 },
 				endpoint: null
 			},
 			{
 				id: "/unauthorized",
 				pattern: /^\/unauthorized\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 14 },
+				page: { layouts: [0,], errors: [1,], leaf: 13 },
 				endpoint: null
 			},
 			{
