@@ -11,7 +11,7 @@ type OutputDataShape<T> = MaybeWithVoid<Omit<App.PageData, RequiredKeys<T>> & Pa
 type EnsureDefined<T> = T extends null | undefined ? {} : T;
 type OptionalUnion<U extends Record<string, any>, A extends keyof U = U extends U ? keyof U : never> = U extends unknown ? { [P in Exclude<A, keyof U>]?: never } & U : never;
 export type Snapshot<T = any> = Kit.Snapshot<T>;
-type LayoutRouteId = RouteId | "/[[preview=preview]]" | "/[[preview=preview]]/(users)/location/[uid]" | "/[[preview=preview]]/(users)/program/[uid]" | "/[[preview=preview]]/(users)/video/[uid]" | "/[[preview=preview]]/(users)/videoindex" | "/[[preview=preview]]/[uid]" | "/login" | "/logout" | "/profile" | "/register" | "/slice-simulator" | "/unauthorized" | null
+type LayoutRouteId = RouteId | "/[[preview=preview]]" | "/[[preview=preview]]/(users)/location/[uid]" | "/[[preview=preview]]/(users)/program/[uid]" | "/[[preview=preview]]/(users)/program/[uid]/testingapp" | "/[[preview=preview]]/(users)/program/[uid]/video/[uid]" | "/[[preview=preview]]/(users)/video/[uid]" | "/[[preview=preview]]/(users)/videoindex" | "/[[preview=preview]]/[uid]" | "/logout" | "/profile" | "/register" | "/slice-simulator" | "/unauthorized" | null
 type LayoutParams = RouteParams & { preview?: MatcherParam<typeof import('../../../../src/params/preview').match>; uid?: string }
 type LayoutServerParentData = EnsureDefined<{}>;
 type LayoutParentData = EnsureDefined<{}>;
