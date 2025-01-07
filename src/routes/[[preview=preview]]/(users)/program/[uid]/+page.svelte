@@ -30,11 +30,6 @@
       class="rounded-[0.75rem] p-10 gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 md:col-span-3 backdrop-blur-xl filter shadow-md shadow-white"
     >
       <div class="container">
-        <div class="circle-orange-small"></div>
-        <div class="circle-blue"></div>
-        <div class="circle-orange-big"></div>
-        <div class="circle-center"></div>
-        <div class="circle-center-text">
           <h2>
             Are you ready to embark on a journey of self-discovery and transformation? Our Taekwondo
             classes offer the perfect blend of tradition, fitness, and fun.
@@ -42,14 +37,12 @@
           <hr />
           <br />
           <p>Come experience the art of Taekwondo and unlock your potential.</p>
-          <div class="cta">
-            <button>Get Started Us</button>
-            <div class="btn"></div>
-          </div>
+        
+            <a href="/register" class="button button-pulse">Get Started Us</a>
+           
         </div>
-        <div class="circle-green"></div>
-        <div class="circle-blue-small"></div>
-      </div>
+     
+      
     </bento-item>
     <bento-item
       class=" rounded-[0.75rem] p-10 gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white"
@@ -102,143 +95,43 @@
     -webkit-background-clip: text;
     color: transparent;
   }
-  .container {
-    @apply flex relative;
-    box-shadow: 2px 18px 70px 0px #9d9d9d;
-  }
+  
 
-  .circle-orange-small {
-    height: 120px;
-    width: 120px;
-    position: relative;
-    top: 80px;
-    left: 60px;
-    @apply bg-secondary-400;
-    border-radius: 50%;
-    opacity: 0.7;
-  }
+  
 
-  .circle-orange-big {
-    height: 260px;
-    width: 260px;
-    position: relative;
-    top: -110px;
-    right: 220px;
-    @apply bg-secondary-500;
-    border-radius: 50%;
-    opacity: 0.7;
-  }
-
-  .circle-blue {
-    height: 400px;
-    width: 400px;
-    position: relative;
-    top: -150px;
-    right: -100px;
-    @apply bg-primary-300;
-    border-radius: 50%;
-    opacity: 0.5;
-  }
-
-  .circle-blue-small {
-    height: 170px;
-    width: 170px;
-    position: relative;
-    bottom: -100px;
-    left: 50px;
-    @apply bg-primary-500;
-    border-radius: 50%;
-    opacity: 0.5;
-  }
-
-  .circle-center {
-    height: 600px;
-    width: 600px;
-    position: relative;
-    display: flex;
-
-    @apply bg-surface-500/30;
-    border-radius: 50%;
-    opacity: 0.5;
-  }
-
-  .circle-center-text {
-    height: 600px;
-    width: 600px;
-
-    background-color: transparent;
-    border-radius: 50%;
-    opacity: 1;
-    @apply text-primary-100;
-    padding: 12% 10%;
-    box-sizing: border-box;
-  }
-
-  h1 {
-    font-size: 42px;
-  }
-
-  hr {
-    width: 50%;
-    float: left;
-
-    height: 1px;
-    @apply border-secondary-500 bg-surface-500/30;
-  }
-
-  p {
-    margin-top: 5px;
-  }
-
-  .cta {
-    height: 80px;
-    width: 100px;
-    margin-right: 15%;
-    margin-top: 5%;
-    float: right;
-  }
-
-  button {
-    height: 80px;
-    width: 100px;
-    float: right;
+  .button {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid white;
+  border-radius: 1000px;
+  padding: 10px 20px;
+  margin: 40px;
+  box-shadow: 0 2px 5px 0 rgba(3,6,26,0.15);
+  transition: .5s all ease-in-out;
+  &:hover {
     cursor: pointer;
-    background: none;
-    border: 2px solid;
-    @apply border-primary-100 text-primary-100;
-    border-radius: 3px;
-
-    font-weight: bolder;
-    font-size: 16px;
-    outline: none;
+    background: white;
+    color: #1F4141;
+    animation: none;
+    animation-play-state: paused;
   }
+}
 
-  .btn {
-    width: 0;
-    height: 80px;
-    @apply bg-secondary-500;
-    transition: width 0.3s ease-in;
+
+
+
+.button-pulse {
+  animation: pulse 2s infinite 3s cubic-bezier(0.25, 0, 0, 1);
+  box-shadow: 0 0 0 0 white;
+}
+@keyframes pulse {
+  to {
+    box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); 
   }
-
-  button:hover {
-    @apply text-secondary-500;
-    transition: color 0.3s ease-in;
-  }
-
-  .cta:hover .btn {
-    width: 100px;
-
-    @apply bg-primary-100 text-secondary-500;
-  }
-
-  .circle-green {
-    height: 250px;
-    width: 250px;
-    position: absolute;
-    bottom: 60px;
-    left: 150px;
-    @apply bg-primary-500;
-    border-radius: 50%;
-    opacity: 0.5;
-  }
+}
+    
 </style>
