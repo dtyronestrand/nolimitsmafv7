@@ -9,7 +9,6 @@
 body {
   @apply bg-surface-900 text-surface-50;
   background-image: url(/noise-texture.svg);
-
 }
 h1,
 h2,
@@ -19,7 +18,6 @@ h5,
 h6 {
   font-family: 'Protest Riot';
 }
-header{
-z-index: 500;
-
+header {
+  z-index: 500;
 }

@@ -51,7 +51,7 @@
 
     try {
       await pb.collection('users').authWithPassword(email, password)
-      
+
       goto('/') // Redirect to home page after login
     } catch (err) {
       error = err instanceof Error ? err.message : 'Login failed'
@@ -76,20 +76,14 @@
     <div class="user_options-text">
       <div class="user_options-unregistered">
         <h2 class="user_unregistered-title">Don't have an account?</h2>
-        <p class="user_unregistered-text">
-          Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art
-          fap.
-        </p>
+
         <button on:click={toggleActive} class="user_unregistered-signup" id="signup-button">
           Sign up
         </button>
       </div>
       <div class="user_options-registered">
         <h2 class="user_registered-title">Have an account?</h2>
-        <p class="user_registered-text">
-          Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art
-          fap.
-        </p>
+
         <button on:click={toggleActive} class="user_registered-login" id="login-button">
           Login
         </button>
@@ -127,7 +121,7 @@
           </fieldset>
           <div class="forms_buttons">
             <button type="button" class="forms_buttons-forgot">Forgot password?</button>
-            <button type="submit" class="forms_buttons-action">zlogin</button>
+            <button type="submit" class="forms_buttons-action">Login</button>
           </div>
         </form>
       </div>
@@ -337,8 +331,7 @@
     align-items: center;
     min-width: 100vw;
     height: 100vh;
-    background: url('/gym.webp')
-      no-repeat center;
+    background: url('/gym.webp') no-repeat center;
     background-size: cover;
     background-position: top;
   }
@@ -468,6 +461,7 @@
   }
   .user_options-forms .forms_buttons {
     display: -webkit-box;
+
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
@@ -478,7 +472,7 @@
   .user_options-forms .forms_buttons-forgot {
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 0.1rem;
-    @apply text-surface-900 text-2xl;
+    @apply text-surface-900 text-2xl ;
     text-decoration: underline;
     -webkit-transition: color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out;
@@ -487,7 +481,7 @@
     @apply text-secondary-300;
   }
   .user_options-forms .forms_buttons-action {
-    @apply bg-transparent border-2 border-surface-900 text-surface-900;
+    @apply bg-primary-500 border-2 border-surface-900 text-surface-900;
     border-radius: 3px;
     padding: 10px 35px;
     font-size: 1rem;
@@ -500,7 +494,7 @@
     transition: background-color 0.2s ease-in-out;
   }
   .user_options-forms .forms_buttons-action:hover {
-    background-color: #e14641;
+   @apply bg-secondary-500;
   }
   .user_options-forms .user_forms-signup,
   .user_options-forms .user_forms-login {

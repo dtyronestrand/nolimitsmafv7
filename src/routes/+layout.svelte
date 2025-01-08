@@ -36,7 +36,6 @@
 
 <Header settings={$page.data.settings} />
 <main>
-
   <slot />
 </main>
 

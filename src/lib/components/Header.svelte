@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Content } from '@prismicio/client'
+  import type { Content } from '@prismicio/client'
   import { page } from '$app/stores'
   import { goto } from '$app/navigation'
   import IconMenu from '~icons/ph/list-bold'
@@ -11,11 +11,11 @@
   export let settings: Content.SettingsDocument
 
   let isOpen = false
-  
+
   const toggleOpen = () => {
     isOpen = !isOpen
   }
-  
+
   const close = () => {
     isOpen = false
   }
@@ -31,13 +31,13 @@
   }
 
   const handleLogout = async () => {
-    console.log("Logging out...")
+    console.log('Logging out...')
     pb.authStore.clear()
     await goto('/login')
   }
 </script>
 
-<header class="p-4 md:p-6 ">
+<header class="p-4 md:p-6">
   <nav
     class="md: md: mx-auto flex max-w-6xl flex-col justify-between py-2 text-2xl font-medium md:flex-row md:items-center"
     aria-label="Main"
@@ -107,22 +107,18 @@
         </li>
       {/each}
       {#if $currentUser}
-      <li><a href="/profile">{$currentUser.name}</a></li>
-      <li>
-        <!-- Removed the button styling temporarily to test basic functionality -->
-        <a href="/logout" on:click={handleLogout}>
-          Logout
-        </a>
-      </li>
-    {:else}
-      <li>
-        <a href="/register">
-          <button class="btn btn-sm variant-ghost-primary">Login</button>
-        </a>
-      </li>
-    {/if}
+        <li><a href="/profile">{$currentUser.name}</a></li>
+        <li>
+          <!-- Removed the button styling temporarily to test basic functionality -->
+          <a href="/logout" on:click={handleLogout}>Logout</a>
+        </li>
+      {:else}
+        <li>
+          <a href="/register">
+            <button class="btn btn-sm variant-ghost-primary">Login</button>
+          </a>
+        </li>
+      {/if}
     </ul>
   </nav>
 </header>
-
-

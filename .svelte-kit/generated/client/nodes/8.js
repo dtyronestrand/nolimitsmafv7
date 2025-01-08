@@ -1,0 +1,1 @@
+export { default as component } from "../../../../src/routes/[[preview=preview]]/(users)/video/[uid]/+page.svelte";

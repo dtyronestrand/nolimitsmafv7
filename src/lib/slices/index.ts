@@ -20,4 +20,4 @@ export const components = {
   staff: Staff,
   videos: Videos,
   word_list: WordList,
-};
+}

@@ -7,9 +7,9 @@ export const pb = new PocketBase(PUBLIC_POCKETBASE_URL)
 export const currentUser = writable(pb.authStore.model)
 
 pb.authStore.onChange(() => {
-    console.log('AuthStore changed:', {
-        isValid: pb.authStore.isValid,
-        token: !!pb.authStore.token,
-        model: !!pb.authStore.model
-    });
-});
+  console.log('AuthStore changed:', {
+    isValid: pb.authStore.isValid,
+    token: !!pb.authStore.token,
+    model: !!pb.authStore.model,
+  })
+})

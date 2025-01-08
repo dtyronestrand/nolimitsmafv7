@@ -1,8 +1,9 @@
 <script>
   import { page } from '$app/stores'
-  import { currentUser } from '$lib/pocketbase'
+  import { currentUser } from '$lib/auth'
   import { onMount } from 'svelte'
   import { pb } from '$lib/pocketbase'
+  import { goto } from '$app/navigation'
   const menuItems = [
     { title: 'Programs', href: '/programs', icon: '📊' },
     { title: 'Videos', href: '/videoindex', icon: '⚙️' },

@@ -3,11 +3,10 @@
   import Heading from './Heading.svelte'
   import Bounded from '$lib/components/Bounded.svelte'
   import { PrismicRichText, PrismicLink, PrismicText } from '@prismicio/svelte'
-  
+
   import { isFilled, type Content } from '@prismicio/client'
   export let slice: Content.ProgramsSlice
   export let programs: Content.ProgramDocument[]
-  
 </script>
 
 <Bounded data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
