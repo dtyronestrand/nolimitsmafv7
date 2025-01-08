@@ -8,7 +8,7 @@ export const pb = new PocketBase(PUBLIC_POCKETBASE_URL
 export const currentUser = writable(pb.authStore.model)
 pb.autoCancellation(false) // optional
 pb.authStore.onChange(() => {
-    console.log('Auth state changed:', auth);
-    currentUser.set(pb.authStore.model);
+  console.log('Auth state changed:', pb.authStore.model);
+  currentUser.set(pb.authStore.model);
 })
 

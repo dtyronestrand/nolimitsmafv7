@@ -17,9 +17,8 @@
             currentUser.set(pb.authStore.model);
         }
   });
-  console.log('Storage type:', pb.authStore.storageKey);
-console.log('Is auth valid:', pb.authStore.isValid);
-console.log('Current token:', pb.authStore.token);
+  console.log('Is auth valid:', pb.authStore.isValid);
+  console.log('Current token:', pb.authStore.token);
 
 </script>
 
