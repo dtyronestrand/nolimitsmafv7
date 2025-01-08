@@ -3,8 +3,12 @@
   import { components } from '$lib/slices'
   import { PrismicText, PrismicImage, PrismicRichText } from '@prismicio/svelte'
   import { currentUser } from '$lib/pocketbase'
+  import {goto} from '$app/navigation'
   export let data
   console.log(currentUser)
+  const getStarted = ()=>{
+    goto('/register')
+  }
 </script>
 
 <div class=" mx-auto p-8">
@@ -51,7 +55,7 @@
             <h3 class="font-sans">Embark on a journey of self-discovery and transformation.</h3>
             <h3 class="font-sans">Our Taekwondo classes offer the perfect blend of tradition, fitness, and fun.</h3>
             <div class="mx-auto flex items-center justify-center">
-            <button type="button" class=" mt-8" on:click={goto('/register')}>Get Started</button>
+            <button type="button" on:click={getStarted} class=" mt-8" >Get Started</button>
             </div>
             </div>
         </div>

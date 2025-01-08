@@ -6,6 +6,7 @@ export async function load({ params, fetch, cookies }) {
 
   const page = await client.getSingle('videoindex')
   const slices = await mapSliceZone(page.data.slices, mappers, { client })
+  console.log('Loading videoindex data')
   return {
     page,
     slices,

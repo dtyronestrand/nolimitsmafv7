@@ -21,8 +21,8 @@
   })
   console.log($currentUser?.role)
 </script>
-
 <div class="dashboard-container">
+  {#if $currentUser}
   <aside class="sidebar">
     <div class="logo-container">
       <h2>Current Student Menu</h2>
@@ -40,6 +40,7 @@
       {/each}
     </nav>
   </aside>
+  {/if}
 
   <main class="main-content">
     <slot />
