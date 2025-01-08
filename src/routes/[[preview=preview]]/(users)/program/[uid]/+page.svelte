@@ -10,7 +10,7 @@
 <div class=" mx-auto p-8">
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     <bento-item
-      class="rounded-[0.75rem] gap-[1.5rem] md:col-span-2 bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white"
+      class="rounded-[0.75rem] gap-[1.5rem] md:col-span-3 bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white"
     >
       <div class="p-10">
        
@@ -29,31 +29,39 @@
       </figure>
     </bento-item>
     <bento-item
-      class="rounded-[0.75rem] p-10 gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 md:col-span-3 backdrop-blur-xl filter shadow-md shadow-white"
+      class="rounded-[0.75rem] p-10 gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 md:col-span-4 backdrop-blur-xl filter shadow-md shadow-white"
     >
     <div class="container">
       <nav class="glass">
      
-        <ul>
-          <li>
-            <p class="text-center text-2xl md:text-4xl">Come experience the art of Taekwondo and unlock your potential.</p>
+        <ul class="mx-auto">
+          <li >
+            <p class="text-2xl md:text-4xl">Come experience the art of Taekwondo and unlock your potential.</p>
           </li>
         </ul>
       </nav>
       <main>
         <section>
           <div class="headings">
-            <h2>ARE YOU READY?</h2>
+            <div class="text-center">
+
+              <h2 class="cta">ARE YOU READY?</h2>
+            </div>
+            <div class="mt-8 md:mt-12">
             <h3 class="font-sans">Embark on a journey of self-discovery and transformation.</h3>
             <h3 class="font-sans">Our Taekwondo classes offer the perfect blend of tradition, fitness, and fun.</h3>
+            <div class="mx-auto flex items-center justify-center">
+            <button type="button" class=" mt-8" on:click={goto('/register')}>Get Started</button>
+            </div>
+            </div>
         </div>
         </section>
       </main>
-      <img src="https://assets.codepen.io/1149983/mountain-lines.svg" class="mountain-lines" alt="image of mountain contour lines for decorative purposes only over the main landing area" />
+    
     </div>
     </bento-item>
     <bento-item
-      class=" rounded-[0.75rem] p-10 gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white"
+      class=" rounded-[0.75rem] p-10 gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white col-span-2"
     >
       <h2 class="text-2xl font-bold mb-4">Charyut Kyungyet</h2>
       <p class="prose prose-invert prose-lg text-primary-200">
@@ -122,7 +130,7 @@
   --light-blue: #68b0de;
 
   --bg-1: url("/fire.webp");
-  --bg-2: url("https://assets.codepen.io/1149983/gaetan-meyer-WemqIKiduMo-unsplash+%281%29+%281%29.jpg");
+  --bg-2: url("/fire3.jpg");
 }
 
 
@@ -138,121 +146,81 @@
 
 
 
-img {
-  max-width: 100%;
-  display: block;
-}
+
 
 ul {
-  gap: 0.4rem;
+  gap: 0.8rem;
 }
 
-h2 {
+h2.cta{
   -webkit-background-clip: text;
   -webkit-box-decoration-break: clone;
   -webkit-text-fill-color: rgba(0, 0, 0, 0);
   background-image: var(--bg-2);
-  background-position: center 75%;
+  background-position: right 3rem top 75% ;
   background-repeat: no-repeat;
   background-size: cover;
+  filter: saturate(1.5);
   display: inline;
-  font-size: clamp(3.75rem, 7vw,15rem);
+  font-size: clamp(4rem, 6vw,8.5rem);
+@apply text-center;
   order: 2;
   overflow: hidden;
   user-select: none;
 }
 
-h2,
-h3 {
-  margin: 0 auto;
-}
+
 
 h2 + h3 {
   border-bottom: 1.2rem solid;
   @apply border-b-primary-400;
   order: 3;
+  padding: 0.4rem;
 }
 
-h3 {
-  align-items: center;
-  display: grid;
-  font-size: calc(1.75rem * 1.25);
-  
-  grid-gap: calc(0.4rem * 1.25);
-  grid-template-columns: calc(0.4rem* 2) auto calc(0.4rem* 2);
-  order: 1;
-  width: fit-content;
+
+h3{
+  @apply text-center text-2xl;
 }
 
 h3::before,
 h3::after {
   content: "";
   border-top:1.2rem solid;
-  @apply border-t-primary-400;
+  @apply border-primary-400;
 
 }
 
 h3,
 h4 {
 @apply text-surface-50;
-  position: relative;
+
 }
 
-h4 {
-  align-items: baseline;
-  display: flex;
-  font-size: calc(1.75rem * 1.5);
- 
-  padding: calc(1.2rem / 2);
-  z-index: 2;
-}
 
-svg {
-  fill: var(--white);
-  mix-blend-mode: exclusion;
-  width: 4rem;
-}
 
-a {
-  align-items: center;
-@apply text-surface-50;
-  cursor: pointer;
-  display: flex;
-  flex-flow: row nowrap;
-  font-size: 1.75rem;
- 
-  overflow: hidden;
-  position: relative;
-  text-decoration: none;
-  touch-action: manipulation;
-}
 
-a:hover,
-a:focus {
-  @apply border-secondary-500;
-}
+
+
+
+
 
 .container {
   display: flex;
-  flex-flow: column wrap;
-  display: grid;
-  grid-template-areas: "nav" "main";
-  grid-template-columns: 1fr;
-  grid-template-rows: 5rem calc(100vh - 5rem);
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  flex-flow: column;
   overflow: hidden;
   position: relative;
 }
 
 .container::before {
+  @apply rounded-2xl;
   background-image: var(--bg-1);
-  background-position: center center;
+  background-position: center 50%;
   background-repeat: no-repeat;
   background-size: cover;
   content: "";
   height: 100%;
-  filter: brightness(0.25);
+  filter: brightness(0.4);
   position: absolute;
   inset: 0;
   width: 100%;
@@ -290,111 +258,41 @@ main > * {
   margin: 1.2rem 0;
 }
 
-.button {
-  background-color: var(--blue);
+button {
+  appearance: none;
+
+  padding: 1rem 1.33rem;
+
+@apply text-surface-50 bg-gradient-to-t from-surface-500 via-secondary-500 to-primary-500;
+  border-radius: 3rem;
   border: none;
-  border-radius: 0.4rem;
-  color: var(--white);
-  font-size: var(--default-font-size);
-  font-variation-settings: "wght" 700;
-  padding: calc(var(--default-padding) / 2) var(--default-padding);
-  text-transform: uppercase;
-  transition: background-color var(--duration) ease-in-out;
+
+  
+  font-size: 1.5rem;
+
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-name: pulse-shadow;
+
+  cursor: pointer;
 }
 
-.button:hover,
-.button:focus {
-  background-color: var(--dark-blue);
+button:hover {
+  animation-duration: 1s;
 }
 
-.footer {
-  align-items: center;
-  background-color: var(--black);
-  color: var(--pale-blue);
-  display: flex;
-  flex-flow: column nowrap;
-  gap: var(--gap);
-  padding: var(--default-padding);
-  text-align: center;
-}
+@keyframes pulse-shadow {
+  0% {
+    box-shadow: 0 0 0 0 #81d4fa;
+  }
 
-.footer a {
-  color: var(--blue);
-  font-variation-settings: "wght" 600;
-  text-decoration: none;
-}
+  50% {
+    box-shadow: 0 0 0 10px #81d4fa;
+  }
 
-.footer a:hover,
-.footer a:focus {
-  color: var(--light-blue);
-}
-
-.card {
-  background-color: var(--white);
-  border-radius: 0.8rem;
-  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
-  color: var(--black);
-  display: flex;
-  flex-direction: column;
-  gap: var(--default-padding);
-  padding: var(--default-padding);
-}
-
-.card h3 {
-  font-size: calc(var(--default-font-size) * 1.25);
-  margin-bottom: var(--gap);
-}
-
-.card p {
-  font-size: var(--default-font-size);
-  line-height: 1.5;
-}
-
-.card .button {
-  align-self: flex-start;
-}
-
-.icon {
-  align-items: center;
-  background-color: var(--pale-blue);
-  border-radius: 50%;
-  display: flex;
-  height: var(--icon-dimensions);
-  justify-content: center;
-  width: var(--icon-dimensions);
-}
-
-.icon svg {
-  fill: var(--dark-blue);
-  height: 50%;
-  width: 50%;
-}
-
-.hero {
-  align-items: center;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: var(--default-padding);
-  text-align: center;
-}
-
-.hero h1 {
-  margin-bottom: var(--gap);
-}
-
-.hero p {
-  font-size: calc(var(--default-font-size) * 1.2);
-}
-
-.hero .button {
-  margin-top: 1.2rem;
-}
-
-.grid {
-  display: grid;
-  gap: 1.2rem;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  width: 100%
+  100% {
+    box-shadow: 0 0 0 0px #81d4fa;
+  }
 }
 
 
