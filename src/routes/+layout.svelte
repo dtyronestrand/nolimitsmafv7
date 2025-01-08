@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import '../app.css'
   import '@fontsource/protest-riot'
   import { PrismicPreview } from '@prismicio/svelte/kit'
@@ -12,12 +12,14 @@
   import { pb } from '$lib/pocketbase'
   onMount(() => {
     // Update the store with the initial auth state
-    currentUser.set(pb.authStore.model)
-  })
-  async function logout() {
-    await pb.authStore.clear()
-    goto('/')
-  }
+ 
+    if (pb.authStore.isValid) {
+            currentUser.set(pb.authStore.model);
+        }
+  });
+  console.log('Is auth valid:', pb.authStore.isValid);
+  console.log('Current token:', pb.authStore.token);
+
 </script>
 
 <svelte:head>

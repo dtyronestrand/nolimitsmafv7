@@ -11,7 +11,6 @@
 
   // Make sure to add your logout function
   const logout = async () => {
- currentUser.pb.authStore.clear()
     await pb.authStore.clear()
     goto('/')
   }
@@ -23,23 +22,25 @@
 </script>
 
 <div class="dashboard-container">
-  <aside class="sidebar">
-    <div class="logo-container">
-      <h2>Current Student Menu</h2>
-      <h3>{$currentUser?.name}</h3>
-      <a href="/profile" class="nav-item">Profile</a>
-      <a href="/logout" on:click={logout} class="nav-item">Logout</a>
-    </div>
+  {#if $currentUser}
+    <aside class="sidebar">
+      <div class="logo-container">
+        <h2>Current Student Menu</h2>
+        <h3>{$currentUser?.name}</h3>
+        <a href="/profile" class="nav-item">Profile</a>
+        <a href="/logout" on:click={logout} class="nav-item">Logout</a>
+      </div>
 
-    <nav>
-      {#each menuItems as item}
-        <a href={item.href} class="nav-item" class:active={$page.url.pathname === item.href}>
-          <span class="icon">{item.icon}</span>
-          <span class="title">{item.title}</span>
-        </a>
-      {/each}
-    </nav>
-  </aside>
+      <nav>
+        {#each menuItems as item}
+          <a href={item.href} class="nav-item" class:active={$page.url.pathname === item.href}>
+            <span class="icon">{item.icon}</span>
+            <span class="title">{item.title}</span>
+          </a>
+        {/each}
+      </nav>
+    </aside>
+  {/if}
 
   <main class="main-content">
     <slot />
