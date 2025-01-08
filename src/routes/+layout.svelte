@@ -12,9 +12,14 @@
   import { pb } from '$lib/pocketbase'
   onMount(() => {
     // Update the store with the initial auth state
-    currentUser.set(pb.authStore.model)
+ 
+    if (pb.authStore.isValid) {
+            currentUser.set(pb.authStore.model);
+        }
   });
-
+  console.log('Storage type:', pb.authStore.storageKey);
+console.log('Is auth valid:', pb.authStore.isValid);
+console.log('Current token:', pb.authStore.token);
 
 </script>
 
