@@ -13,7 +13,8 @@
   onMount(() => {
     // Update the store with the initial auth state
     currentUser.set(pb.authStore.model)
-  })
+  };)
+  
   async function logout() {
     await pb.authStore.clear()
     goto('/')
