@@ -472,7 +472,7 @@
   .user_options-forms .forms_buttons-forgot {
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 0.1rem;
-    @apply text-surface-900 text-2xl ;
+    @apply text-surface-900 text-2xl;
     text-decoration: underline;
     -webkit-transition: color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out;
@@ -494,7 +494,7 @@
     transition: background-color 0.2s ease-in-out;
   }
   .user_options-forms .forms_buttons-action:hover {
-   @apply bg-secondary-500;
+    @apply bg-secondary-500;
   }
   .user_options-forms .user_forms-signup,
   .user_options-forms .user_forms-login {

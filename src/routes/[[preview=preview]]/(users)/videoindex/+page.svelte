@@ -1,6 +1,6 @@
 <script>
   import { PrismicRichText, SliceZone } from '@prismicio/svelte'
-import { onMount } from 'svelte'
+  import { onMount } from 'svelte'
   import { components } from '$lib/slices'
 
   export let data
