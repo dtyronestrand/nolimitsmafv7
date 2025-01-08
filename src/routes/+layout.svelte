@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import '../app.css'
   import '@fontsource/protest-riot'
   import { PrismicPreview } from '@prismicio/svelte/kit'
@@ -13,12 +13,9 @@
   onMount(() => {
     // Update the store with the initial auth state
     currentUser.set(pb.authStore.model)
-  };)
-  
-  async function logout() {
-    await pb.authStore.clear()
-    goto('/')
-  }
+  });
+
+
 </script>
 
 <svelte:head>
