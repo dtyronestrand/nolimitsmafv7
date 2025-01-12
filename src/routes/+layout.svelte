@@ -12,14 +12,13 @@
   import { pb } from '$lib/pocketbase'
   onMount(() => {
     // Update the store with the initial auth state
- 
-    if (pb.authStore.isValid) {
-            currentUser.set(pb.authStore.model);
-        }
-  });
-  console.log('Is auth valid:', pb.authStore.isValid);
-  console.log('Current token:', pb.authStore.token);
 
+    if (pb.authStore.isValid) {
+      currentUser.set(pb.authStore.model)
+    }
+  })
+  console.log('Is auth valid:', pb.authStore.isValid)
+  console.log('Current token:', pb.authStore.token)
 </script>
 
 <svelte:head>

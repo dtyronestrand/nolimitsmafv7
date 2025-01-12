@@ -4,10 +4,8 @@
   import { onMount } from 'svelte'
   import { pb } from '$lib/pocketbase'
   import { goto } from '$app/navigation'
-  const menuItems = [
-    { title: 'Programs', href: '/programs', icon: '📊' },
-    { title: 'Videos', href: '/videoindex', icon: '⚙️' },
-  ]
+  import { PrismicLink } from '@prismicio/svelte'
+
 
   // Make sure to add your logout function
   const logout = async () => {
@@ -19,24 +17,34 @@
     currentUser.set(pb.authStore.model)
   })
   console.log($currentUser?.role)
+
+  export let data
 </script>
 
 <div class="dashboard-container">
   {#if $currentUser}
-    <aside class="sidebar">
+    <aside class="sidebar ">
       <div class="logo-container">
-        <h2>Current Student Menu</h2>
-        <h3>{$currentUser?.name}</h3>
-        <a href="/profile" class="nav-item">Profile</a>
-        <a href="/logout" on:click={logout} class="nav-item">Logout</a>
+        <h2 class="font-sans text-center text-xl mb-8">Member Menu</h2>
+        <h3 class="text-center">{$currentUser?.name}</h3>
+        <img  src={$currentUser.avatar ? `https://birds-curve.pockethost.io/api/files/users/${$currentUser.id}/${$currentUser.avatar}` : '/generic-avatar.png'} alt="{$currentUser?.name}" class="w-16 h-16 rounded-full mx-auto my-6" />
+        <a href="/profile" class="nav-item text-center"><span class="text-center mx-auto">Profile</span></a>
+      
       </div>
 
       <nav>
-        {#each menuItems as item}
-          <a href={item.href} class="nav-item" class:active={$page.url.pathname === item.href}>
-            <span class="icon">{item.icon}</span>
-            <span class="title">{item.title}</span>
-          </a>
+        {#each data.menu.data.menu as { link, label, submenu }}
+          <PrismicLink field={link} class="nav-item">
+           <span class="nav-item"> {label}</span>
+          </PrismicLink>
+            <ul class="ml-8 flex justify-between flex-col">
+              {#each submenu as link (link.key)}
+                <li class="p-2 hover:bg-secondary-500 rounded-lg">
+                  <PrismicLink field={link} class="nav-item" />
+                </li>
+              {/each}
+            </ul>
+   
         {/each}
       </nav>
     </aside>
@@ -55,7 +63,7 @@
 
   .sidebar {
     width: 250px;
-    @apply bg-surface-400/10 text-primary-100;
+    @apply bg-surface-600/50 rounded-tr-3xl border-2 border-surface-600 text-primary-100;
     padding: 1rem;
     display: flex;
     flex-direction: column;

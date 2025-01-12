@@ -263,15 +263,15 @@
 
   @keyframes pulse-shadow {
     0% {
-      box-shadow: 0 0 0 0 #81d4fa;
+      box-shadow: 0 0 0 0 #F28729;
     }
 
     50% {
-      box-shadow: 0 0 0 10px #81d4fa;
+      box-shadow: 0 0 0 10px #F2B33D;
     }
 
     100% {
-      box-shadow: 0 0 0 0px #81d4fa;
+      box-shadow: 0 0 0 0px #59190B;
     }
   }
 </style>

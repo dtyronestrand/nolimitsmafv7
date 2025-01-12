@@ -10,6 +10,7 @@
 	],
 	"/[[preview=preview]]/(users)/location/[uid]": [
 		"src/routes/[[preview=preview]]/(users)/location/[uid]/+page.server.ts",
+		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/login": [
@@ -24,17 +25,21 @@
 	],
 	"/[[preview=preview]]/(users)/program/[uid]": [
 		"src/routes/[[preview=preview]]/(users)/program/[uid]/+page.server.ts",
+		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/[[preview=preview]]/(users)/program/[uid]/belts": [
+		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/[[preview=preview]]/(users)/program/[uid]/testingapp": [
 		"src/routes/[[preview=preview]]/(users)/program/[uid]/testingapp/+page.server.ts",
+		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/[[preview=preview]]/(users)/program/[uid]/video/[uid]": [
 		"src/routes/[[preview=preview]]/(users)/program/[uid]/video/[uid]/+page.server.ts",
+		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/register": [
@@ -48,13 +53,16 @@
 	],
 	"/[[preview=preview]]/(users)/videoindex": [
 		"src/routes/[[preview=preview]]/(users)/videoindex/+page.server.ts",
+		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/[[preview=preview]]/(users)/video/[uid]": [
 		"src/routes/[[preview=preview]]/(users)/video/[uid]/+page.server.ts",
+		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/[[preview=preview]]/(users)": [
+		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/[[preview=preview]]": [

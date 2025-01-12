@@ -116,16 +116,9 @@
   <div class="profile-container">
     <h1>{$currentUser.name}'s Profile</h1>
     {#if previewUrl}
-    <img
-      src={previewUrl}
-      alt="Profile avatar"
-      class="avatar-preview"
-    />
+      <img src={previewUrl} alt="Profile avatar" class="avatar-preview" />
     {:else}
-    <img
-    src=" /generic-avatar.png"
-    alt="Profile avatar"
-    class="avatar-preview"/>
+      <img src=" /generic-avatar.png" alt="Profile avatar" class="avatar-preview" />
     {/if}
     <p>First Name: {$currentUser.firstName}</p>
     <p>Last Name: {$currentUser.lastName}</p>

@@ -24,7 +24,7 @@ export const nodes = [
 	() => import('./nodes/17')
 ];
 
-export const server_loads = [0];
+export const server_loads = [0,2];
 
 export const dictionary = {
 		"/[[preview=preview]]/(users)/location/[uid]": [~4,[2]],

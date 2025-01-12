@@ -13,8 +13,12 @@ type OptionalUnion<U extends Record<string, any>, A extends keyof U = U extends 
 export type Snapshot<T = any> = Kit.Snapshot<T>;
 type LayoutRouteId = RouteId | "/[[preview=preview]]/(users)/location/[uid]" | "/[[preview=preview]]/(users)/program/[uid]" | "/[[preview=preview]]/(users)/program/[uid]/belts" | "/[[preview=preview]]/(users)/program/[uid]/testingapp" | "/[[preview=preview]]/(users)/program/[uid]/video/[uid]" | "/[[preview=preview]]/(users)/video/[uid]" | "/[[preview=preview]]/(users)/videoindex"
 type LayoutParams = RouteParams & { preview?: MatcherParam<typeof import('../../../../../../src/params/preview').match>; uid?: string }
+type LayoutServerParentData = EnsureDefined<import('../../$types.js').LayoutServerData>;
 type LayoutParentData = EnsureDefined<import('../../$types.js').LayoutData>;
 
 export type EntryGenerator = () => Promise<Array<RouteParams>> | Array<RouteParams>;
-export type LayoutServerData = null;
-export type LayoutData = Expand<LayoutParentData>;
+export type LayoutServerLoad<OutputData extends OutputDataShape<LayoutServerParentData> = OutputDataShape<LayoutServerParentData>> = Kit.ServerLoad<LayoutParams, LayoutServerParentData, OutputData, LayoutRouteId>;
+export type LayoutServerLoadEvent = Parameters<LayoutServerLoad>[0];
+export type LayoutServerData = Expand<OptionalUnion<EnsureDefined<Kit.LoadProperties<Awaited<ReturnType<typeof import('../../../../../../src/routes/[[preview=preview]]/(users)/+layout.server.js').load>>>>>>;
+export type LayoutData = Expand<Omit<LayoutParentData, keyof LayoutServerData> & EnsureDefined<LayoutServerData>>;
+export type RequestEvent = Kit.RequestEvent<RouteParams, RouteId>;
