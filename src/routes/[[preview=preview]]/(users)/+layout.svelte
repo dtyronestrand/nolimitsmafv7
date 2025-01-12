@@ -6,7 +6,6 @@
   import { goto } from '$app/navigation'
   import { PrismicLink } from '@prismicio/svelte'
 
-
   // Make sure to add your logout function
   const logout = async () => {
     await pb.authStore.clear()
@@ -23,28 +22,34 @@
 
 <div class="dashboard-container">
   {#if $currentUser}
-    <aside class="sidebar ">
+    <aside class="sidebar">
       <div class="logo-container">
         <h2 class="font-sans text-center text-xl mb-8">Member Menu</h2>
         <h3 class="text-center">{$currentUser?.name}</h3>
-        <img  src={$currentUser.avatar ? `https://birds-curve.pockethost.io/api/files/users/${$currentUser.id}/${$currentUser.avatar}` : '/generic-avatar.png'} alt="{$currentUser?.name}" class="w-16 h-16 rounded-full mx-auto my-6" />
-        <a href="/profile" class="nav-item text-center"><span class="text-center mx-auto">Profile</span></a>
-      
+        <img
+          src={$currentUser.avatar
+            ? `https://birds-curve.pockethost.io/api/files/users/${$currentUser.id}/${$currentUser.avatar}`
+            : '/generic-avatar.png'}
+          alt={$currentUser?.name}
+          class="w-16 h-16 rounded-full mx-auto my-6"
+        />
+        <a href="/profile" class="nav-item text-center">
+          <span class="text-center mx-auto">Profile</span>
+        </a>
       </div>
 
       <nav>
         {#each data.menu.data.menu as { link, label, submenu }}
           <PrismicLink field={link} class="nav-item">
-           <span class="nav-item"> {label}</span>
+            <span class="nav-item">{label}</span>
           </PrismicLink>
-            <ul class="ml-8 flex justify-between flex-col">
-              {#each submenu as link (link.key)}
-                <li class="p-2 hover:bg-secondary-500 rounded-lg">
-                  <PrismicLink field={link} class="nav-item" />
-                </li>
-              {/each}
-            </ul>
-   
+          <ul class="ml-8 flex justify-between flex-col">
+            {#each submenu as link (link.key)}
+              <li class="p-2 hover:bg-secondary-500 rounded-lg">
+                <PrismicLink field={link} class="nav-item" />
+              </li>
+            {/each}
+          </ul>
         {/each}
       </nav>
     </aside>

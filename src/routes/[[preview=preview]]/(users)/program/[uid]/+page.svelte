@@ -12,9 +12,9 @@
 </script>
 
 <div class=" mx-auto p-8">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
     <bento-item
-      class="rounded-[0.75rem] gap-[1.5rem] md:col-span-3 bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white"
+      class="rounded-[0.75rem] gap-[1.5rem] md:col-span-2 bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white"
     >
       <div class="p-10">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
@@ -24,16 +24,25 @@
       </div>
     </bento-item>
     <bento-item
-      class="rounded-[0.75rem] gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white"
+      class="rounded-[0.75rem] gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl py-6 filter shadow-md shadow-white col-span-1"
     >
-      <figure class="rounded-lg">
-        <PrismicImage field={data.page.data.program_image} />
-      </figure>
+      <h2 class="text-2xl text-center font-bold mb-4">Schol Motto</h2>
+      <p class="prose prose-invert prose-lg text-center">Train with integrity, humility and heart.</p>
+    </bento-item>
+    <bento-item
+      class="rounded-[0.75rem] gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl py-6 filter shadow-md shadow-white col-span-1"
+    >
+      <h2 class="text-2xl font-bold mb-4 text-center">School Oath</h2>
+      <p class="prose prose-invert prose-lg text-center">
+        I will come to each class with an open mind and loving spirit. I will honor martial arts
+        tradition, unaffected by the expectations of others. I will set goals and work hard to
+        achieve them. My only limitation is myself.
+      </p>
     </bento-item>
     <bento-item
       class="rounded-[0.75rem] p-10 gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 md:col-span-4 backdrop-blur-xl filter shadow-md shadow-white"
     >
-      <div class="container">
+      <div class="container mx-auto">
         <nav class="glass">
           <ul class="mx-auto">
             <li>
@@ -263,15 +272,15 @@
 
   @keyframes pulse-shadow {
     0% {
-      box-shadow: 0 0 0 0 #F28729;
+      box-shadow: 0 0 0 0 #f28729;
     }
 
     50% {
-      box-shadow: 0 0 0 10px #F2B33D;
+      box-shadow: 0 0 0 10px #f2b33d;
     }
 
     100% {
-      box-shadow: 0 0 0 0px #59190B;
+      box-shadow: 0 0 0 0px #59190b;
     }
   }
 </style>

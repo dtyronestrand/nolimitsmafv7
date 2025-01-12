@@ -32,6 +32,10 @@
 		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
+	"/[[preview=preview]]/(users)/program/[uid]/studenthandbook": [
+		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
+		"src/routes/+layout.server.ts"
+	],
 	"/[[preview=preview]]/(users)/program/[uid]/testingapp": [
 		"src/routes/[[preview=preview]]/(users)/program/[uid]/testingapp/+page.server.ts",
 		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
