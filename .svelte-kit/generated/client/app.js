@@ -20,26 +20,28 @@ export const nodes = [
 	() => import('./nodes/13'),
 	() => import('./nodes/14'),
 	() => import('./nodes/15'),
-	() => import('./nodes/16')
+	() => import('./nodes/16'),
+	() => import('./nodes/17')
 ];
 
 export const server_loads = [0];
 
 export const dictionary = {
 		"/[[preview=preview]]/(users)/location/[uid]": [~4,[2]],
-		"/login": [11],
-		"/logout": [12],
-		"/profile": [13],
+		"/login": [12],
+		"/logout": [13],
+		"/profile": [14],
 		"/[[preview=preview]]/(users)/program/[uid]": [~5,[2]],
-		"/[[preview=preview]]/(users)/program/[uid]/testingapp": [~6,[2]],
-		"/[[preview=preview]]/(users)/program/[uid]/video/[uid]": [~7,[2]],
-		"/register": [14],
-		"/slice-simulator": [15],
-		"/unauthorized": [16],
-		"/[[preview=preview]]/(users)/videoindex": [~9,[2]],
-		"/[[preview=preview]]/(users)/video/[uid]": [~8,[2]],
+		"/[[preview=preview]]/(users)/program/[uid]/belts": [6,[2]],
+		"/[[preview=preview]]/(users)/program/[uid]/testingapp": [~7,[2]],
+		"/[[preview=preview]]/(users)/program/[uid]/video/[uid]": [~8,[2]],
+		"/register": [15],
+		"/slice-simulator": [16],
+		"/unauthorized": [17],
+		"/[[preview=preview]]/(users)/videoindex": [~10,[2]],
+		"/[[preview=preview]]/(users)/video/[uid]": [~9,[2]],
 		"/[[preview=preview]]": [~3],
-		"/[[preview=preview]]/[uid]": [~10]
+		"/[[preview=preview]]/[uid]": [~11]
 	};
 
 export const hooks = {

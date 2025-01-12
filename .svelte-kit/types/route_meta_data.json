@@ -26,6 +26,9 @@
 		"src/routes/[[preview=preview]]/(users)/program/[uid]/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	],
+	"/[[preview=preview]]/(users)/program/[uid]/belts": [
+		"src/routes/+layout.server.ts"
+	],
 	"/[[preview=preview]]/(users)/program/[uid]/testingapp": [
 		"src/routes/[[preview=preview]]/(users)/program/[uid]/testingapp/+page.server.ts",
 		"src/routes/+layout.server.ts"
