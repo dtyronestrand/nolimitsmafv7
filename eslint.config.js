@@ -20,6 +20,12 @@ export default [
     },
   },
   {
+    rules: {
+      'css(unknownAtRules)' : "off",
+    }
+
+  },
+  {
     files: ['**/*.svelte'],
     languageOptions: {
       parserOptions: {

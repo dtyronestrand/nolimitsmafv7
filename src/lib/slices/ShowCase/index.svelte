@@ -7,6 +7,7 @@
   import EffectParagraph from './EffectParagraph.svelte'
   import { onMount } from 'svelte'
   import gsap from 'gsap'
+ 
   export let slice: Content.ShowCaseSlice
   onMount(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce').matches
@@ -59,9 +60,9 @@
   />
   <h2 class="showcase__heading text-balance text-center text-5xl font-medium md:text-7xl">
     <h1><PrismicRichText field={slice.primary.heading} components={{ em: GoldText }} /></h1>
-    <div class="flex flex-col md:flex-row mt-8">
+    <div class="flex flex-col md:flex-row mx-auto mt-8">
       {#each slice.primary.show_piece as { title, body, image, link }, i}
-        <div class="effect container mr-6 bg-secondary-500/10">
+        <div class="effect container mx-auto mb-4 md:mr-6 bg-secondary-500/10">
           <img src={image.url} alt="" />
           <div class="pt-8">
             <PrismicRichText field={title} components={{ em: GoldText, heading2: Heading3 }} />

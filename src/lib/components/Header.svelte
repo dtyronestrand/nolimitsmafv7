@@ -35,6 +35,11 @@
     pb.authStore.clear()
     await goto('/login')
   }
+
+  const mobileLogin = () => {
+    goto('/register');
+    toggleOpen(); 
+  }
 </script>
 
 <header class="p-4 md:p-6">
@@ -70,6 +75,11 @@
       >
         <IconClose />
       </button>
+      {#if $currentUser}
+      <ul>
+        <li><a href="/profile">{$currentUser.name}</a></li>
+        </ul>
+       {/if}
       <ul class="grid justify-items-end gap-8">
         {#each settings.data.navigation as { navigation_label, navigation_link }}
           <li>
@@ -86,6 +96,20 @@
             </a>
           </li>
         {/each}
+        {#if $currentUser}
+        <li>
+          <!-- Removed the button styling temporarily to test basic functionality -->
+          <button class="btn btn-sm variant-ghost-primary" on:click={handleLogout}>Logout</button>
+        </li>
+      {:else}
+      <ul>
+
+        <li>
+          
+          <button on:click={mobileLogin} class="btn btn-sm variant-ghost-primary">Login</button>
+        </li>
+      </ul>
+      {/if}
       </ul>
     </div>
     <!--Desktop -->
@@ -110,7 +134,7 @@
         <li><a href="/profile">{$currentUser.name}</a></li>
         <li>
           <!-- Removed the button styling temporarily to test basic functionality -->
-          <a href="/logout" on:click={handleLogout}>Logout</a>
+          <button class="btn btn-sm variant-ghost-primary" on:click={handleLogout}>Logout</button>
         </li>
       {:else}
         <li>

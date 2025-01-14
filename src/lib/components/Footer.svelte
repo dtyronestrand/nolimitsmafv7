@@ -15,7 +15,10 @@
       <span class="text-yellow-500">
         No Limits Martial Arts and Fitness
         <br />
-        Beaverdam, VA
+        <span class="ml-6 md:ml-0">
+          
+          Beaverdam, VA
+        </span>
       </span>
     </section>
     <section
@@ -32,7 +35,7 @@
       <span class="px-[1 rem]">
         <i class="fa fa-envelope text-orange-600 text-lg md:text-xl px-3" />
       </span>
-      <span class="text-yellow-500">questions@nolimitsmaf.com</span>
+      <span class="text-yellow-500 -ml-10 md:ml-0">questions@nolimitsmaf.com</span>
     </section>
   </div>
   <span

@@ -61,6 +61,8 @@
 </div>
 
 <style>
+ 
+
   .dashboard-container {
     display: flex;
     min-height: 100vh;
@@ -68,7 +70,7 @@
 
   .sidebar {
     width: 250px;
-    @apply bg-surface-600/50 rounded-tr-3xl border-2 border-surface-600 text-primary-100;
+    @apply bg-gradient-to-b from-surface-300/30 via-surface-500/35 to-surface-800/40 rounded-tr-3xl border-2 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white text-primary-100;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -90,18 +92,18 @@
     margin-bottom: 0.5rem;
     transition: background-color 0.2s;
   }
-
+  
   .nav-item:hover {
+    
     @apply bg-secondary-500;
   }
 
   .nav-item.active {
+
     @apply bg-secondary-500;
   }
 
-  .icon {
-    margin-right: 0.75rem;
-  }
+
 
   .main-content {
     flex: 1;

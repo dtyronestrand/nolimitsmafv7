@@ -22,7 +22,8 @@ export const nodes = [
 	() => import('./nodes/15'),
 	() => import('./nodes/16'),
 	() => import('./nodes/17'),
-	() => import('./nodes/18')
+	() => import('./nodes/18'),
+	() => import('./nodes/19')
 ];
 
 export const server_loads = [0,2];
@@ -39,7 +40,8 @@ export const dictionary = {
 		"/[[preview=preview]]/(users)/program/[uid]/video/[uid]": [~9,[2]],
 		"/register": [16],
 		"/slice-simulator": [17],
-		"/unauthorized": [18],
+		"/staff/admin": [~18],
+		"/unauthorized": [19],
 		"/[[preview=preview]]/(users)/videoindex": [~11,[2]],
 		"/[[preview=preview]]/(users)/video/[uid]": [~10,[2]],
 		"/[[preview=preview]]": [~3],

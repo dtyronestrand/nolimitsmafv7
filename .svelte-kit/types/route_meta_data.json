@@ -52,6 +52,10 @@
 	"/slice-simulator": [
 		"src/routes/+layout.server.ts"
 	],
+	"/staff/admin": [
+		"src/routes/staff/admin/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
 	"/unauthorized": [
 		"src/routes/+layout.server.ts"
 	],
