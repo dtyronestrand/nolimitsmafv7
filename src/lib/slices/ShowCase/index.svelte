@@ -54,7 +54,7 @@
   })
 </script>
 
-<Bounded class="relative" data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+<Bounded class="" data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
   <div
     class="showcase__glow absolute -z-10 w-full max-w-2xl aspect-video rounded-full bg-yellow-400/40 mix-blend-screen blur-[120px] filter"
   />

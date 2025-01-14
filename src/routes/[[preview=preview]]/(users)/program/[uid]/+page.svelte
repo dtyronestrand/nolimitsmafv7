@@ -16,12 +16,12 @@
     <bento-item
       class="rounded-[0.75rem] gap-[1.5rem] md:col-span-1 bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white"
     >
-      <div class="p-10">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+     
+        <h1 class="text-2xl justify-self-center pt-6 md:text-3xl lg:text-5xl font-bold mb-4">
           <PrismicText field={data.page.data.program_title} />
         </h1>
-        <p class="text-xl text-primary-200">{data.page.data.program_tagline}</p>
-      </div>
+        <p class="text-xl text-primary-200 justify-self-center">{data.page.data.program_tagline}</p>
+    
     </bento-item>
     <bento-item
       class="rounded-[0.75rem] gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl py-6 filter shadow-md shadow-white col-span-1"
