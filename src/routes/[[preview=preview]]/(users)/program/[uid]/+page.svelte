@@ -14,7 +14,7 @@
 <div class=" mx-auto -mt-6">
   <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
     <bento-item
-      class="rounded-[0.75rem] gap-[1.5rem] md:col-span-1 bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white"
+      class="rounded-[0.75rem] gap-[1.5rem] col-span-1 bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white"
     >
      
         <h1 class="text-2xl justify-self-center pt-6 md:text-3xl lg:text-5xl font-bold mb-4">
@@ -30,7 +30,7 @@
       <p class="prose prose-invert prose-lg text-center">Train with integrity, humility and heart.</p>
     </bento-item>
     <bento-item
-      class="rounded-[0.75rem] gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl py-6 filter shadow-md shadow-white col-span-2"
+      class="rounded-[0.75rem] gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl py-6 filter shadow-md shadow-white md:col-span-2"
     >
       <h2 class="text-2xl font-bold mb-4 text-center">School Oath</h2>
       <p class="prose prose-invert mx-auto prose-lg text-center">
@@ -73,7 +73,7 @@
       </div>
     </bento-item>
     <bento-item
-      class=" rounded-[0.75rem] p-10 gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white col-span-2"
+      class=" rounded-[0.75rem] p-10 gap-[1.5rem] bg-gradient-to-br from-surface-300/30 to-surface-800/40 border-4 border-secondary-500 backdrop-blur-xl filter shadow-md shadow-white md:col-span-2"
     >
       <h2 class="text-2xl font-bold mb-4">Charyut Kyungyet</h2>
       <p class="prose prose-invert prose-lg text-primary-200">
