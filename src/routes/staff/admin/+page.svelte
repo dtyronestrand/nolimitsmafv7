@@ -3,10 +3,10 @@
     import {page} from '$app/stores'
    import clsx from 'clsx'
 	import { RecordService } from 'pocketbase';
-   export let data
+   let { data } = $props();
    let record = ""
    let role
-    let edit: number | undefined = undefined
+    let edit: number | undefined = $state(undefined)
 
 const handleDelete = async () => {
 
@@ -47,7 +47,7 @@ const save = async () => {
                     <td><input type="checkbox" disabled bind:value={user.TKD} name="TKD" id="TKD"></td>
                     <td>{user.avatar}</td>
                     <td>
-                        <button on:click={()=>{edit=index}}>Edit {index}</button>
+                        <button onclick={()=>{edit=index}}>Edit {index}</button>
                     </td>
                     </tr>
                 {:else}
@@ -65,9 +65,9 @@ const save = async () => {
                     <td><input type="checkbox" bind:value={user.TKD}></td>
                     <td>{user.avatar}</td>
                     <td>
-                        <button on:click={()=>{edit = undefined} }>Cancel</button>
-                        <button on:click={save}>Save</button>
-                        <button on:click={handleDelete}>Delete</button>
+                        <button onclick={()=>{edit = undefined}}>Cancel</button>
+                        <button onclick={save}>Save</button>
+                        <button onclick={handleDelete}>Delete</button>
                     </td>
                 </tr>
             {/if}

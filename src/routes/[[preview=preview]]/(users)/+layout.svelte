@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from '$app/stores'
   import { currentUser } from '$lib/auth'
   import { onMount } from 'svelte'
@@ -17,7 +17,7 @@
   })
   console.log($currentUser?.role)
 
-  export let data
+  let { data, children } = $props();
 </script>
 
 <div class="dashboard-container">
@@ -56,7 +56,7 @@
   {/if}
 
   <main class="main-content">
-    <slot />
+    {@render children?.()}
   </main>
 </div>
 

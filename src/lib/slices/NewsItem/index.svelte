@@ -5,7 +5,11 @@
   import Heading2 from '$lib/components/Heading2.svelte'
   import { PrismicImage, PrismicRichText, PrismicText } from '@prismicio/svelte'
 
-  export let slice: Content.NewsItemSlice
+  interface Props {
+    slice: Content.NewsItemSlice;
+  }
+
+  let { slice }: Props = $props();
 </script>
 
 <Bounded data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>

@@ -4,7 +4,11 @@
   import Heading1 from '$lib/components/Heading1.svelte'
   import Paragraph from '$lib/components/Paragraph.svelte'
   import Bounded from '$lib/components/Bounded.svelte'
-  export let slice: Content.RichTextSlice
+  interface Props {
+    slice: Content.RichTextSlice;
+  }
+
+  let { slice }: Props = $props();
 </script>
 
 <Bounded class="prose prose-invert mx-auto mt-7 md:mt-11 container">

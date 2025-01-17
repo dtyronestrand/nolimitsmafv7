@@ -1,7 +1,11 @@
 <script lang="ts">
   import type { Content } from '@prismicio/client'
   import IconFire from '~icons/mdi/fire'
-  export let slice: Content.WordListSlice
+  interface Props {
+    slice: Content.WordListSlice;
+  }
+
+  let { slice }: Props = $props();
   function getRandomInt(max: number) {
     return Math.floor(Math.random() * max)
   }

@@ -2,9 +2,13 @@
   import type { Content } from '@prismicio/client'
   import { asText } from '@prismicio/client'
   import { PrismicEmbed, PrismicRichText, PrismicText } from '@prismicio/svelte'
-  export let videos: Content.VideoDocument[]
 
-  export let slice: Content.VideosSlice
+  interface Props {
+    videos: Content.VideoDocument[];
+    slice: Content.VideosSlice;
+  }
+
+  let { videos, slice }: Props = $props();
   console.log('videos:', videos)
   console.log('slice:', slice)
 

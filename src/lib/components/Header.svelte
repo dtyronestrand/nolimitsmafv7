@@ -8,9 +8,13 @@
   import clsx from 'clsx'
   import { pb } from '$lib/pocketbase'
   import { currentUser } from '$lib/auth'
-  export let settings: Content.SettingsDocument
+  interface Props {
+    settings: Content.SettingsDocument;
+  }
 
-  let isOpen = false
+  let { settings }: Props = $props();
+
+  let isOpen = $state(false)
 
   const toggleOpen = () => {
     isOpen = !isOpen
@@ -48,14 +52,14 @@
     aria-label="Main"
   >
     <div class="flex items-center justify-between">
-      <a href="/" on:click={close} class="z-50">
+      <a href="/" onclick={close} class="z-50">
         <span class="sr-only">home page</span>
       </a>
       <button
         type="button"
         class="block p-2 text-3xl md:hidden"
         aria-expanded={isOpen}
-        on:click={toggleOpen}
+        onclick={toggleOpen}
       >
         <IconMenu />
       </button>
@@ -71,7 +75,7 @@
         aria-expanded={isOpen}
         type="button"
         class="block p-2 text-3xl text-surface-50 md:hidden"
-        on:click={toggleOpen}
+        onclick={toggleOpen}
       >
         <IconClose />
       </button>
@@ -84,14 +88,14 @@
         {#each settings.data.navigation as { navigation_label, navigation_link }}
           <li>
             <a
-              on:click={close}
+              onclick={close}
               aria-current={isActive(navigation_link) ? 'page' : undefined}
               href={asLink(navigation_link)}
               class="group relative block overflow-hidden rounded px-3 py-1 text-3xl font-bold text-primary-100 first:mt-8"
             >
               <span
                 class={`absolute inset-0 z-0 h-full rounded bg-secondary-600 transition-transform duration-300 ease-in-out group-hover:translate-y-0 ${isActive(navigation_link) ? 'translate-y-[calc(100%-4px)]' : 'translate-y-[100%]'}`}
-              />
+></span>
               <span class="relative">{navigation_label}</span>
             </a>
           </li>
@@ -99,14 +103,14 @@
         {#if $currentUser}
         <li>
           <!-- Removed the button styling temporarily to test basic functionality -->
-          <button class="btn btn-sm variant-ghost-primary" on:click={handleLogout}>Logout</button>
+          <button class="btn btn-sm variant-ghost-primary" onclick={handleLogout}>Logout</button>
         </li>
       {:else}
       <ul>
 
         <li>
           
-          <button on:click={mobileLogin} class="btn btn-sm variant-ghost-primary">Login</button>
+          <button onclick={mobileLogin} class="btn btn-sm variant-ghost-primary">Login</button>
         </li>
       </ul>
       {/if}
@@ -120,12 +124,12 @@
             data-sveltekit-reload
             aria-current={isActive(navigation_link) ? 'page' : undefined}
             href={asLink(navigation_link)}
-            on:click={close}
+            onclick={close}
             class="group relative block overflow-hidden rounded px-3 py-1 text-base font-bold text-primary-100"
           >
             <span
               class={`absolute inset-0 z-0 h-full rounded bg-secondary-600 transition-transform duration-300 ease-in-out group-hover:translate-y-0 ${isActive(navigation_link) ? 'translate-y-[calc(100%-4px)]' : 'translate-y-[100%]'}`}
-            />
+></span>
             <span class="relative">{navigation_label}</span>
           </a>
         </li>
@@ -134,7 +138,7 @@
         <li><a href="/profile">{$currentUser.name}</a></li>
         <li>
           <!-- Removed the button styling temporarily to test basic functionality -->
-          <button class="btn btn-sm variant-ghost-primary" on:click={handleLogout}>Logout</button>
+          <button class="btn btn-sm variant-ghost-primary" onclick={handleLogout}>Logout</button>
         </li>
       {:else}
         <li>

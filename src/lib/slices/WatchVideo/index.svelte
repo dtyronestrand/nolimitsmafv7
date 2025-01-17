@@ -1,7 +1,11 @@
 <script lang="ts">
   import type { Content } from '@prismicio/client'
 
-  export let slice: Content.WatchVideoSlice
+  interface Props {
+    slice: Content.WatchVideoSlice;
+  }
+
+  let { slice }: Props = $props();
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>

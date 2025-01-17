@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
   import { SliceZone } from '@prismicio/svelte'
   import { components } from '$lib/slices'
   import { PrismicText, PrismicImage, PrismicRichText } from '@prismicio/svelte'
   import { currentUser } from '$lib/pocketbase'
   import { goto } from '$app/navigation'
-  export let data
+  let { data } = $props();
   console.log(currentUser)
   const getStarted = () => {
     goto('/register')
@@ -64,7 +64,7 @@
                   Our Taekwondo classes offer the perfect blend of tradition, fitness, and fun.
                 </h3>
                 <div class="mx-auto flex items-center justify-center">
-                  <button type="button" on:click={getStarted} class=" mt-8">Get Started</button>
+                  <button type="button" onclick={getStarted} class=" mt-8">Get Started</button>
                 </div>
               </div>
             </div>

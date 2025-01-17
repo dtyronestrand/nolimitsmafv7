@@ -1,11 +1,13 @@
 <script lang="ts">
+  import { preventDefault } from 'svelte/legacy';
+
   import { pb } from '$lib/pocketbase'
   import { goto } from '$app/navigation'
 
-  let email = ''
-  let password = ''
-  let loading = false
-  let error = ''
+  let email = $state('')
+  let password = $state('')
+  let loading = $state(false)
+  let error = $state('')
 
   async function login() {
     loading = true
@@ -22,7 +24,7 @@
   }
 </script>
 
-<form on:submit|preventDefault={login}>
+<form onsubmit={preventDefault(login)}>
   <div>
     <label for="email">Email</label>
     <input type="email" id="email" bind:value={email} required />

@@ -1,7 +1,12 @@
-<script>
+<script lang="ts">
   import { PrismicLink } from '@prismicio/svelte'
-  /**@type{import("@prismicio/client").Content.SettingsDocument}*/
-  export let settings
+  
+  interface Props {
+    /**@type{import("@prismicio/client").Content.SettingsDocument}*/
+    settings: any;
+  }
+
+  let { settings }: Props = $props();
 </script>
 
 <footer class="block w-[100%] max-h-[25vh]">
@@ -10,7 +15,7 @@
       class="mx-auto md:mx-[40px] my-0 items-left justify-left md:flex items-center md:justify-center md:w-[100%]"
     >
       <span class="px-[1 rem]">
-        <i class="fa fa-map-marker text-orange-600 text-lg md:text-xl px-3" />
+        <i class="fa fa-map-marker text-orange-600 text-lg md:text-xl px-3"></i>
       </span>
       <span class="text-yellow-500">
         No Limits Martial Arts and Fitness
@@ -25,7 +30,7 @@
       class="ms-auto md:mx-[40px] my-0 items-left justify-left md:flex items-center md:justify-center md:w-[100%]"
     >
       <span class="px-[1 rem]">
-        <i class="fa fa-phone text-orange-600 text-lg md:text-xl px-3" />
+        <i class="fa fa-phone text-orange-600 text-lg md:text-xl px-3"></i>
       </span>
       <span class="text-yellow-500">804-878-4068</span>
     </section>
@@ -33,7 +38,7 @@
       class="mx-[40px] my-0 items-left justify-left md:flex md:items-center md:justify-center md:w-[100%]"
     >
       <span class="px-[1 rem]">
-        <i class="fa fa-envelope text-orange-600 text-lg md:text-xl px-3" />
+        <i class="fa fa-envelope text-orange-600 text-lg md:text-xl px-3"></i>
       </span>
       <span class="text-yellow-500 -ml-10 md:ml-0">questions@nolimitsmaf.com</span>
     </section>

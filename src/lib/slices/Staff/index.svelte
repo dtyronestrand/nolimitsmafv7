@@ -5,7 +5,11 @@
 
   import GoldText from '$lib/components/GoldText.svelte'
   import { PrismicRichText, PrismicText, PrismicImage } from '@prismicio/svelte'
-  export let slice: Content.StaffSlice
+  interface Props {
+    slice: Content.StaffSlice;
+  }
+
+  let { slice }: Props = $props();
 </script>
 
 <Bounded data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>

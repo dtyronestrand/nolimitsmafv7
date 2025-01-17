@@ -8,7 +8,11 @@
   import GoldText from '$lib/components/GoldText.svelte'
   import Heading1 from '$lib/components/Heading1.svelte'
   import { currentUser } from '$lib/pocketbase'
-  export let slice: Content.HeroSlice
+  interface Props {
+    slice: Content.HeroSlice;
+  }
+
+  let { slice }: Props = $props();
 
   onMount(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } })
@@ -57,10 +61,10 @@
     <div class="hero__image opacity-0 glass-container-logo mx-auto mt-16 w-fit">
       <div
         class="hero__glow hero__glow--one absolute left-1/3 top-0 -z-10 h-2/3 w-2/3 bg-yellow-400/50 mix-blend-screen blur-[120px] filter"
-      />
+></div>
       <div
         class="hero__glow hero__glow--two absolute left-0 top-1/3 -z-10 h-2/3 w-2/3 bg-orange-600/50 mix-blend-screen blur-[120px] filter"
-      />
+></div>
       <PrismicImage class="rounded-[50%]" field={slice.primary.hero_image} />
     </div>
     {#if !$currentUser}

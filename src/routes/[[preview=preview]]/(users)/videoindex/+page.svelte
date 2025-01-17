@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
   import { PrismicRichText, SliceZone } from '@prismicio/svelte'
   import { onMount } from 'svelte'
   import { components } from '$lib/slices'
 
-  export let data
+  let { data } = $props();
 
   onMount(() => {
     console.log('Videoindex page mounted', data)

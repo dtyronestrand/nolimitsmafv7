@@ -10,6 +10,11 @@
   import { onMount } from 'svelte'
   import { goto } from '$app/navigation'
   import { pb } from '$lib/pocketbase'
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
   onMount(() => {
     // Update the store with the initial auth state
 
@@ -37,7 +42,7 @@
 
 <Header settings={$page.data.settings} />
 <main>
-  <slot />
+  {@render children?.()}
 </main>
 
 <Footer settings={$page.data.settings} />

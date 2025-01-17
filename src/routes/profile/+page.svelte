@@ -1,27 +1,29 @@
 <script lang="ts">
+  import { preventDefault } from 'svelte/legacy';
+
   import { pb } from '$lib/pocketbase'
   import { currentUser } from '$lib/auth'
   import { onMount } from 'svelte'
   import { get } from 'svelte/store'
 
-  let loading = false
-  let error = ''
-  let success = ''
+  let loading = $state(false)
+  let error = $state('')
+  let success = $state('')
   let avatarFile: File | null = null
-  let previewUrl = ''
+  let previewUrl = $state('')
 
   // Form fields
-  let email = ''
-  let name = ''
-  let firstName = ''
-  let lastName = ''
+  let email = $state('')
+  let name = $state('')
+  let firstName = $state('')
+  let lastName = $state('')
   let username = '' // Added username declaration
-  let oldPassword = ''
-  let newPassword = ''
-  let newPasswordConfirm = ''
+  let oldPassword = $state('')
+  let newPassword = $state('')
+  let newPasswordConfirm = $state('')
 
   // Get the current user value safely
-  $: user = $currentUser
+  let user = $derived($currentUser)
 
   onMount(() => {
     if (user) {
@@ -106,7 +108,7 @@
     }
   }
 
-  let editProfile = false
+  let editProfile = $state(false)
   const toggleEditProfile = () => {
     editProfile = !editProfile
   }
@@ -124,20 +126,20 @@
     <p>Last Name: {$currentUser.lastName}</p>
     <p>Email: {$currentUser.email}</p>
     <div>
-      <button class="btn variant-filled-success" on:click={toggleEditProfile}>Edit Profile</button>
+      <button class="btn variant-filled-success" onclick={toggleEditProfile}>Edit Profile</button>
     </div>
   </div>
 {:else}
   <div class="profile-container">
     <h1>Update Profile</h1>
 
-    <form on:submit|preventDefault={updateProfile}>
+    <form onsubmit={preventDefault(updateProfile)}>
       <!-- Avatar upload section -->
       <div class="avatar-section">
         {#if previewUrl}
           <img src={previewUrl} alt="Profile avatar" class="avatar-preview" />
         {/if}
-        <input type="file" accept="image/*" on:change={handleAvatarChange} id="avatar" />
+        <input type="file" accept="image/*" onchange={handleAvatarChange} id="avatar" />
       </div>
 
       <div>
@@ -186,7 +188,7 @@
         <button type="submit" disabled={loading}>
           {loading ? 'Updating...' : 'Update Profile'}
         </button>
-        <button type="button" on:click={toggleEditProfile}>Cancel</button>
+        <button type="button" onclick={toggleEditProfile}>Cancel</button>
       </div>
     </form>
   </div>

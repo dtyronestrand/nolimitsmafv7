@@ -95,7 +95,7 @@
             <label for="check"><span class="icon"></span> Keep me Signed in</label>
           </div>
           <div class="group">
-            <button on:click={login} class="button">Sign In</button>
+            <button onclick={login} class="button">Sign In</button>
           </div>
           <div class="hr"></div>
           <div class="foot-lnk">
@@ -128,7 +128,7 @@
             <input id="email" type="email" name="email" class="input">
           </div>
           <div class="group">
-            <button on:click={register} class="btn btn-xl variant-filled-primary" >Sign Up</button>
+            <button onclick={register} class="btn btn-xl variant-filled-primary" >Sign Up</button>
             </div>
           </div>
           <div class="hr"></div>

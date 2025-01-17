@@ -5,8 +5,12 @@
   import { PrismicRichText, PrismicLink, PrismicText } from '@prismicio/svelte'
 
   import { isFilled, type Content } from '@prismicio/client'
-  export let slice: Content.ProgramsSlice
-  export let programs: Content.ProgramDocument[]
+  interface Props {
+    slice: Content.ProgramsSlice;
+    programs: Content.ProgramDocument[];
+  }
+
+  let { slice, programs }: Props = $props();
 </script>
 
 <Bounded data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
