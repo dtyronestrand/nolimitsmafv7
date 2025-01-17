@@ -38,7 +38,7 @@ export const dictionary = {
 		"/[[preview=preview]]/(users)/program/[uid]/studenthandbook": [7,[2]],
 		"/[[preview=preview]]/(users)/program/[uid]/testingapp": [~8,[2]],
 		"/[[preview=preview]]/(users)/program/[uid]/video/[uid]": [~9,[2]],
-		"/register": [16],
+		"/register": [~16],
 		"/slice-simulator": [17],
 		"/staff/admin": [~18],
 		"/unauthorized": [19],
