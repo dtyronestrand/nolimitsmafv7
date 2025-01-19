@@ -60,9 +60,8 @@ https://svelte.dev/e/node_invalid_placement -->
   <div
     class="showcase__glow absolute -z-10 w-full max-w-2xl aspect-video rounded-full bg-yellow-400/40 mix-blend-screen blur-[120px] filter"
   />
-  <h2 class="showcase__heading text-balance text-center text-5xl font-medium md:text-7xl">
-    <h1><PrismicRichText field={slice.primary.heading} components={{ em: GoldText }} /></h1>
-    <div class="flex flex-col md:flex-row mx-auto mt-8">
+    <h1 class="showcase__heading text-balance text-center text-5xl font-medium md:text-7xl"><PrismicRichText field={slice.primary.heading} components={{ em: GoldText }} /></h1>
+    <div class="flex flex-col md:flex-row mt-8">
       {#each slice.primary.show_piece as { title, body, image, link }, i}
         <div class="effect container mx-auto mb-4 md:mr-6 bg-secondary-500/10">
           <img src={image.url} alt="" />
@@ -77,7 +76,7 @@ https://svelte.dev/e/node_invalid_placement -->
         </div>
       {/each}
     </div>
-  </h2>
+
 </Bounded>
 
 <style>

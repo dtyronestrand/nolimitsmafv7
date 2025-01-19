@@ -22,34 +22,37 @@ https://svelte.dev/e/node_invalid_placement -->
     <div class={clsx(active === 'blue' ? 'info p-12 text-surface-50' : 'hidden')}>
       <h4>Blue Belt</h4>
       <table class="mt-8">
-        <tr>
-          <td>Time:</td>
-          <td>~4- 6 Months</td>
-        </tr>
-        <tr>
-          <td>Ponse</td>
-          <td>Taekwondo Form 6 - Yuk Jang & ITF Form Joong-Gun</td>
-        </tr>
-        <tr>
-          <td>Sparring/Self-Defense</td>
-          <td>
-            <ul>
-              <li>Advanced 3 & 4 One Step Sparring</li>
-              <li>Advanced Self-Defense 3 & 4</li>
-              <li>Combinations 10a & 10b</li>
-            </ul>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Breaking</td>
-          <td>Push Kick and Palm Strike</td>
-        </tr>
+        <tbody>
 
-        <tr>
-          <td>Knowledge:</td>
-          <td>Poomsae name & meaning, Qualities to Develop in Taekwondo</td>
-        </tr>
+          <tr>
+            <td>Time:</td>
+            <td>~4- 6 Months</td>
+          </tr>
+          <tr>
+            <td>Ponse</td>
+            <td>Taekwondo Form 6 - Yuk Jang & ITF Form Joong-Gun</td>
+          </tr>
+          <tr>
+            <td>Sparring/Self-Defense</td>
+            <td>
+              <ul>
+                <li>Advanced 3 & 4 One Step Sparring</li>
+                <li>Advanced Self-Defense 3 & 4</li>
+                <li>Combinations 10a & 10b</li>
+              </ul>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Breaking</td>
+            <td>Push Kick and Palm Strike</td>
+          </tr>
+          
+          <tr>
+            <td>Knowledge:</td>
+            <td>Poomsae name & meaning, Qualities to Develop in Taekwondo</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
@@ -68,38 +71,41 @@ https://svelte.dev/e/node_invalid_placement -->
     <div class={clsx(active === 'brown' ? 'info p-12 text-surface-50' : 'hidden')}>
       <h4>Brown Belt</h4>
       <table class="mt-8">
-        <tr>
-          <td>Time:</td>
-          <td>~6 -8 months</td>
-        </tr>
-        <tr>
-          <td>Ponse</td>
-          <td>Taekwondo Form 7- Chil Jang & ITF Form Toi-Gye</td>
-        </tr>
-        <tr>
-          <td>Sparring/Self-Defense</td>
-          <td>
-            <ul>
-              <li>Proficiency 1 & 2 One Step Sparring</li>
-              <li>Knife Self-Defense 1 & 2</li>
-              <li>Combinations 11 & 12</li>
-            </ul>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Breaking</td>
-          <td>Hook kick and Straight Punch</td>
-        </tr>
-        <tr>
-          <td>Knowledge:</td>
-          <td>Poomsae name & meaning, 10 Tenets of Taekwondo</td>
-        </tr>
-        <tr>
-          <td>Assisting in at least 2 classes per month</td>
-        </tr>
-      </table>
-    </div>
+        <tbody>
+
+          <tr>
+            <td>Time:</td>
+            <td>~6 -8 months</td>
+          </tr>
+          <tr>
+            <td>Ponse</td>
+            <td>Taekwondo Form 7- Chil Jang & ITF Form Toi-Gye</td>
+          </tr>
+          <tr>
+            <td>Sparring/Self-Defense</td>
+            <td>
+              <ul>
+                <li>Proficiency 1 & 2 One Step Sparring</li>
+                <li>Knife Self-Defense 1 & 2</li>
+                <li>Combinations 11 & 12</li>
+              </ul>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Breaking</td>
+            <td>Hook kick and Straight Punch</td>
+          </tr>
+          <tr>
+            <td>Knowledge:</td>
+            <td>Poomsae name & meaning, 10 Tenets of Taekwondo</td>
+          </tr>
+          <tr>
+            <td>Assisting in at least 2 classes per month</td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
   </div>
 </div>
 

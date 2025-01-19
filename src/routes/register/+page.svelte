@@ -2,8 +2,9 @@
   import { pb } from '$lib/pocketbase'
   import { goto } from '$app/navigation'
   import Bounded from '$lib/components/Bounded.svelte'
-  import {enhance} from '$app/forms'
+import {onNavigate} from '$app/navigation'
   import clsx from 'clsx'
+
   let email = ''
   let password = ''
   let firstName = ''
@@ -14,6 +15,33 @@
   let loading = false
   let error = ''
 
+  onNavigate((navigation)=>{
+    if (!document.startViewTransition) return
+
+    return new Promise (resolve => {
+      document.startViewTransition(async ()=>{
+        resolve ()
+        await navigation.complete
+      })
+    }
+    )
+  }
+)
+
+  async function login() {
+    loading = true
+    error = ''
+
+    try {
+      await pb.collection('users').authWithPassword(email, password)
+
+      goto('/') // Redirect to home page after login
+    } catch (err) {
+      error = err instanceof Error ? err.message : 'Login failed'
+    } finally {
+      loading = false
+    }
+  }
   async function register() {
     loading = true
     error = ''
@@ -47,20 +75,13 @@
     }
   }
 
-  async function login() {
-    loading = true
-    error = ''
-
-    try {
-      await pb.collection('users').authWithPassword(email, password)
-
-      goto('/') // Redirect to home page after login
-    } catch (err) {
-      error = err instanceof Error ? err.message : 'Login failed'
-    } finally {
-      loading = false
-    }
+  function preventDefault(fn){
+    return function(event){
+      event.preventDefault();
+      fn.call(this, event);
+    };
   }
+
 
  
   function toggleActive() {
@@ -80,22 +101,22 @@
       <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
       <div class="login-form">
         <div class="sign-in-htm">
-          <form>
+          <form class="forms_form" onsubmit={preventDefault(login)}>
           <div class="form-control">
           <div class="group">
             <label for="email" class="label">Email</label>
-            <input id="email" name="email" type="email" class="input">
+            <input id="email" name="email" bind:value={email} type="email" class="input">
           </div>
           <div class="group">
             <label for="pass" class="label">Password</label>
-            <input id="pass" name="password" type="password" class="input" data-type="password">
+            <input id="pass" bind:value={password} name="password" type="password" class="input" data-type="password">
           </div>
           <div class="group">
             <input id="check" type="checkbox" class="check" checked>
             <label for="check"><span class="icon"></span> Keep me Signed in</label>
           </div>
           <div class="group">
-            <button onclick={login} class="button">Sign In</button>
+            <button type="submit" >Sign In</button>
           </div>
           <div class="hr"></div>
           <div class="foot-lnk">
@@ -142,6 +163,11 @@
   </div>
   </Bounded>
 <style>
+:global(html)::view-transition-old(logged-in),
+:global(html)::view-transition-new(logged-in){
+  @apply scale-150 ease-linear duration-1000;
+}
+
 .login-wrap{
 width:100%;
 margin:auto;
@@ -150,6 +176,7 @@ min-height:870px;
 position:relative;
 background:url(/formbg.webp) no-repeat center;
 box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+view-transition-name: logged-in;
 }
 .login-html{
 width:100%;

@@ -1,148 +1,164 @@
 <!-- @migration-task Error while migrating Svelte code: `<tr>` cannot be a child of `<table>`. `<table>` only allows these children: `<caption>`, `<colgroup>`, `<tbody>`, `<thead>`, `<tfoot>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.
 https://svelte.dev/e/node_invalid_placement -->
-<script>
-  import clsx from 'clsx'
+<script lang="ts">
+import clsx from 'clsx'
+import  {Flip}  from 'gsap/dist/Flip';
+import {gsap} from 'gsap/dist/gsap';
+import {onMount} from 'svelte';
+gsap.registerPlugin(Flip);
+const dur = 0.5;
+let lastItems: HTMLElement[] = [];
+let lastIndex = -1;
+let root;
 
-  let active = ''
+onMount(()=>{
+  const options = gsap.utils.toArray<HTMLElement>('.optiona');
+  options.forEach((option, i)=>{
+    option.addEventListener(`click`, ()=>{
+      options.forEach((o, j)=>{
+        if(j !== i){
+          o.classList.remove(`active`);
+        }
+      });
+    const itemTargets = gsap.utils.toArray<HTMLElement>(option.querySelectorAll('*'));
+    const isSameAsLast = i === lastIndex && options[lastIndex];
+    const targets = isSameAsLast ? options.concat(itemTargets) : options.concat(itemTargets.concat(lastItems));
+    const state = Flip.getState(targets);
+    if(!isSameAsLast && options[lastIndex]){
+      options[lastIndex].classList.remove(`active`);
+    }
+    options[i].classList.toggle(`active`);
+  
+    Flip.from(state, {
+      duration: dur,
+      ease: "power1.inOut",
+      absolute: true,
+      nested: true,
+      onEnter: elements => gsap.fromTo(elements, {opacity: 0}, {opacity:1, duration: dur/2, delay: dur/2}),
+      onLeave: elements => gsap.fromTo(elements, {opacity: (i, el) => state.getProperty(el, "opacity")}, {opacity: 0, duration: dur/2}),
+    });
+  }
+)
+  });
+});
 </script>
 
-<div class="optionsa">
+<div class="optionsa" bind:this={root}>
   <div
-    class={clsx('optiona', active === 'orange' ? 'active' : '')}
-    on:click={() => {
-      if (active === 'orange') {
-        active = ''
-      } else {
-        active = 'orange'
-      }
-    }}
-  >
+    class="optiona" >
     <div class="shadow"></div>
     <div class="label"><div class="icon bg-orange-500" /></div>
-    <div class={clsx(active === 'orange' ? 'info p-12 text-surface-50' : 'hidden')}>
+    <div class="info">
       <h4>Orange Belt</h4>
       <table class="mt-8">
-        <tr>
-          <td>Time:</td>
-          <td>~3 Months</td>
-        </tr>
-        <tr>
-          <td>Ponse</td>
-          <td>Taekwondo Form 3 - Sam Jang & ITF Form Do-San</td>
-        </tr>
-        <tr>
-          <td>Sparring/Self-Defense</td>
-          <td>
-            <ul>
-              <li>Intrmediate 1 & 2 One Step Sparring</li>
-              <li>Intermediate Self-Defense 1 & 2</li>
-              <li>Combination 5</li>
-            </ul>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Breaking</td>
-          <td>Front Snap Kick and Knife Hand</td>
-        </tr>
-
-        <tr>
-          <td>Knowledge:</td>
-          <td>Poomsae name & meaning, "What is Taekwondo?"</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Time:</td>
+            <td>~3 Months</td>
+          </tr>
+          <tr>
+            <td>Ponse</td>
+            <td>Taekwondo Form 3 - Sam Jang & ITF Form Do-San</td>
+          </tr>
+          <tr>
+            <td>Sparring/Self-Defense</td>
+            <td>
+              <ul>
+          <li>Intrmediate 1 & 2 One Step Sparring</li>
+          <li>Intermediate Self-Defense 1 & 2</li>
+          <li>Combination 5</li>
+              </ul>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Breaking</td>
+            <td>Front Snap Kick and Knife Hand</td>
+          </tr>
+          <tr>
+            <td>Knowledge:</td>
+            <td>Poomsae name & meaning, "What is Taekwondo?"</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
+ 
   <div
-    class={clsx('optiona', active === 'green' ? 'active' : '')}
-    on:click={() => {
-      if (active === 'green') {
-        active = ''
-      } else {
-        active = 'green'
-      }
-    }}
+    class="optiona"
   >
     <div class="shadow"></div>
     <div class="label"><div class="icon bg-green-500" /></div>
-    <div class={clsx(active === 'green' ? 'info p-12 text-surface-50' : 'hidden')}>
+    <div class="info">
       <h4>Green Belt</h4>
       <table class="mt-8">
-        <tr>
-          <td>Time:</td>
-          <td>~4 -5 months</td>
-        </tr>
-        <tr>
-          <td>Ponse</td>
-          <td>Taekwondo Form 4- II Sa Jang & ITF Won-Hyo</td>
-        </tr>
-        <tr>
-          <td>Sparring/Self-Defense</td>
-          <td>
-            <ul>
-              <li>Intermediate 3 & 4 One Step Sparring</li>
-              <li>Intermediate Self-Defense 3 & 4</li>
-              <li>Combinations 6 & 7</li>
-            </ul>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Breaking</td>
-          <td>Back kick and Inside Knife Hand/Neck Chop</td>
-        </tr>
-        <tr>
-          <td>Knowledge:</td>
-          <td>Poomsae name & meaning, History of Taekwondo</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Time:</td>
+            <td>~4 -5 months</td>
+          </tr>
+          <tr>
+            <td>Ponse</td>
+            <td>Taekwondo Form 4- II Sa Jang & ITF Won-Hyo</td>
+          </tr>
+          <tr>
+            <td>Sparring/Self-Defense</td>
+            <td>
+              <ul>
+          <li>Intermediate 3 & 4 One Step Sparring</li>
+          <li>Intermediate Self-Defense 3 & 4</li>
+          <li>Combinations 6 & 7</li>
+              </ul>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Breaking</td>
+            <td>Back
       </table>
     </div>
   </div>
   <div
-    class={clsx('optiona', active === 'purple' ? 'active' : '')}
-    on:click={() => {
-      if (active === 'purple') {
-        active = ''
-      } else {
-        active = 'purple'
-      }
-    }}
+    class="optiona"
   >
     <div class="shadow"></div>
     <div class="label"><div class="icon bg-purple-600" /></div>
-    <div class={clsx(active === 'purple' ? 'info p-12 text-surface-50' : 'hidden')}>
+    <div class="info">
       <h4>Purple Belt</h4>
       <table class="mt-8">
-        <tr>
-          <td>Time:</td>
-          <td>~4 - 5 months</td>
-        </tr>
-        <tr>
-          <td>Ponse</td>
-          <td>Taekwondo Form 5 - Oh Jang & ITF Form Yul-Gok</td>
-        </tr>
-        <tr>
-          <td>Sparring/Self-Defense</td>
-          <td>
-            <ul>
-              <li>Advanced 1 & 2 One Step Sparring</li>
-              <li>Advanced Self-Defense 1 & 2</li>
-              <li>Combinations 8 & 9</li>
-            </ul>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Breaking</td>
-          <td>Roundhouse Kick and Front Elbo</td>
-        </tr>
-        <tr>
-          <td>Knowledge:</td>
-          <td>Poomsae name & meaning, Korean Flag, Uniform, Bowing and Ki-Yap explaination</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Time:</td>
+            <td>~4 - 5 months</td>
+          </tr>
+          <tr>
+            <td>Ponse</td>
+            <td>Taekwondo Form 5 - Oh Jang & ITF Form Yul-Gok</td>
+          </tr>
+          <tr>
+            <td>Sparring/Self-Defense</td>
+            <td>
+              <ul>
+          <li>Advanced 1 & 2 One Step Sparring</li>
+          <li>Advanced Self-Defense 1 & 2</li>
+          <li>Combinations 8 & 9</li>
+              </ul>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Breaking</td>
+            <td>Roundhouse Kick and Front Elbo</td>
+          </tr>
+          <tr>
+            <td>Knowledge:</td>
+            <td>Poomsae name & meaning, Korean Flag, Uniform, Bowing and Ki-Yap explaination</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
+ 
 </div>
 
 <style>
@@ -158,18 +174,7 @@ https://svelte.dev/e/node_invalid_placement -->
     @apply pl-6 py-2;
   }
 
-  body {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    height: 100vh;
-    font-family: 'Roboto', sans-serif;
-    transition: 0.25s;
-    background: #232223;
-    color: white;
-  }
+
 
   .credit {
     position: absolute;
@@ -236,7 +241,7 @@ https://svelte.dev/e/node_invalid_placement -->
     background-size: auto 120%;
     background-position: center;
     cursor: pointer;
-    transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+   
   }
 
   .optiona:nth-child(1) {
@@ -265,13 +270,12 @@ https://svelte.dev/e/node_invalid_placement -->
 
   .optiona.active {
     flex-grow: 10000;
-    transform: scale(1);
+   
     max-width: 600px;
     margin: 0;
     border-radius: 40px;
     @apply bg-surface-700/60 border-2 text-surface-50 border-secondary-500;
-
-    background-size: auto 100%;
+   
   }
 
   .optiona.active .shadow {
@@ -294,7 +298,12 @@ https://svelte.dev/e/node_invalid_placement -->
     flex-grow: 1;
     border-radius: 30px;
   }
-
+  .optiona:not(.active) .info{
+    @apply hidden;
+  }
+.optiona.active .info{
+  @apply  p-12 text-surface-50;
+}
   .optiona:not(.active) .shadow {
     bottom: -40px;
     box-shadow:
@@ -327,7 +336,7 @@ https://svelte.dev/e/node_invalid_placement -->
     right: 0;
     height: 40px;
 
-    transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+  
   }
 
   .label .icon {
@@ -346,23 +355,8 @@ https://svelte.dev/e/node_invalid_placement -->
     flex-direction: column;
     justify-content: center;
     margin-left: 10px;
-    color: white;
-    white-space: pre;
+    padding: 1rem;
   }
 
-  .label .info > div {
-    position: relative;
-    transition:
-      0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95),
-      opacity 0.5s ease-out;
-  }
 
-  .label .info .main {
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-
-  .label .info .sub {
-    transition-delay: 0.1s;
-  }
 </style>

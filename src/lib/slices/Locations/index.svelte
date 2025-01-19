@@ -44,11 +44,13 @@ https://svelte.dev/e/node_invalid_placement -->
         <div class="block-large glow">
           <h2>Class Schedule</h2>
           <table>
-            <tr>
+            <thead>
+              <tr>
               <th>Day</th>
               <th>Class</th>
               <th>Time</th>
-            </tr>
+              </tr>
+            </thead>
             {#each location.data.schedule as schedule}
               <tr>
                 <td>{schedule.day}</td>
@@ -61,16 +63,22 @@ https://svelte.dev/e/node_invalid_placement -->
         <div class="block-large glow">
           <h2>Pricing</h2>
           <table>
-            <tr>
-              <th>Membership</th>
-              <th>Price</th>
-            </tr>
-            {#each location.data.pricing as pricing}
+            <thead>
+              <tr>
+
+                <th>Membership</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {#each location.data.pricing as pricing}
               <tr>
                 <td>{pricing.membership}</td>
                 <td>{pricing.price}</td>
               </tr>
-            {/each}
+              {/each}
+            </tbody>
           </table>
         </div>
         <div class="container">

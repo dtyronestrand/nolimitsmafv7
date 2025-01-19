@@ -47,7 +47,6 @@
 		"src/routes/+layout.server.ts"
 	],
 	"/register": [
-		"src/routes/register/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	],
 	"/slice-simulator": [
