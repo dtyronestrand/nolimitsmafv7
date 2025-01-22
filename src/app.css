@@ -1,6 +1,12 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 3s;
+  mix-blend-mode: normal;
+}
 * {
   margin: 0;
   padding: 0;

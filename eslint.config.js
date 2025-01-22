@@ -21,9 +21,8 @@ export default [
   },
   {
     rules: {
-      'css(unknownAtRules)' : "off",
-    }
-
+      'css(unknownAtRules)': 'off',
+    },
   },
   {
     files: ['**/*.svelte'],

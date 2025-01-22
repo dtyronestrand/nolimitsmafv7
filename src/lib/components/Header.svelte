@@ -37,8 +37,8 @@
   }
 
   const mobileLogin = () => {
-    goto('/register');
-    toggleOpen(); 
+    goto('/register')
+    toggleOpen()
   }
 </script>
 
@@ -76,10 +76,10 @@
         <IconClose />
       </button>
       {#if $currentUser}
-      <ul>
-        <li><a href="/profile">{$currentUser.name}</a></li>
+        <ul>
+          <li><a href="/profile">{$currentUser.name}</a></li>
         </ul>
-       {/if}
+      {/if}
       <ul class="grid justify-items-end gap-8">
         {#each settings.data.navigation as { navigation_label, navigation_link }}
           <li>
@@ -97,19 +97,17 @@
           </li>
         {/each}
         {#if $currentUser}
-        <li>
-          <!-- Removed the button styling temporarily to test basic functionality -->
-          <button class="btn btn-sm variant-ghost-primary" on:click={handleLogout}>Logout</button>
-        </li>
-      {:else}
-      <ul>
-
-        <li>
-          
-          <button on:click={mobileLogin} class="btn btn-sm variant-ghost-primary">Login</button>
-        </li>
-      </ul>
-      {/if}
+          <li>
+            <!-- Removed the button styling temporarily to test basic functionality -->
+            <button class="btn btn-sm variant-ghost-primary" on:click={handleLogout}>Logout</button>
+          </li>
+        {:else}
+          <ul>
+            <li>
+              <button on:click={mobileLogin} class="btn btn-sm variant-ghost-primary">Login</button>
+            </li>
+          </ul>
+        {/if}
       </ul>
     </div>
     <!--Desktop -->

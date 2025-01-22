@@ -1,7 +1,6 @@
 import { createClient } from '$lib/prismicio'
-import { redirect } from '@sveltejs/kit'
 
-export async function load({ fetch, cookies, locals, url }) {
+export async function load({ fetch, cookies, locals }) {
   const client = createClient({ fetch, cookies })
   const settings = await client.getSingle('settings')
 
@@ -10,5 +9,3 @@ export async function load({ fetch, cookies, locals, url }) {
     user: locals.user,
   }
 }
-
-// List of routes that don't require authentication

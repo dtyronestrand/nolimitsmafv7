@@ -15,10 +15,7 @@
       <span class="text-yellow-500">
         No Limits Martial Arts and Fitness
         <br />
-        <span class="ml-6 md:ml-0">
-          
-          Beaverdam, VA
-        </span>
+        <span class="ml-6 md:ml-0">Beaverdam, VA</span>
       </span>
     </section>
     <section

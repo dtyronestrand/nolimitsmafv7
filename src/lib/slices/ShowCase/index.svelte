@@ -7,7 +7,7 @@
   import EffectParagraph from './EffectParagraph.svelte'
   import { onMount } from 'svelte'
   import gsap from 'gsap'
- 
+
   export let slice: Content.ShowCaseSlice
   onMount(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce').matches
@@ -57,25 +57,26 @@
 <Bounded class="" data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
   <div
     class="showcase__glow absolute -z-10 w-full max-w-2xl aspect-video rounded-full bg-yellow-400/40 mix-blend-screen blur-[120px] filter"
-  />
-  <h2 class="showcase__heading text-balance text-center text-5xl font-medium md:text-7xl">
-    <h1><PrismicRichText field={slice.primary.heading} components={{ em: GoldText }} /></h1>
-    <div class="flex flex-col md:flex-row mx-auto mt-8">
-      {#each slice.primary.show_piece as { title, body, image, link }, i}
-        <div class="effect container mx-auto mb-4 md:mr-6 bg-secondary-500/10">
-          <img src={image.url} alt="" />
-          <div class="pt-8">
-            <PrismicRichText field={title} components={{ em: GoldText, heading2: Heading3 }} />
-          </div>
-          <div class="caption">
-            <div class="info">
-              <PrismicRichText field={body} components={{ paragraph: EffectParagraph }} />
-            </div>
+  ></div>
+
+  <h1 class="showcase__heading text-balance text-center text-5xl font-medium md:text-7xl">
+    <PrismicRichText field={slice.primary.heading} components={{ em: GoldText }} />
+  </h1>
+  <div class="flex flex-col md:flex-row items-center mt-8">
+    {#each slice.primary.show_piece as { title, body, image, link }, i}
+      <div class="effect container mx-auto mb-4 md:mr-6 bg-secondary-500/10">
+        <img src={image.url} alt="" />
+        <div class="pt-8">
+          <PrismicRichText field={title} components={{ em: GoldText, heading2: Heading3 }} />
+        </div>
+        <div class="caption">
+          <div class="info">
+            <PrismicRichText field={body} components={{ paragraph: EffectParagraph }} />
           </div>
         </div>
-      {/each}
-    </div>
-  </h2>
+      </div>
+    {/each}
+  </div>
 </Bounded>
 
 <style>
@@ -100,7 +101,7 @@
   .effect .caption {
     content: '';
     display: block;
-    background-color: #262626;
+
     position: absolute;
     top: 20px;
     left: 20px;
@@ -108,7 +109,7 @@
     bottom: 20px;
 
     outline: 2px solid;
-    @apply outline-secondary-500;
+    @apply outline-secondary-500 bg-surface-700;
     outline-offset: -15px;
 
     transform: rotateX(-90deg);
@@ -121,7 +122,7 @@
 
   .effect:hover .caption {
     transform: rotateX(0);
-    opacity: 0.7;
+    opacity: 1;
   }
 
   /* Text */

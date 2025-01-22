@@ -61,8 +61,6 @@
 </div>
 
 <style>
- 
-
   .dashboard-container {
     display: flex;
     min-height: 100vh;
@@ -92,18 +90,14 @@
     margin-bottom: 0.5rem;
     transition: background-color 0.2s;
   }
-  
+
   .nav-item:hover {
-    
     @apply bg-secondary-500;
   }
 
   .nav-item.active {
-
     @apply bg-secondary-500;
   }
-
-
 
   .main-content {
     flex: 1;

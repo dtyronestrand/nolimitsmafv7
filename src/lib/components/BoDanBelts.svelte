@@ -6,6 +6,7 @@
 
 <div class="optionsc">
   <div
+    role="button"
     class={clsx('optionc', active === 'red' ? 'active' : '')}
     on:click={() => {
       if (active === 'red') {
@@ -20,37 +21,39 @@
     <div class={clsx(active === 'red' ? 'info p-12 text-surface-50' : 'hidden')}>
       <h4>Red Belt</h4>
       <table class="mt-8">
-        <tr>
-          <td>Time:</td>
-          <td>~6- 8 Months</td>
-        </tr>
-        <tr>
-          <td>Ponse</td>
-          <td>Taekwondo Form 8 - Pal Jang & ITF Form Hwa-Rang</td>
-        </tr>
-        <tr>
-          <td>Sparring/Self-Defense</td>
-          <td>
-            <ul>
-              <li>Proficiency 3 & 4 One Step Sparring</li>
-              <li>Knife Self-Defense 3 & 4</li>
-              <li>Combination 13</li>
-            </ul>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Breaking</td>
-          <td>Ax Kick and Back Fist</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Time:</td>
+            <td>~6- 8 Months</td>
+          </tr>
+          <tr>
+            <td>Ponse</td>
+            <td>Taekwondo Form 8 - Pal Jang & ITF Form Hwa-Rang</td>
+          </tr>
+          <tr>
+            <td>Sparring/Self-Defense</td>
+            <td>
+              <ul>
+                <li>Proficiency 3 & 4 One Step Sparring</li>
+                <li>Knife Self-Defense 3 & 4</li>
+                <li>Combination 13</li>
+              </ul>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Breaking</td>
+            <td>Ax Kick and Back Fist</td>
+          </tr>
 
-        <tr>
-          <td>Knowledge:</td>
-          <td>Poomsae name & meaning, Manual Questions Through 10</td>
-        </tr>
-        <tr>
-          <td>Assisting in at least 4 classes per month</td>
-        </tr>
+          <tr>
+            <td>Knowledge:</td>
+            <td>Poomsae name & meaning, Manual Questions Through 10</td>
+          </tr>
+          <tr>
+            <td>Assisting in at least 4 classes per month</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
@@ -69,55 +72,57 @@
     <div class={clsx(active === 'stripe' ? 'info p-12 text-surface-50' : 'hidden')}>
       <h4>Red Belt Black Stripe/Bo-Dan</h4>
       <table class="mt-8">
-        <tr>
-          <td>Time:</td>
-          <td>~6 -9 months</td>
-        </tr>
-        <tr>
-          <td>Poomsae</td>
-          <td>Koryo + all additional color belt Poomsae</td>
-        </tr>
-        <tr>
-          <td>Sparring/Self-Defense</td>
-          <td>
-            <ul>
-              <li>All One-Steps</li>
-              <li>All Self-Defense</li>
-              <li>Combinations 1-13 both sides</li>
-            </ul>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Breaking</td>
-          <td>Creative Break one board per move. Minimum of 3 moves.</td>
-        </tr>
-        <tr>
-          <td>Knowledge:</td>
-          <td>
-            Poomsae name & meaning (all), 1Manual Questions 1-21, History of Taekwondo, Tents of
-            Taekwondo, Philosophy of Taekwondo
-          </td>
-        </tr>
-        <tr>
-          <td>Paper (min. 1000 words)</td>
-        </tr>
-        <tr>
-          <td>Book Report Reading Assignment</td>
-        </tr>
-        <tr>
-          <td>2 Letters of Reccomendation</td>
-        </tr>
-        <tr>
-          <td>20 hours of community service</td>
-        </tr>
-        <tr>
-          <td>Regular assistance in classess (min. once per week)/td></td>
-        </tr>
-        <tr>
-          <td>Pretest:</td>
-          <td>Dojang Cleanse & Meditation (1 hour)</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Time:</td>
+            <td>~6 -9 months</td>
+          </tr>
+          <tr>
+            <td>Poomsae</td>
+            <td>Koryo + all additional color belt Poomsae</td>
+          </tr>
+          <tr>
+            <td>Sparring/Self-Defense</td>
+            <td>
+              <ul>
+                <li>All One-Steps</li>
+                <li>All Self-Defense</li>
+                <li>Combinations 1-13 both sides</li>
+              </ul>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Breaking</td>
+            <td>Creative Break one board per move. Minimum of 3 moves.</td>
+          </tr>
+          <tr>
+            <td>Knowledge:</td>
+            <td>
+              Poomsae name & meaning (all), 1Manual Questions 1-21, History of Taekwondo, Tents of
+              Taekwondo, Philosophy of Taekwondo
+            </td>
+          </tr>
+          <tr>
+            <td>Paper (min. 1000 words)</td>
+          </tr>
+          <tr>
+            <td>Book Report Reading Assignment</td>
+          </tr>
+          <tr>
+            <td>2 Letters of Reccomendation</td>
+          </tr>
+          <tr>
+            <td>20 hours of community service</td>
+          </tr>
+          <tr>
+            <td>Regular assistance in classess (min. once per week)/td></td>
+          </tr>
+          <tr>
+            <td>Pretest:</td>
+            <td>Dojang Cleanse & Meditation (1 hour)</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>

@@ -20,30 +20,32 @@
     <div class={clsx(active === 'none' ? 'info p-12 text-surface-50' : 'hidden')}>
       <h4>No Belt</h4>
       <table class="mt-8">
-        <tr>
-          <td>Time:</td>
-          <td>No Time Limit</td>
-        </tr>
-        <tr>
-          <td>Ponse</td>
-          <td>First 8 movees of ITF Form Chon-Ji</td>
-        </tr>
-        <tr>
-          <td>Stances</td>
-          <td>Joon-Be, Walking Stance, Front Stance, Back Stance, Fighting Stance</td>
-        </tr>
-        <tr>
-          <td>Blocks</td>
-          <td>Low Block, High Block, Middle Block</td>
-        </tr>
-        <tr>
-          <td>Attacks:</td>
-          <td>Punches--low, middle, high with correct form</td>
-        </tr>
-        <tr>
-          <td>Combinations:</td>
-          <td>Combination #1</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Time:</td>
+            <td>No Time Limit</td>
+          </tr>
+          <tr>
+            <td>Ponse</td>
+            <td>First 8 moves of ITF Form Chon-Ji</td>
+          </tr>
+          <tr>
+            <td>Stances</td>
+            <td>Joon-Be, Walking Stance, Front Stance, Back Stance, Fighting Stance</td>
+          </tr>
+          <tr>
+            <td>Blocks</td>
+            <td>Low Block, High Block, Middle Block</td>
+          </tr>
+          <tr>
+            <td>Attacks:</td>
+            <td>Punches--low, middle, high with correct form</td>
+          </tr>
+          <tr>
+            <td>Combinations:</td>
+            <td>Combination #1</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
@@ -62,33 +64,35 @@
     <div class={clsx(active === 'white' ? 'info p-12 text-surface-50' : 'hidden')}>
       <h4>White Belt</h4>
       <table class="mt-8">
-        <tr>
-          <td>Time:</td>
-          <td>~3 months</td>
-        </tr>
-        <tr>
-          <td>Ponse</td>
-          <td>Taekwondo Form I - II Jang & ITF Form Chon-Ji</td>
-        </tr>
-        <tr>
-          <td>Sparring/Self-Defense</td>
-          <td>
-            <ul>
-              <li>Beginner 1 & 2 One Step Sparring</li>
-              <li>Beginner Self-Defense 1 & 2</li>
-              <li>Combination 1 & 2</li>
-            </ul>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Breaking</td>
-          <td>Stomping Kick and Hammerfist</td>
-        </tr>
-        <tr>
-          <td>Knowledge:</td>
-          <td>Poomsae name & meaning, School Oath & Motto</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Time:</td>
+            <td>~3 months</td>
+          </tr>
+          <tr>
+            <td>Ponse</td>
+            <td>Taekwondo Form I - II Jang & ITF Form Chon-Ji</td>
+          </tr>
+          <tr>
+            <td>Sparring/Self-Defense</td>
+            <td>
+              <ul>
+                <li>Beginner 1 & 2 One Step Sparring</li>
+                <li>Beginner Self-Defense 1 & 2</li>
+                <li>Combination 1 & 2</li>
+              </ul>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Breaking</td>
+            <td>Stomping Kick and Hammerfist</td>
+          </tr>
+          <tr>
+            <td>Knowledge:</td>
+            <td>Poomsae name & meaning, School Oath & Motto</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
@@ -107,33 +111,35 @@
     <div class={clsx(active === 'yellow' ? 'info p-12 text-surface-50' : 'hidden')}>
       <h4>Yellow Belt</h4>
       <table class="mt-8">
-        <tr>
-          <td>Time:</td>
-          <td>~3 months</td>
-        </tr>
-        <tr>
-          <td>Ponse</td>
-          <td>Taekwondo Form 2 - Ee Jang & ITF Form Dan-Gun</td>
-        </tr>
-        <tr>
-          <td>Sparring/Self-Defense</td>
-          <td>
-            <ul>
-              <li>Beginner 3 & 4 One Step Sparring</li>
-              <li>Beginner Self-Defense 3 & 4</li>
-              <li>Combination 3 & 4</li>
-            </ul>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Breaking</td>
-          <td>Sidekick and Reverse Elbow</td>
-        </tr>
-        <tr>
-          <td>Knowledge:</td>
-          <td>Poomsae name & meaning, Counting to 10 in Korean, Basic classroom terms</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Time:</td>
+            <td>~3 months</td>
+          </tr>
+          <tr>
+            <td>Ponse</td>
+            <td>Taekwondo Form 2 - Ee Jang & ITF Form Dan-Gun</td>
+          </tr>
+          <tr>
+            <td>Sparring/Self-Defense</td>
+            <td>
+              <ul>
+                <li>Beginner 3 & 4 One Step Sparring</li>
+                <li>Beginner Self-Defense 3 & 4</li>
+                <li>Combination 3 & 4</li>
+              </ul>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Breaking</td>
+            <td>Sidekick and Reverse Elbow</td>
+          </tr>
+          <tr>
+            <td>Knowledge:</td>
+            <td>Poomsae name & meaning, Counting to 10 in Korean, Basic classroom terms</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>

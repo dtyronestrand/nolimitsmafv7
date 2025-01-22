@@ -13,9 +13,6 @@
 		"src/routes/[[preview=preview]]/(users)/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
-	"/login": [
-		"src/routes/+layout.server.ts"
-	],
 	"/logout": [
 		"src/routes/+layout.server.ts",
 		"src/routes/logout/+server.ts"
@@ -75,6 +72,7 @@
 		"src/routes/+layout.server.ts"
 	],
 	"/[[preview=preview]]": [
+		"src/routes/[[preview=preview]]/+page.ts",
 		"src/routes/[[preview=preview]]/+page.server.ts",
 		"src/routes/+layout.server.ts"
 	],

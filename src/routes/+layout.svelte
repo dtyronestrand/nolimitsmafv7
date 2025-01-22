@@ -5,10 +5,11 @@
   import { page } from '$app/stores'
   import { repositoryName } from '$lib/prismicio'
   import { currentUser } from '$lib/pocketbase'
+  import { fade } from 'svelte/transition'
+  import { onNavigate } from '$app/navigation'
   import Header from '$lib/components/Header.svelte'
   import Footer from '$lib/components/Footer.svelte'
   import { onMount } from 'svelte'
-  import { goto } from '$app/navigation'
   import { pb } from '$lib/pocketbase'
   onMount(() => {
     // Update the store with the initial auth state
@@ -17,8 +18,21 @@
       currentUser.set(pb.authStore.model)
     }
   })
+
   console.log('Is auth valid:', pb.authStore.isValid)
   console.log('Current token:', pb.authStore.token)
+  onNavigate(navigation => {
+    if (!document.startViewTransition) return
+    return new Promise(resolve => {
+      document.startViewTransition(async () => {
+        resolve()
+        await navigation.complete
+      })
+    })
+  })
+
+  export let data: { settings: any; user: any; currentPath: string }
+  let { currentPath } = data
 </script>
 
 <svelte:head>
@@ -36,9 +50,12 @@
 </svelte:head>
 
 <Header settings={$page.data.settings} />
-<main>
-  <slot />
-</main>
+
+{#key currentPath}
+  <div in:fade|local={{ duration: 300, delay: 600 }} out:fade|local={{ duration: 300 }}>
+    <slot />
+  </div>
+{/key}
 
 <Footer settings={$page.data.settings} />
 <PrismicPreview {repositoryName} />

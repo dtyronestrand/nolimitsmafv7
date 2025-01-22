@@ -8,9 +8,8 @@
   import Heading3 from '$lib/components/Heading3.svelte'
   import Bounded from '$lib/components/Bounded.svelte'
   export let slice: Content.LocationsSlice
-  export let locations: Content.LocationDocument[]
-  export let data
 
+  export let locations
   let selectedLocation = ''
   function handleSelection(event) {
     selectedLocation = event.target.value
@@ -24,16 +23,16 @@
       <select class="mt-6 text-surface-900" on:change={handleSelection}>
         <option value="">Select a location</option>
         {#each locations as location}
-          <option value={location.uid}>{asText(location.data.name)}</option>
+          <option value={location.uid}>{asText(location.name)}</option>
         {/each}
       </select>
     </div>
   </div>
-  {#each locations as location}
+  {#each slice.primary.locations as location}
     {#if location.uid === selectedLocation}
       <div class="profile">
         <PrismicRichText
-          field={location.data.name}
+          field={location.name}
           components={{ heading1: Heading1, heading2: Heading2, heading3: Heading3 }}
         />
         <PrismicRichText field={location.data.details} />
@@ -42,33 +41,37 @@
         <div class="block-large glow">
           <h2>Class Schedule</h2>
           <table>
-            <tr>
-              <th>Day</th>
-              <th>Class</th>
-              <th>Time</th>
-            </tr>
-            {#each location.data.schedule as schedule}
+            <tbody>
               <tr>
-                <td>{schedule.day}</td>
-
-                <td>{schedule.time}</td>
+                <th>Day</th>
+                <th>Class</th>
+                <th>Time</th>
               </tr>
-            {/each}
+              {#each location.data.schedule as schedule}
+                <tr>
+                  <td>{schedule.day}</td>
+
+                  <td>{schedule.time}</td>
+                </tr>
+              {/each}
+            </tbody>
           </table>
         </div>
         <div class="block-large glow">
           <h2>Pricing</h2>
           <table>
-            <tr>
-              <th>Membership</th>
-              <th>Price</th>
-            </tr>
-            {#each location.data.pricing as pricing}
+            <tbody>
               <tr>
-                <td>{pricing.membership}</td>
-                <td>{pricing.price}</td>
+                <th>Membership</th>
+                <th>Price</th>
               </tr>
-            {/each}
+              {#each location.data.pricing as pricing}
+                <tr>
+                  <td>{pricing.membership}</td>
+                  <td>{pricing.price}</td>
+                </tr>
+              {/each}
+            </tbody>
           </table>
         </div>
         <div class="container">
