@@ -57,7 +57,25 @@
       <label for="tab-2" class="tab">Sign Up</label>
       <div class="login-form">
         <div class="sign-in-htm">
-          <form method="POST" use:enhance action="?/login">
+          <form
+            method="POST"
+            action="?/login"
+            use:enhance={({ formData, action, cancel }) => {
+              loading = true
+
+              return async ({ result, update }) => {
+                loading = false
+
+                if (result.type === 'redirect') {
+                  await goto(result.location)
+                } else if (result.type === 'failure') {
+                  error = (typeof result.data?.error === 'string' ? result.data.error : 'Login failed')
+                }
+
+                await update()
+              }
+            }}
+          >
             <div class="form-control">
               <div class="group">
                 <label for="email" class="label">Email</label>
@@ -154,6 +172,7 @@
     max-width: 625px;
     min-height: 870px;
     position: relative;
+    border-radius: 40px;
     background: url(/formbg.webp) no-repeat center;
     box-shadow:
       0 12px 15px 0 rgba(0, 0, 0, 0.24),
@@ -163,8 +182,9 @@
     width: 100%;
     height: 100%;
     position: absolute;
+    border-radius: 40px;
     padding: 150px 70px 50px 70px;
-    @apply bg-surface-600/40;
+    @apply bg-primary-900/30;
   }
   .login-html .sign-in-htm,
   .login-html .sign-up-htm {
@@ -197,7 +217,7 @@
   }
   .login-html .sign-in:checked + .tab,
   .login-html .sign-up:checked + .tab {
-    @apply text-surface-50 border-b-4 border-primary-500;
+    @apply text-surface-900 border-b-4 border-secondary-500;
   }
   .login-form {
     min-height: 345px;
@@ -220,17 +240,17 @@
     border: none;
     padding: 15px 20px;
     border-radius: 25px;
-    @apply bg-primary-200;
+    @apply bg-primary-200/90;
   }
   .login-form .group input[data-type='password'] {
     text-security: circle;
     -webkit-text-security: circle;
   }
   .login-form .group .label {
-    @apply text-primary-200 text-2xl  tracking-wider;
+    @apply text-surface-500 text-2xl  tracking-wider;
   }
   .login-form .group .button {
-    @apply bg-primary-500;
+    @apply bg-primary-500 text-surface-50 hover:bg-secondary-500;
   }
   .login-form .group label .icon {
     width: 15px;

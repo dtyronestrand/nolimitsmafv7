@@ -10,6 +10,12 @@ export default defineConfig({
       autoInstall: true,
     }),
   ],
+  ssr: {
+    noExternal:[
+      'gsap',
+      '@gsap/shockiingly',
+    ],
+  },
   server: {
     fs: {
       // Allow access to files from the project root.

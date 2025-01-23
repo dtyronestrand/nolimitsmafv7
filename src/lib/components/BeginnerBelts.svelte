@@ -1,23 +1,16 @@
-<script>
+<script lang="ts">
   import clsx from 'clsx'
-
+import {slide, scale} from 'svelte/transition'
+import {quintInOut, quintOut} from 'svelte/easing'
   let active = ''
 </script>
 
 <div class="options">
-  <div
-    class={clsx('option', active === 'none' ? 'active' : '')}
-    on:click={() => {
-      if (active === 'none') {
-        active = ''
-      } else {
-        active = 'none'
-      }
-    }}
-  >
+  <div class={clsx('option', active === 'none' ? 'active' : '')} on:click={() => {active === 'none' ? active = '' : active = 'none'}}>
     <div class="shadow"></div>
     <div class="label"><div class="icon bg-white/10" /></div>
-    <div class={clsx(active === 'none' ? 'info p-12 text-surface-50' : 'hidden')}>
+    {#if active === 'none'}
+    <div class='info p-12 text-surface-50' transition:slide={{duration:300, easing: quintOut}}>
       <h4>No Belt</h4>
       <table class="mt-8">
         <tbody>
@@ -47,8 +40,14 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
+      </div>
+      {:else}
+      <div class='hidden'>
+        </div>
+        {/if}
+     
+</div>
+
   <div
     class={clsx('option', active === 'white' ? 'active' : '')}
     on:click={() => {
@@ -61,7 +60,8 @@
   >
     <div class="shadow"></div>
     <div class="label"><div class="icon bg-white" /></div>
-    <div class={clsx(active === 'white' ? 'info p-12 text-surface-50' : 'hidden')}>
+    {#if active === 'white'}
+    <div class='info p-12 text-surface-50'>
       <h4>White Belt</h4>
       <table class="mt-8">
         <tbody>
@@ -95,6 +95,10 @@
         </tbody>
       </table>
     </div>
+    {:else}
+    <div class='hidden'>
+      </div>
+      {/if} 
   </div>
   <div
     class={clsx('option', active === 'yellow' ? 'active' : '')}
@@ -236,7 +240,8 @@
     background-size: auto 120%;
     background-position: center;
     cursor: pointer;
-    transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: flex-grow, transform, max-width, margin, border-radius;
   }
 
   .option:nth-child(1) {
@@ -270,8 +275,9 @@
     margin: 0;
     border-radius: 40px;
     @apply bg-surface-700/60 border-2 text-surface-50 border-secondary-500;
-
     background-size: auto 100%;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: flex-grow, transform, max-width, margin, border-radius;
   }
 
   .option.active .shadow {

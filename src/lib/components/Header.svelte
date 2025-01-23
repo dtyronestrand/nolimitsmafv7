@@ -33,7 +33,7 @@
   const handleLogout = async () => {
     console.log('Logging out...')
     pb.authStore.clear()
-    await goto('/login')
+    await goto('/')
   }
 
   const mobileLogin = () => {
